@@ -6,7 +6,8 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
-      "@/assets/*": ["./assets/*"]
+      "@assets/*": ["./assets/*"],
+      "tailwind.config": ["./tailwind.config.js"]
     }
   },
   "include": [
