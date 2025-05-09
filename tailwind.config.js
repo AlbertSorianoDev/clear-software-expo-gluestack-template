@@ -1,9 +1,11 @@
 import gluestackPlugin from "@gluestack-ui/nativewind-utils/tailwind-plugin";
 
 /** @type {import('tailwindcss').Config} */
+// eslint-disable-next-line no-undef
 module.exports = {
   darkMode: "media",
   content: ["src/**/*.{tsx,jsx,ts,js}"],
+  // eslint-disable-next-line @typescript-eslint/no-require-imports, no-undef
   presets: [require("nativewind/preset")],
 
   safelist: [

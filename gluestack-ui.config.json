@@ -5,6 +5,6 @@
   },
   "app": {
     "entry": "src/app/_layout.tsx",
-    "components": "src/components/gluestack"
+    "components": "src/components/ui"
   }
 }

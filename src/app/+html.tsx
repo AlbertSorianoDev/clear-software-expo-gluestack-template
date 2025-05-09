@@ -11,7 +11,8 @@ export default function Root({ children }: { children: React.ReactNode }) {
 
         <ScrollViewStyleReset />
 
-        <link rel="icon" href="@/assets/favicon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
+
         <title>Expo App</title>
       </head>
       <body className="bg-white text-black dark:bg-black dark:text-white">{children}</body>

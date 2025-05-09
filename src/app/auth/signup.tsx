@@ -1,0 +1,234 @@
+import AntDesign from "@expo/vector-icons/AntDesign";
+import { Link, useRouter } from "expo-router";
+import { Keyboard } from "react-native";
+
+import { Button, ButtonIcon, ButtonText } from "@/components/ui/button";
+import { Checkbox, CheckboxIcon, CheckboxIndicator, CheckboxLabel } from "@/components/ui/checkbox";
+import { Heading } from "@/components/ui/heading";
+import { HStack } from "@/components/ui/hstack";
+import {
+  AlertCircleIcon,
+  ArrowLeftIcon,
+  CheckIcon,
+  EyeIcon,
+  EyeOffIcon,
+  Icon,
+} from "@/components/ui/icon";
+import { Input, InputField, InputIcon, InputSlot } from "@/components/ui/input";
+import { LinkText } from "@/components/ui/link";
+import { Pressable } from "@/components/ui/pressable";
+import { ScrollView } from "@/components/ui/scroll-view";
+import { Text } from "@/components/ui/text";
+import { Toast, ToastTitle, useToast } from "@/components/ui/toast";
+import { VStack } from "@/components/ui/vstack";
+import { signUpSchema } from "@/schemas/auth/signup-schema";
+import { useSignUpStore } from "@/store/auth/signup-store";
+
+export default function SignUp() {
+  const {
+    email,
+    password,
+    confirmPassword,
+    rememberMe,
+    showPassword,
+    showConfirmPassword,
+    errors,
+    setEmail,
+    setPassword,
+    setConfirmPassword,
+    setShowPassword,
+    setShowConfirmPassword,
+    setRememberMe,
+    setErrors,
+    reset,
+  } = useSignUpStore();
+
+  const toast = useToast();
+  const router = useRouter();
+
+  // Expo Icons
+  const GoogleIcon = () => <AntDesign name="google" />;
+
+  const handleSubmit = () => {
+    const result = signUpSchema.safeParse({ email, password, confirmPassword });
+
+    if (!result.success) {
+      const fieldErrors = result.error.flatten().fieldErrors;
+      setErrors({
+        email: fieldErrors.email?.[0],
+        password: fieldErrors.password?.[0],
+        confirmPassword: fieldErrors.confirmPassword?.[0],
+      });
+      return;
+    }
+
+    toast.show({
+      placement: "bottom right",
+      render: ({ id }) => (
+        <Toast nativeID={id} action="success">
+          <ToastTitle>Account created</ToastTitle>
+        </Toast>
+      ),
+    });
+
+    reset();
+  };
+
+  return (
+    <ScrollView
+      className="w-full"
+      contentContainerStyle={{ flexGrow: 1, justifyContent: "center", padding: 20 }}
+    >
+      <VStack className="mx-auto w-full max-w-[440px]" space="md">
+        <VStack className="md:items-center" space="md">
+          <Pressable
+            onPress={() => {
+              router.back();
+            }}
+          >
+            <Icon as={ArrowLeftIcon} className="stroke-background-800 md:hidden" size="xl" />
+          </Pressable>
+          <VStack>
+            <Heading className="md:text-center" size="3xl">
+              Sign up
+            </Heading>
+            <Text>Sign up and start using gluestack</Text>
+          </VStack>
+        </VStack>
+        <VStack className="gap-y-4">
+          <VStack className="gap-y-1">
+            <Input>
+              <InputField
+                className="text-sm"
+                placeholder="Email"
+                type="text"
+                autoCapitalize="none"
+                autoCorrect={false}
+                autoComplete="email"
+                keyboardType="email-address"
+                value={email}
+                onChangeText={(text) => {
+                  setEmail(text);
+                }}
+                onSubmitEditing={() => {
+                  Keyboard.dismiss();
+                }}
+                returnKeyType="done"
+              />
+            </Input>
+            <HStack className="gap-x-2">
+              {errors.email && (
+                <>
+                  <Icon as={AlertCircleIcon} className="text-error-500" />
+                  <Text className="text-sm text-error-500">{errors.email}</Text>
+                </>
+              )}
+            </HStack>
+          </VStack>
+
+          <VStack className="gap-y-1">
+            <Input>
+              <InputField
+                className="text-sm"
+                placeholder="Password"
+                type={showPassword ? "text" : "password"}
+                value={password}
+                onChangeText={(text) => {
+                  setPassword(text);
+                }}
+                onSubmitEditing={() => {
+                  Keyboard.dismiss();
+                }}
+                returnKeyType="done"
+              />
+              <InputSlot
+                onPress={() => {
+                  setShowPassword(!showPassword);
+                }}
+                className="pr-3"
+              >
+                <InputIcon as={showPassword ? EyeIcon : EyeOffIcon} />
+              </InputSlot>
+            </Input>
+            <HStack className="gap-x-2">
+              {errors.password && (
+                <>
+                  <Icon as={AlertCircleIcon} className="text-error-500" />
+                  <Text className="text-sm text-error-500">{errors.password}</Text>
+                </>
+              )}
+            </HStack>
+          </VStack>
+
+          <VStack className="gap-y-1">
+            <Input>
+              <InputField
+                placeholder="Confirm Password"
+                className="text-sm"
+                type={showConfirmPassword ? "text" : "password"}
+                value={confirmPassword}
+                onChangeText={(text) => {
+                  setConfirmPassword(text);
+                }}
+                onSubmitEditing={() => {
+                  Keyboard.dismiss();
+                }}
+                returnKeyType="done"
+              />
+              <InputSlot
+                onPress={() => {
+                  setShowConfirmPassword(!showConfirmPassword);
+                }}
+                className="pr-3"
+              >
+                <InputIcon as={showConfirmPassword ? EyeIcon : EyeOffIcon} />
+              </InputSlot>
+            </Input>
+            <HStack className="gap-x-2">
+              {errors.confirmPassword && (
+                <>
+                  <Icon as={AlertCircleIcon} className="text-error-500" />
+                  <Text className="text-sm text-error-500">{errors.confirmPassword}</Text>
+                </>
+              )}
+            </HStack>
+          </VStack>
+
+          <Checkbox
+            size="sm"
+            value="Remember me"
+            isChecked={rememberMe}
+            onChange={() => {
+              setRememberMe(!rememberMe);
+            }}
+            aria-label="Remember me"
+          >
+            <CheckboxIndicator>
+              <CheckboxIcon as={CheckIcon} />
+            </CheckboxIndicator>
+            <CheckboxLabel>I accept the Terms of Use & Privacy Policy</CheckboxLabel>
+          </Checkbox>
+        </VStack>
+
+        <VStack className="my-7 w-full" space="lg">
+          <Button className="w-full" onPress={handleSubmit}>
+            <ButtonText className="font-medium">Sign up</ButtonText>
+          </Button>
+          <Button variant="outline" className="w-full gap-1" onPress={() => {}}>
+            <ButtonText className="font-medium">Continue with Google</ButtonText>
+            <ButtonIcon as={GoogleIcon} className="mx-4 text-gray-700" />
+          </Button>
+        </VStack>
+
+        <HStack className="self-center" space="sm">
+          <Text size="md">Already have an account?</Text>
+          <Link href="/auth/signin">
+            <LinkText className="font-medium text-primary-700" size="md">
+              Login
+            </LinkText>
+          </Link>
+        </HStack>
+      </VStack>
+    </ScrollView>
+  );
+}

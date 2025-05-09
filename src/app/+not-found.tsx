@@ -1,6 +1,7 @@
-// app/+not-found.tsx
 import { useNavigation, useRouter } from "expo-router";
-import { Pressable, Text, View } from "react-native";
+import { Text, View } from "react-native";
+
+import { Button, ButtonText } from "@/components/ui/button";
 
 export default function NotFound() {
   const router = useRouter();
@@ -14,7 +15,7 @@ export default function NotFound() {
       <Text className="mb-4 mt-2 text-center text-gray-600 dark:text-gray-300">
         The page you're looking for doesn't exist.
       </Text>
-      <Pressable
+      <Button
         onPress={() => {
           if (navigation.canGoBack()) {
             router.back();
@@ -22,10 +23,9 @@ export default function NotFound() {
             router.replace("/");
           }
         }}
-        className="rounded-lg bg-blue-600 px-4 py-2"
       >
-        <Text className="font-semibold text-white">Go back</Text>
-      </Pressable>
+        <ButtonText className="font-semibold text-white">Go back</ButtonText>
+      </Button>
     </View>
   );
 }

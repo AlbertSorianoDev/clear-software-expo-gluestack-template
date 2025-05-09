@@ -1,6 +1,6 @@
 import "@/global.css";
 
-import { GluestackUIProvider } from "@/components/gluestack/gluestack-ui-provider";
+import OpenSansFont from "@assets/fonts/OpenSans-Regular.ttf";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { DarkTheme, DefaultTheme, ThemeProvider } from "@react-navigation/native";
 import { useFonts } from "expo-font";
@@ -10,13 +10,15 @@ import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
 import { useColorScheme } from "react-native";
 
-SplashScreen.preventAutoHideAsync();
+import { GluestackUIProvider } from "@/components/ui/gluestack-ui-provider";
+
+void SplashScreen.preventAutoHideAsync();
 
 export { ErrorBoundary } from "expo-router";
 
 export default function RootLayout() {
   const [loaded, error] = useFonts({
-    OpenSans: require("@assets/fonts/OpenSans-Regular.ttf"),
+    OpenSans: OpenSansFont,
     ...FontAwesome.font,
   });
 
@@ -26,7 +28,7 @@ export default function RootLayout() {
 
   useEffect(() => {
     if (loaded) {
-      SplashScreen.hideAsync();
+      void SplashScreen.hideAsync();
     }
   }, [loaded]);
 
