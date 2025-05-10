@@ -1,5 +1,5 @@
 import AntDesign from "@expo/vector-icons/AntDesign";
-import { Link, useRouter } from "expo-router";
+import { Link, router } from "expo-router";
 import { Keyboard } from "react-native";
 
 import { Button, ButtonIcon, ButtonText } from "@/components/ui/button";
@@ -21,7 +21,7 @@ import { ScrollView } from "@/components/ui/scroll-view";
 import { Text } from "@/components/ui/text";
 import { Toast, ToastTitle, useToast } from "@/components/ui/toast";
 import { VStack } from "@/components/ui/vstack";
-import { signUpSchema } from "@/schemas/auth/signup-schema";
+import { SignUpSchema } from "@/schemas/auth/signup-schema";
 import { useSignUpStore } from "@/store/auth/signup-store";
 
 export default function SignUp() {
@@ -44,13 +44,12 @@ export default function SignUp() {
   } = useSignUpStore();
 
   const toast = useToast();
-  const router = useRouter();
 
   // Expo Icons
-  const GoogleIcon = () => <AntDesign name="google" />;
+  const GoogleIcon = () => <AntDesign name="google" size={16} />;
 
   const handleSubmit = () => {
-    const result = signUpSchema.safeParse({ email, password, confirmPassword });
+    const result = SignUpSchema.safeParse({ email, password, confirmPassword });
 
     if (!result.success) {
       const fieldErrors = result.error.flatten().fieldErrors;
@@ -116,14 +115,12 @@ export default function SignUp() {
                 returnKeyType="done"
               />
             </Input>
-            <HStack className="gap-x-2">
-              {errors.email && (
-                <>
-                  <Icon as={AlertCircleIcon} className="text-error-500" />
-                  <Text className="text-sm text-error-500">{errors.email}</Text>
-                </>
-              )}
-            </HStack>
+            {errors.email && (
+              <HStack className="gap-x-2">
+                <Icon as={AlertCircleIcon} className="text-error-500" />
+                <Text className="text-sm text-error-500">{errors.email}</Text>
+              </HStack>
+            )}
           </VStack>
 
           <VStack className="gap-y-1">
@@ -150,14 +147,12 @@ export default function SignUp() {
                 <InputIcon as={showPassword ? EyeIcon : EyeOffIcon} />
               </InputSlot>
             </Input>
-            <HStack className="gap-x-2">
-              {errors.password && (
-                <>
-                  <Icon as={AlertCircleIcon} className="text-error-500" />
-                  <Text className="text-sm text-error-500">{errors.password}</Text>
-                </>
-              )}
-            </HStack>
+            {errors.password && (
+              <HStack className="gap-x-2">
+                <Icon as={AlertCircleIcon} className="text-error-500" />
+                <Text className="text-sm text-error-500">{errors.password}</Text>
+              </HStack>
+            )}
           </VStack>
 
           <VStack className="gap-y-1">
@@ -184,14 +179,12 @@ export default function SignUp() {
                 <InputIcon as={showConfirmPassword ? EyeIcon : EyeOffIcon} />
               </InputSlot>
             </Input>
-            <HStack className="gap-x-2">
-              {errors.confirmPassword && (
-                <>
-                  <Icon as={AlertCircleIcon} className="text-error-500" />
-                  <Text className="text-sm text-error-500">{errors.confirmPassword}</Text>
-                </>
-              )}
-            </HStack>
+            {errors.confirmPassword && (
+              <HStack className="gap-x-2">
+                <Icon as={AlertCircleIcon} className="text-error-500" />
+                <Text className="text-sm text-error-500">{errors.confirmPassword}</Text>
+              </HStack>
+            )}
           </VStack>
 
           <Checkbox
@@ -214,9 +207,10 @@ export default function SignUp() {
           <Button className="w-full" onPress={handleSubmit}>
             <ButtonText className="font-medium">Sign up</ButtonText>
           </Button>
+
           <Button variant="outline" className="w-full gap-1" onPress={() => {}}>
             <ButtonText className="font-medium">Continue with Google</ButtonText>
-            <ButtonIcon as={GoogleIcon} className="mx-4 text-gray-700" />
+            <ButtonIcon as={GoogleIcon} />
           </Button>
         </VStack>
 
