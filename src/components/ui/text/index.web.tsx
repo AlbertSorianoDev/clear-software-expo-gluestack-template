@@ -1,6 +1,8 @@
-import type { VariantProps } from "@gluestack-ui/nativewind-utils";
 import React from "react";
+
 import { textStyle } from "./styles";
+
+import type { VariantProps } from "@gluestack-ui/nativewind-utils";
 
 type ITextProps = React.ComponentProps<"span"> & VariantProps<typeof textStyle>;
 

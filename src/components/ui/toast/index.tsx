@@ -1,5 +1,4 @@
 "use client";
-import type { VariantProps } from "@gluestack-ui/nativewind-utils";
 import { tva } from "@gluestack-ui/nativewind-utils/tva";
 import { useStyleContext, withStyleContext } from "@gluestack-ui/nativewind-utils/withStyleContext";
 import { createToastHook } from "@gluestack-ui/toast";
@@ -7,6 +6,8 @@ import { AnimatePresence, Motion, MotionComponentProps } from "@legendapp/motion
 import { cssInterop } from "nativewind";
 import React from "react";
 import { AccessibilityInfo, Text, View, ViewStyle } from "react-native";
+
+import type { VariantProps } from "@gluestack-ui/nativewind-utils";
 
 type IMotionViewProps = React.ComponentProps<typeof View> &
   MotionComponentProps<typeof View, ViewStyle, unknown, unknown, unknown>;

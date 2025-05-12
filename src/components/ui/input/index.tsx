@@ -1,12 +1,13 @@
 "use client";
 import { PrimitiveIcon, UIIcon } from "@gluestack-ui/icon";
 import { createInput } from "@gluestack-ui/input";
-import type { VariantProps } from "@gluestack-ui/nativewind-utils";
 import { tva } from "@gluestack-ui/nativewind-utils/tva";
 import { useStyleContext, withStyleContext } from "@gluestack-ui/nativewind-utils/withStyleContext";
 import { cssInterop } from "nativewind";
 import React from "react";
 import { Pressable, TextInput, View } from "react-native";
+
+import type { VariantProps } from "@gluestack-ui/nativewind-utils";
 
 const SCOPE = "INPUT";
 

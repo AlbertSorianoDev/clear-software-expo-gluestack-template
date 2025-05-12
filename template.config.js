@@ -1,5 +1,3 @@
-module.exports = {
-  placeholderName: "ClearSoftwareTemplate",
-  templateDir: "./",
-  postInitScript: "./post-init.js",
-};
+export const placeholderName = "ClearSoftwareTemplate";
+export const templateDir = "./";
+export const postInitScript = "./post-init.js";

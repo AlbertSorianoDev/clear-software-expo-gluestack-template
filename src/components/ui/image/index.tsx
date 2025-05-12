@@ -1,9 +1,10 @@
 "use client";
 import { createImage } from "@gluestack-ui/image";
-import type { VariantProps } from "@gluestack-ui/nativewind-utils";
 import { tva } from "@gluestack-ui/nativewind-utils/tva";
 import React from "react";
 import { Platform, Image as RNImage } from "react-native";
+
+import type { VariantProps } from "@gluestack-ui/nativewind-utils";
 
 const imageStyle = tva({
   base: "max-w-full",

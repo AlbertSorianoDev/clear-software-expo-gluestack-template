@@ -1,13 +1,12 @@
 "use client";
 import { createLink } from "@gluestack-ui/link";
-import { Pressable, Text } from "react-native";
-
-import type { VariantProps } from "@gluestack-ui/nativewind-utils";
 import { tva } from "@gluestack-ui/nativewind-utils/tva";
 import { withStyleContext } from "@gluestack-ui/nativewind-utils/withStyleContext";
 import { cssInterop } from "nativewind";
-
 import React from "react";
+import { Pressable, Text } from "react-native";
+
+import type { VariantProps } from "@gluestack-ui/nativewind-utils";
 export const UILink = createLink({
   Root: withStyleContext(Pressable),
   Text: Text,
@@ -17,7 +16,7 @@ cssInterop(UILink, { className: "style" });
 cssInterop(UILink.Text, { className: "style" });
 
 const linkStyle = tva({
-  base: "group/link data-[disabled=true]:opacity-4 web:outline-0 data-[focus-visible=true]:web:outline-0 data-[focus-visible=true]:web:ring-2 data-[focus-visible=true]:web:ring-indicator-primary data-[disabled=true]:web:cursor-not-allowed ",
+  base: "group/link data-[disabled=true]:opacity-4 web:outline-0 data-[focus-visible=true]:web:outline-0 data-[focus-visible=true]:web:ring-2 data-[focus-visible=true]:web:ring-indicator-primary data-[disabled=true]:web:cursor-not-allowed",
 });
 
 const linkTextStyle = tva({
