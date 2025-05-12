@@ -1,7 +1,7 @@
 import AntDesign from "@expo/vector-icons/AntDesign";
 import clsx from "clsx";
 import { Link, router } from "expo-router";
-import { Keyboard } from "react-native";
+import { Keyboard, View } from "react-native";
 
 import { Button, ButtonIcon, ButtonText } from "@/components/ui/button";
 import { Checkbox, CheckboxIcon, CheckboxIndicator, CheckboxLabel } from "@/components/ui/checkbox";
@@ -242,6 +242,12 @@ export default function SignUp() {
           <Button className="w-full" onPress={handleSubmit}>
             <ButtonText className="font-medium">Sign up</ButtonText>
           </Button>
+
+          <HStack className="my-1 w-full items-center space-x-4">
+            <View className="flex-1 border-t border-gray-300" />
+            <Text className="text-sm text-gray-500">Other signup options</Text>
+            <View className="flex-1 border-t border-gray-300" />
+          </HStack>
 
           <Button variant="outline" className="w-full gap-1" onPress={() => {}}>
             <ButtonText className="font-medium">Continue with Google</ButtonText>

@@ -1,6 +1,6 @@
-import { AntDesign } from "@expo/vector-icons";
+import { AntDesign, Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
-import { Keyboard } from "react-native";
+import { Keyboard, View } from "react-native";
 
 import { Button, ButtonIcon, ButtonText } from "@/components/ui/button";
 import { Checkbox, CheckboxIcon, CheckboxIndicator, CheckboxLabel } from "@/components/ui/checkbox";
@@ -203,6 +203,18 @@ export default function SignIn() {
             <ButtonText className="font-medium">Log in</ButtonText>
           </Button>
 
+          <HStack className="my-1 w-full items-center space-x-4">
+            <View className="flex-1 border-t border-gray-300" />
+            <Text className="text-sm text-gray-500">Other login options</Text>
+            <View className="flex-1 border-t border-gray-300" />
+          </HStack>
+
+          <Button variant="outline" className="w-full gap-1" onPress={() => {}}>
+            <ButtonText className="font-medium">Get login code</ButtonText>
+            <ButtonIcon
+              as={() => <Ionicons name="keypad" size={16} className="text-black dark:text-white" />}
+            />
+          </Button>
           <Button variant="outline" className="w-full gap-1" onPress={() => {}}>
             <ButtonText className="font-medium">Continue with Google</ButtonText>
             <ButtonIcon
