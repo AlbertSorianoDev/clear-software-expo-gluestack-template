@@ -10,6 +10,7 @@ import { HStack } from "@/components/ui/hstack";
 import {
   AlertCircleIcon,
   ArrowLeftIcon,
+  CheckCircleIcon,
   CheckIcon,
   EyeIcon,
   EyeOffIcon,
@@ -177,8 +178,8 @@ export default function SignUp() {
               return (
                 <HStack key={text} className="items-center gap-x-2">
                   <Icon
-                    as={AlertCircleIcon}
-                    className={clsx(isError ? "text-red-500" : "text-gray-500")}
+                    as={isError ? AlertCircleIcon : CheckCircleIcon}
+                    className={clsx("text-base", isError ? "text-red-500" : "text-gray-500")}
                   />
                   <Text className={clsx("text-sm", isError ? "text-red-500" : "text-gray-500")}>
                     {text}

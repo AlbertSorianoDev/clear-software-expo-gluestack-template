@@ -7,7 +7,7 @@ import { VStack } from "@/components/ui/vstack";
 export default function HomeScreen() {
   return (
     <SafeAreaView className="h-full flex-col items-center justify-center md:flex md:w-full">
-      <VStack className="w-full max-w-[440px] gap-y-4 p-2">
+      <VStack className="w-3/4 max-w-[440px] gap-y-4">
         <Button
           onPress={() => {
             router.push("/auth/splash-screen");
