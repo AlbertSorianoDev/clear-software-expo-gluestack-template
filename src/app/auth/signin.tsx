@@ -56,9 +56,6 @@ export default function SignIn() {
 
   const toast = useToast();
 
-  // Expo Icons
-  const GoogleIcon = () => <AntDesign name="google" size={16} />;
-
   const handleSubmit = () => {
     const result = SignInSchema.safeParse({ email, password });
 
@@ -145,8 +142,8 @@ export default function SignIn() {
             </Input>
             {errors.email && (
               <HStack className="gap-x-2">
-                <Icon as={AlertCircleIcon} className="text-error-500" />
-                <Text className="text-sm text-error-500">{errors.email}</Text>
+                <Icon as={AlertCircleIcon} className="text-red-500" />
+                <Text className="text-sm text-red-500">{errors.email}</Text>
               </HStack>
             )}
           </VStack>
@@ -171,8 +168,8 @@ export default function SignIn() {
             </Input>
             {errors.password && (
               <HStack className="gap-x-2">
-                <Icon as={AlertCircleIcon} className="text-error-500" />
-                <Text className="text-sm text-error-500">{errors.password}</Text>
+                <Icon as={AlertCircleIcon} className="text-red-500" />
+                <Text className="text-sm text-red-500">{errors.password}</Text>
               </HStack>
             )}
           </VStack>
@@ -208,7 +205,11 @@ export default function SignIn() {
 
           <Button variant="outline" className="w-full gap-1" onPress={() => {}}>
             <ButtonText className="font-medium">Continue with Google</ButtonText>
-            <ButtonIcon as={GoogleIcon} />
+            <ButtonIcon
+              as={() => (
+                <AntDesign name="google" size={16} className="text-black dark:text-white" />
+              )}
+            />
           </Button>
         </VStack>
 

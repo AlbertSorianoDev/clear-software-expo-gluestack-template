@@ -1,4 +1,5 @@
 import AntDesign from "@expo/vector-icons/AntDesign";
+import clsx from "clsx";
 import { Link, router } from "expo-router";
 import { Keyboard } from "react-native";
 
@@ -29,34 +30,45 @@ export default function SignUp() {
     email,
     password,
     confirmPassword,
-    rememberMe,
+    acceptTerms,
     showPassword,
     showConfirmPassword,
+    passwordTouched,
     errors,
     setEmail,
     setPassword,
     setConfirmPassword,
     setShowPassword,
     setShowConfirmPassword,
-    setRememberMe,
+    setAcceptTerms,
+    setPasswordTouched,
     setErrors,
     reset,
   } = useSignUpStore();
 
   const toast = useToast();
 
-  // Expo Icons
-  const GoogleIcon = () => <AntDesign name="google" size={16} />;
+  const handlePasswordChange = (text: string) => {
+    const PasswordSchema = SignUpSchema.innerType().pick({ password: true });
+
+    const result = PasswordSchema.safeParse({ password: text });
+
+    setErrors({
+      ...errors,
+      password: result.success ? undefined : result.error.flatten().fieldErrors.password,
+    });
+  };
 
   const handleSubmit = () => {
-    const result = SignUpSchema.safeParse({ email, password, confirmPassword });
+    const result = SignUpSchema.safeParse({ email, password, confirmPassword, acceptTerms });
 
     if (!result.success) {
       const fieldErrors = result.error.flatten().fieldErrors;
       setErrors({
         email: fieldErrors.email?.[0],
-        password: fieldErrors.password?.[0],
+        password: fieldErrors.password,
         confirmPassword: fieldErrors.confirmPassword?.[0],
+        acceptTerms: fieldErrors.acceptTerms?.[0],
       });
       return;
     }
@@ -117,7 +129,7 @@ export default function SignUp() {
             </Input>
             {errors.email && (
               <HStack className="gap-x-2">
-                <Icon as={AlertCircleIcon} className="text-error-500" />
+                <Icon as={AlertCircleIcon} className="text-red-500" />
                 <Text className="text-sm text-error-500">{errors.email}</Text>
               </HStack>
             )}
@@ -132,9 +144,15 @@ export default function SignUp() {
                 value={password}
                 onChangeText={(text) => {
                   setPassword(text);
+                  if (passwordTouched) {
+                    handlePasswordChange(text);
+                  }
                 }}
-                onSubmitEditing={() => {
-                  Keyboard.dismiss();
+                onBlur={() => {
+                  if (!passwordTouched) {
+                    setPasswordTouched(true);
+                    handlePasswordChange(password);
+                  }
                 }}
                 returnKeyType="done"
               />
@@ -147,12 +165,27 @@ export default function SignUp() {
                 <InputIcon as={showPassword ? EyeIcon : EyeOffIcon} />
               </InputSlot>
             </Input>
-            {errors.password && (
-              <HStack className="gap-x-2">
-                <Icon as={AlertCircleIcon} className="text-error-500" />
-                <Text className="text-sm text-error-500">{errors.password}</Text>
-              </HStack>
-            )}
+
+            {[
+              { text: "Must be at least 8 characters in length", errorKey: "length" },
+              { text: "One uppercase character", errorKey: "uppercase" },
+              { text: "One lowercase character", errorKey: "lowercase" },
+              { text: "One number", errorKey: "number" },
+              { text: "One special character", errorKey: "special" },
+            ].map(({ text, errorKey }) => {
+              const isError = errors.password?.find((error) => error.includes(errorKey));
+              return (
+                <HStack key={text} className="items-center gap-x-2">
+                  <Icon
+                    as={AlertCircleIcon}
+                    className={clsx(isError ? "text-red-500" : "text-gray-500")}
+                  />
+                  <Text className={clsx("text-sm", isError ? "text-red-500" : "text-gray-500")}>
+                    {text}
+                  </Text>
+                </HStack>
+              );
+            })}
           </VStack>
 
           <VStack className="gap-y-1">
@@ -181,7 +214,7 @@ export default function SignUp() {
             </Input>
             {errors.confirmPassword && (
               <HStack className="gap-x-2">
-                <Icon as={AlertCircleIcon} className="text-error-500" />
+                <Icon as={AlertCircleIcon} className="text-red-500" />
                 <Text className="text-sm text-error-500">{errors.confirmPassword}</Text>
               </HStack>
             )}
@@ -189,17 +222,18 @@ export default function SignUp() {
 
           <Checkbox
             size="sm"
-            value="Remember me"
-            isChecked={rememberMe}
+            value="acceptTerms"
+            isChecked={acceptTerms}
             onChange={() => {
-              setRememberMe(!rememberMe);
+              setAcceptTerms(!acceptTerms);
             }}
-            aria-label="Remember me"
           >
-            <CheckboxIndicator>
+            <CheckboxIndicator className={clsx(errors.acceptTerms && "border-red-500")}>
               <CheckboxIcon as={CheckIcon} />
             </CheckboxIndicator>
-            <CheckboxLabel>I accept the Terms of Use & Privacy Policy</CheckboxLabel>
+            <CheckboxLabel className={clsx(errors.acceptTerms && "text-red-500")}>
+              I accept the Terms of Use & Privacy Policy
+            </CheckboxLabel>
           </Checkbox>
         </VStack>
 
@@ -210,7 +244,11 @@ export default function SignUp() {
 
           <Button variant="outline" className="w-full gap-1" onPress={() => {}}>
             <ButtonText className="font-medium">Continue with Google</ButtonText>
-            <ButtonIcon as={GoogleIcon} />
+            <ButtonIcon
+              as={() => (
+                <AntDesign name="google" size={16} className="text-black dark:text-white" />
+              )}
+            />
           </Button>
         </VStack>
 

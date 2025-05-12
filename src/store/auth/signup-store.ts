@@ -7,11 +7,13 @@ type SignUpStore = {
   confirmPassword: string;
   showPassword: boolean;
   showConfirmPassword: boolean;
-  rememberMe: boolean;
+  acceptTerms: boolean;
+  passwordTouched: boolean;
   errors: {
     email?: string;
-    password?: string;
+    password?: string[];
     confirmPassword?: string;
+    acceptTerms?: string;
   };
 
   setEmail: (email: string) => void;
@@ -19,7 +21,8 @@ type SignUpStore = {
   setConfirmPassword: (confirmPassword: string) => void;
   setShowPassword: (showPassword: boolean) => void;
   setShowConfirmPassword: (showConfirmPassword: boolean) => void;
-  setRememberMe: (rememberMe: boolean) => void;
+  setAcceptTerms: (acceptTerms: boolean) => void;
+  setPasswordTouched: (touched: boolean) => void;
   setErrors: (errors: SignUpStore["errors"]) => void;
   reset: () => void;
 };
@@ -29,10 +32,11 @@ export const useSignUpStore = create<SignUpStore>()(
     email: "",
     password: "",
     confirmPassword: "",
-    rememberMe: false,
+    acceptTerms: false,
     showPassword: false,
     showConfirmPassword: false,
     errors: {},
+    passwordTouched: false,
     setEmail: (email) => {
       set((state) => {
         state.email = email;
@@ -61,9 +65,15 @@ export const useSignUpStore = create<SignUpStore>()(
         state.showConfirmPassword = showConfirmPassword;
       });
     },
-    setRememberMe: (rememberMe) => {
+    setAcceptTerms: (acceptTerms) => {
       set((state) => {
-        state.rememberMe = rememberMe;
+        state.acceptTerms = acceptTerms;
+        state.errors.acceptTerms = undefined;
+      });
+    },
+    setPasswordTouched: (touched) => {
+      set((state) => {
+        state.passwordTouched = touched;
       });
     },
     setErrors: (errors) => {
