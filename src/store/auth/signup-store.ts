@@ -2,6 +2,7 @@ import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
 
 type SignUpStore = {
+  // Form state
   email: string;
   password: string;
   confirmPassword: string;
@@ -24,19 +25,26 @@ type SignUpStore = {
   setAcceptTerms: (acceptTerms: boolean) => void;
   setPasswordTouched: (touched: boolean) => void;
   setErrors: (errors: SignUpStore["errors"]) => void;
+
+  // Reset state
   reset: () => void;
+};
+
+const initialState = {
+  email: "",
+  password: "",
+  confirmPassword: "",
+  showPassword: false,
+  showConfirmPassword: false,
+  acceptTerms: false,
+  passwordTouched: false,
+  errors: {},
 };
 
 export const useSignUpStore = create<SignUpStore>()(
   immer((set) => ({
-    email: "",
-    password: "",
-    confirmPassword: "",
-    acceptTerms: false,
-    showPassword: false,
-    showConfirmPassword: false,
-    errors: {},
-    passwordTouched: false,
+    ...initialState,
+
     setEmail: (email) => {
       set((state) => {
         state.email = email;
@@ -81,15 +89,8 @@ export const useSignUpStore = create<SignUpStore>()(
         state.errors = errors;
       });
     },
-    reset: () =>
-      set(() => ({
-        email: "",
-        password: "",
-        confirmPassword: "",
-        rememberMe: false,
-        showPassword: false,
-        showConfirmPassword: false,
-        errors: {},
-      })),
+
+    // Reset state
+    reset: () => set(() => initialState),
   })),
 );

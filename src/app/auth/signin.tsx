@@ -1,7 +1,10 @@
 import { AntDesign, Ionicons } from "@expo/vector-icons";
-import { router } from "expo-router";
+import { Link, router } from "expo-router";
+import { useEffect } from "react";
 import { Keyboard, View } from "react-native";
 
+import { AuthEmailInput } from "@/components/auth/auth-email-input";
+import { LoginCodeModal } from "@/components/auth/login-code-modal";
 import { Button, ButtonIcon, ButtonText } from "@/components/ui/button";
 import { Checkbox, CheckboxIcon, CheckboxIndicator, CheckboxLabel } from "@/components/ui/checkbox";
 import { Heading } from "@/components/ui/heading";
@@ -15,7 +18,7 @@ import {
   Icon,
 } from "@/components/ui/icon";
 import { Input, InputField, InputIcon, InputSlot } from "@/components/ui/input";
-import { Link, LinkText } from "@/components/ui/link";
+import { LinkText } from "@/components/ui/link";
 import { Pressable } from "@/components/ui/pressable";
 import { ScrollView } from "@/components/ui/scroll-view";
 import { Text } from "@/components/ui/text";
@@ -43,20 +46,52 @@ export default function SignIn() {
   const {
     email,
     password,
+    rememberMe,
     errors,
     showPassword,
-    rememberMe,
     setEmail,
     setPassword,
     toggleShowPassword,
     setRememberMe,
     setErrors,
     reset,
+    showLoginCodeModal,
   } = useSignInStore();
 
+  useEffect(() => {
+    return () => {
+      reset();
+    };
+  }, [reset]);
+
+  // Toast
   const toast = useToast();
 
-  const handleSubmit = () => {
+  const successToast = () =>
+    toast.show({
+      placement: "bottom right",
+      render: ({ id }) => {
+        return (
+          <Toast nativeID={id} action="success">
+            <ToastTitle>Logged in successfully!</ToastTitle>
+          </Toast>
+        );
+      },
+    });
+
+  const userNotFoundToast = () =>
+    toast.show({
+      placement: "bottom right",
+      render: ({ id }) => {
+        return (
+          <Toast nativeID={id} action="error">
+            <ToastTitle>Wrong email or password.</ToastTitle>
+          </Toast>
+        );
+      },
+    });
+
+  const credentialsLogin = async () => {
     const result = SignInSchema.safeParse({ email, password });
 
     if (!result.success) {
@@ -69,174 +104,135 @@ export default function SignIn() {
     }
 
     const user = USERS.find((user) => user.email === email && user.password === password);
-    if (!user) {
-      toast.show({
-        placement: "bottom right",
-        render: ({ id }) => {
-          return (
-            <Toast nativeID={id} action="error">
-              <ToastTitle>Wrong email or password.</ToastTitle>
-            </Toast>
-          );
-        },
-      });
 
+    if (!user) {
+      userNotFoundToast();
       return;
     }
 
-    toast.show({
-      placement: "bottom right",
-      render: ({ id }) => {
-        return (
-          <Toast nativeID={id} action="success">
-            <ToastTitle>Logged in successfully!</ToastTitle>
-          </Toast>
-        );
-      },
-    });
-
+    successToast();
     reset();
   };
 
   return (
-    <ScrollView
-      className="w-full"
-      contentContainerStyle={{ flexGrow: 1, justifyContent: "center", padding: 20 }}
-    >
-      <VStack className="mx-auto w-full max-w-[440px]" space="md">
-        <VStack className="md:items-center" space="md">
-          <Pressable
-            onPress={() => {
-              router.back();
-            }}
-          >
-            <Icon as={ArrowLeftIcon} className="text-background-800 md:hidden" size="xl" />
-          </Pressable>
-          <VStack>
-            <Heading className="md:text-center" size="3xl">
-              Log in
-            </Heading>
-            <Text>Login to start using gluestack</Text>
-          </VStack>
-        </VStack>
-
-        <VStack className="w-full gap-y-4">
-          <VStack className="gap-y-1">
-            <Input>
-              <InputField
-                placeholder="Enter email"
-                type="text"
-                autoCapitalize="none"
-                autoCorrect={false}
-                autoComplete="email"
-                keyboardType="email-address"
-                value={email}
-                onChangeText={(text) => {
-                  setEmail(text);
-                }}
-                onSubmitEditing={() => {
-                  Keyboard.dismiss();
-                }}
-                returnKeyType="done"
-              />
-            </Input>
-            {errors.email && (
-              <HStack className="gap-x-2">
-                <Icon as={AlertCircleIcon} className="text-red-500" />
-                <Text className="text-sm text-red-500">{errors.email}</Text>
-              </HStack>
-            )}
-          </VStack>
-
-          <VStack className="gap-y-1">
-            <Input>
-              <InputField
-                type={showPassword ? "text" : "password"}
-                placeholder="Enter password"
-                value={password}
-                onChangeText={(text) => {
-                  setPassword(text);
-                }}
-                onSubmitEditing={() => {
-                  Keyboard.dismiss();
-                }}
-                returnKeyType="done"
-              />
-              <InputSlot onPress={() => toggleShowPassword()} className="pr-3">
-                <InputIcon as={showPassword ? EyeIcon : EyeOffIcon} />
-              </InputSlot>
-            </Input>
-            {errors.password && (
-              <HStack className="gap-x-2">
-                <Icon as={AlertCircleIcon} className="text-red-500" />
-                <Text className="text-sm text-red-500">{errors.password}</Text>
-              </HStack>
-            )}
-          </VStack>
-
-          <HStack className="w-full justify-between">
-            <Checkbox
-              size="sm"
-              value="Remember me"
-              isChecked={rememberMe}
-              onChange={(set) => {
-                setRememberMe(set);
+    <>
+      <LoginCodeModal successToast={successToast} />
+      <ScrollView
+        className="w-full"
+        contentContainerStyle={{ flexGrow: 1, justifyContent: "center", padding: 20 }}
+      >
+        <VStack className="mx-auto w-full max-w-[440px]" space="md">
+          <VStack className="md:items-center" space="md">
+            <Pressable
+              onPress={() => {
+                router.back();
               }}
-              aria-label="Remember me"
             >
-              <CheckboxIndicator>
-                <CheckboxIcon as={CheckIcon} />
-              </CheckboxIndicator>
-              <CheckboxLabel>Remember me</CheckboxLabel>
-            </Checkbox>
+              <Icon as={ArrowLeftIcon} className="text-background-800 md:hidden" size="xl" />
+            </Pressable>
+            <VStack>
+              <Heading className="md:text-center" size="3xl">
+                Log in
+              </Heading>
+              <Text>Login to start using gluestack</Text>
+            </VStack>
+          </VStack>
 
-            <Link href="/auth/forgot-password">
-              <LinkText className="text-sm font-medium text-primary-700 group-hover/link:text-primary-600">
-                Forgot Password?
+          <VStack className="w-full gap-y-4">
+            <AuthEmailInput email={email} setEmail={setEmail} error={errors.email} />
+
+            <VStack className="gap-y-1">
+              <Input>
+                <InputField
+                  type={showPassword ? "text" : "password"}
+                  placeholder="Enter password"
+                  value={password}
+                  onChangeText={(text) => {
+                    setPassword(text);
+                  }}
+                  onSubmitEditing={() => {
+                    Keyboard.dismiss();
+                  }}
+                  returnKeyType="done"
+                />
+                <InputSlot onPress={() => toggleShowPassword()} className="pr-3">
+                  <InputIcon as={showPassword ? EyeIcon : EyeOffIcon} />
+                </InputSlot>
+              </Input>
+              {errors.password && (
+                <HStack className="gap-x-2">
+                  <Icon as={AlertCircleIcon} className="text-red-500" />
+                  <Text className="text-sm text-red-500">{errors.password}</Text>
+                </HStack>
+              )}
+            </VStack>
+
+            <HStack className="w-full justify-between">
+              <Checkbox
+                size="sm"
+                value="Remember me"
+                isChecked={rememberMe}
+                onChange={(set) => {
+                  setRememberMe(set);
+                }}
+                aria-label="Remember me"
+              >
+                <CheckboxIndicator>
+                  <CheckboxIcon as={CheckIcon} />
+                </CheckboxIndicator>
+                <CheckboxLabel>Remember me</CheckboxLabel>
+              </Checkbox>
+
+              <Link href="/">
+                <LinkText className="text-sm font-medium text-primary-700 group-hover/link:text-primary-600">
+                  Forgot Password?
+                </LinkText>
+              </Link>
+            </HStack>
+          </VStack>
+
+          <VStack className="my-7 w-full" space="lg">
+            <Button className="w-full" onPress={() => credentialsLogin()}>
+              <ButtonText className="font-medium">Log in</ButtonText>
+            </Button>
+
+            <HStack className="my-1 w-full items-center space-x-4">
+              <View className="flex-1 border-t border-gray-300" />
+              <Text className="text-sm text-gray-500">Other login options</Text>
+              <View className="flex-1 border-t border-gray-300" />
+            </HStack>
+
+            <Button variant="outline" className="w-full gap-1" onPress={() => showLoginCodeModal()}>
+              <ButtonText className="font-medium">Get login code</ButtonText>
+              <ButtonIcon
+                as={() => (
+                  <Ionicons name="keypad" size={16} className="text-black dark:text-white" />
+                )}
+              />
+            </Button>
+            <Button variant="outline" className="w-full gap-1" onPress={() => {}}>
+              <ButtonText className="font-medium">Continue with Google</ButtonText>
+              <ButtonIcon
+                as={() => (
+                  <AntDesign name="google" size={16} className="text-black dark:text-white" />
+                )}
+              />
+            </Button>
+          </VStack>
+
+          <HStack className="self-center" space="sm">
+            <Text size="md">Don't have an account?</Text>
+            <Link href="/auth/signup">
+              <LinkText
+                className="font-medium text-primary-700 group-hover/link:text-primary-600 group-hover/pressed:text-primary-700"
+                size="md"
+              >
+                Sign up
               </LinkText>
             </Link>
           </HStack>
         </VStack>
-
-        <VStack className="my-7 w-full" space="lg">
-          <Button className="w-full" onPress={() => handleSubmit()}>
-            <ButtonText className="font-medium">Log in</ButtonText>
-          </Button>
-
-          <HStack className="my-1 w-full items-center space-x-4">
-            <View className="flex-1 border-t border-gray-300" />
-            <Text className="text-sm text-gray-500">Other login options</Text>
-            <View className="flex-1 border-t border-gray-300" />
-          </HStack>
-
-          <Button variant="outline" className="w-full gap-1" onPress={() => {}}>
-            <ButtonText className="font-medium">Get login code</ButtonText>
-            <ButtonIcon
-              as={() => <Ionicons name="keypad" size={16} className="text-black dark:text-white" />}
-            />
-          </Button>
-          <Button variant="outline" className="w-full gap-1" onPress={() => {}}>
-            <ButtonText className="font-medium">Continue with Google</ButtonText>
-            <ButtonIcon
-              as={() => (
-                <AntDesign name="google" size={16} className="text-black dark:text-white" />
-              )}
-            />
-          </Button>
-        </VStack>
-
-        <HStack className="self-center" space="sm">
-          <Text size="md">Don't have an account?</Text>
-          <Link href="/auth/signup">
-            <LinkText
-              className="font-medium text-primary-700 group-hover/link:text-primary-600 group-hover/pressed:text-primary-700"
-              size="md"
-            >
-              Sign up
-            </LinkText>
-          </Link>
-        </HStack>
-      </VStack>
-    </ScrollView>
+      </ScrollView>
+    </>
   );
 }

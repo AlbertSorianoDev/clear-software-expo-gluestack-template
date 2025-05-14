@@ -1,8 +1,10 @@
 import AntDesign from "@expo/vector-icons/AntDesign";
 import clsx from "clsx";
 import { Link, router } from "expo-router";
+import { useEffect } from "react";
 import { Keyboard, View } from "react-native";
 
+import { AuthEmailInput } from "@/components/auth/auth-email-input";
 import { Button, ButtonIcon, ButtonText } from "@/components/ui/button";
 import { Checkbox, CheckboxIcon, CheckboxIndicator, CheckboxLabel } from "@/components/ui/checkbox";
 import { Heading } from "@/components/ui/heading";
@@ -48,6 +50,12 @@ export default function SignUp() {
   } = useSignUpStore();
 
   const toast = useToast();
+
+  useEffect(() => {
+    return () => {
+      reset();
+    };
+  }, [reset]);
 
   const handlePasswordChange = (text: string) => {
     const PasswordSchema = SignUpSchema.innerType().pick({ password: true });
@@ -108,33 +116,7 @@ export default function SignUp() {
           </VStack>
         </VStack>
         <VStack className="gap-y-4">
-          <VStack className="gap-y-1">
-            <Input>
-              <InputField
-                className="text-sm"
-                placeholder="Email"
-                type="text"
-                autoCapitalize="none"
-                autoCorrect={false}
-                autoComplete="email"
-                keyboardType="email-address"
-                value={email}
-                onChangeText={(text) => {
-                  setEmail(text);
-                }}
-                onSubmitEditing={() => {
-                  Keyboard.dismiss();
-                }}
-                returnKeyType="done"
-              />
-            </Input>
-            {errors.email && (
-              <HStack className="gap-x-2">
-                <Icon as={AlertCircleIcon} className="text-red-500" />
-                <Text className="text-sm text-error-500">{errors.email}</Text>
-              </HStack>
-            )}
-          </VStack>
+          <AuthEmailInput email={email} setEmail={setEmail} error={errors.email} />
 
           <VStack className="gap-y-1">
             <Input>
