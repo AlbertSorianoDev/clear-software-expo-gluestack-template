@@ -29,10 +29,11 @@ export default function HomeScreen() {
         >
           <ButtonText>Sign up</ButtonText>
         </Button>
-        <Button onPress={() => {}}>
-          <ButtonText>Forgot password</ButtonText>
-        </Button>
-        <Button onPress={() => {}}>
+        <Button
+          onPress={() => {
+            router.push("/auth/create-password/2e675e3d-c1a6-4350-96c7-271a6d40d950");
+          }}
+        >
           <ButtonText>Create password</ButtonText>
         </Button>
         <Button onPress={() => {}}>

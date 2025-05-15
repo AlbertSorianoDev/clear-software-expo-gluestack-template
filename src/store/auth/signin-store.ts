@@ -8,8 +8,9 @@ interface SignInStore {
   rememberMe: boolean;
   otp: string[];
   otpStep: number;
-  isLoginCodeModalVisible: boolean;
   errors: { email?: string; password?: string; otp?: string };
+  isLoginCodeModalVisible: boolean;
+  isForgotPasswordModalVisible: boolean;
 
   setEmail: (email: string) => void;
   setPassword: (password: string) => void;
@@ -23,6 +24,9 @@ interface SignInStore {
   setOtp: (otp: string[]) => void;
   validateOtp: (length: number) => boolean;
 
+  showForgotPasswordModal: () => void;
+  hideForgotPasswordModal: () => void;
+
   reset: () => void;
 }
 
@@ -33,6 +37,7 @@ const initialState = {
   showPassword: false,
   errors: {},
   isLoginCodeModalVisible: false,
+  isForgotPasswordModalVisible: false,
   otp: [],
   otpStep: 0,
 };
@@ -101,6 +106,19 @@ export const useSignInStore = create<SignInStore>()(
         state.errors.otp = isValid ? undefined : "Please enter a valid OTP.";
       });
       return isValid;
+    },
+
+    showForgotPasswordModal: () => {
+      set((state) => {
+        state.isForgotPasswordModalVisible = true;
+      });
+    },
+    hideForgotPasswordModal: () => {
+      set((state) => {
+        state.isForgotPasswordModalVisible = false;
+        state.email = "";
+        state.errors.email = undefined;
+      });
     },
 
     reset: () => {

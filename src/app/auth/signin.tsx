@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { Keyboard, View } from "react-native";
 
 import { AuthEmailInput } from "@/components/auth/auth-email-input";
+import { ForgotPasswordModal } from "@/components/auth/forgot-password-modal";
 import { LoginCodeModal } from "@/components/auth/login-code-modal";
 import { Button, ButtonIcon, ButtonText } from "@/components/ui/button";
 import { Checkbox, CheckboxIcon, CheckboxIndicator, CheckboxLabel } from "@/components/ui/checkbox";
@@ -56,6 +57,7 @@ export default function SignIn() {
     setErrors,
     reset,
     showLoginCodeModal,
+    showForgotPasswordModal,
   } = useSignInStore();
 
   useEffect(() => {
@@ -117,6 +119,7 @@ export default function SignIn() {
   return (
     <>
       <LoginCodeModal successToast={successToast} />
+      <ForgotPasswordModal />
       <ScrollView
         className="w-full"
         contentContainerStyle={{ flexGrow: 1, justifyContent: "center", padding: 20 }}
@@ -183,11 +186,11 @@ export default function SignIn() {
                 <CheckboxLabel>Remember me</CheckboxLabel>
               </Checkbox>
 
-              <Link href="/">
+              <Pressable onPress={showForgotPasswordModal}>
                 <LinkText className="text-sm font-medium text-primary-700 group-hover/link:text-primary-600">
                   Forgot Password?
                 </LinkText>
-              </Link>
+              </Pressable>
             </HStack>
           </VStack>
 
