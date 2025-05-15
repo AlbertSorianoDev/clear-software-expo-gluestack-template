@@ -1,61 +1,43 @@
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
 
-type SignUpStore = {
-  // Form state
-  email: string;
+type CreatePasswordStore = {
   password: string;
   confirmPassword: string;
-  acceptTerms: boolean;
 
   errors: {
-    email?: string;
     password?: string[];
     confirmPassword?: string;
-    acceptTerms?: string;
   };
 
   showPassword: boolean;
   showConfirmPassword: boolean;
   passwordTouched: boolean;
 
-  setEmail: (email: string) => void;
   setPassword: (password: string) => void;
   setConfirmPassword: (confirmPassword: string) => void;
-  setAcceptTerms: (acceptTerms: boolean) => void;
-  setErrors: (errors: SignUpStore["errors"]) => void;
+  setErrors: (errors: CreatePasswordStore["errors"]) => void;
 
   toggleShowPassword: () => void;
   toggleShowConfirmPassword: () => void;
   passwordWasTouched: () => void;
 
-  // Reset state
   reset: () => void;
 };
 
 const initialState = {
-  email: "",
   password: "",
   confirmPassword: "",
-  acceptTerms: false,
-
-  errors: {},
-
   showPassword: false,
   showConfirmPassword: false,
   passwordTouched: false,
+  errors: {},
 };
 
-export const useSignUpStore = create<SignUpStore>()(
+export const useCreatePasswordStore = create<CreatePasswordStore>()(
   immer((set) => ({
     ...initialState,
 
-    setEmail: (email) => {
-      set((state) => {
-        state.email = email;
-        state.errors.email = undefined;
-      });
-    },
     setPassword: (password) => {
       set((state) => {
         state.password = password;
@@ -66,12 +48,6 @@ export const useSignUpStore = create<SignUpStore>()(
       set((state) => {
         state.confirmPassword = confirmPassword;
         state.errors.confirmPassword = undefined;
-      });
-    },
-    setAcceptTerms: (acceptTerms) => {
-      set((state) => {
-        state.acceptTerms = acceptTerms;
-        state.errors.acceptTerms = undefined;
       });
     },
     setErrors: (errors) => {
@@ -97,7 +73,6 @@ export const useSignUpStore = create<SignUpStore>()(
       });
     },
 
-    // Reset state
     reset: () => set(() => initialState),
   })),
 );

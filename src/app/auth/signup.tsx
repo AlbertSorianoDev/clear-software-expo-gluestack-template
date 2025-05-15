@@ -2,23 +2,16 @@ import AntDesign from "@expo/vector-icons/AntDesign";
 import clsx from "clsx";
 import { Link, router } from "expo-router";
 import { useEffect } from "react";
-import { Keyboard, View } from "react-native";
+import { View } from "react-native";
 
 import { AuthEmailInput } from "@/components/auth/auth-email-input";
+import { AuthPasswordChecklistInput } from "@/components/auth/auth-password-check-list-input";
+import { AuthSimplePasswordInput } from "@/components/auth/auth-simple-password-input";
 import { Button, ButtonIcon, ButtonText } from "@/components/ui/button";
 import { Checkbox, CheckboxIcon, CheckboxIndicator, CheckboxLabel } from "@/components/ui/checkbox";
 import { Heading } from "@/components/ui/heading";
 import { HStack } from "@/components/ui/hstack";
-import {
-  AlertCircleIcon,
-  ArrowLeftIcon,
-  CheckCircleIcon,
-  CheckIcon,
-  EyeIcon,
-  EyeOffIcon,
-  Icon,
-} from "@/components/ui/icon";
-import { Input, InputField, InputIcon, InputSlot } from "@/components/ui/input";
+import { ArrowLeftIcon, CheckIcon, Icon } from "@/components/ui/icon";
 import { LinkText } from "@/components/ui/link";
 import { Pressable } from "@/components/ui/pressable";
 import { ScrollView } from "@/components/ui/scroll-view";
@@ -41,10 +34,10 @@ export default function SignUp() {
     setEmail,
     setPassword,
     setConfirmPassword,
-    setShowPassword,
-    setShowConfirmPassword,
+    toggleShowPassword,
+    toggleShowConfirmPassword,
     setAcceptTerms,
-    setPasswordTouched,
+    passwordWasTouched,
     setErrors,
     reset,
   } = useSignUpStore();
@@ -118,90 +111,33 @@ export default function SignUp() {
         <VStack className="gap-y-4">
           <AuthEmailInput email={email} setEmail={setEmail} error={errors.email} />
 
-          <VStack className="gap-y-1">
-            <Input>
-              <InputField
-                className="text-sm"
-                placeholder="Password"
-                type={showPassword ? "text" : "password"}
-                value={password}
-                onChangeText={(text) => {
-                  setPassword(text);
-                  if (passwordTouched) {
-                    handlePasswordChange(text);
-                  }
-                }}
-                onBlur={() => {
-                  if (!passwordTouched) {
-                    setPasswordTouched(true);
-                    handlePasswordChange(password);
-                  }
-                }}
-                returnKeyType="done"
-              />
-              <InputSlot
-                onPress={() => {
-                  setShowPassword(!showPassword);
-                }}
-                className="pr-3"
-              >
-                <InputIcon as={showPassword ? EyeIcon : EyeOffIcon} />
-              </InputSlot>
-            </Input>
-
-            {[
+          <AuthPasswordChecklistInput
+            placeholder="Password"
+            password={password}
+            setPassword={setPassword}
+            showPassword={showPassword}
+            toggleShowPassword={toggleShowPassword}
+            passwordTouched={passwordTouched}
+            passwordWasTouched={passwordWasTouched}
+            handlePasswordChange={handlePasswordChange}
+            errors={errors.password}
+            checklist={[
               { text: "Must be at least 8 characters in length", errorKey: "length" },
               { text: "One uppercase character", errorKey: "uppercase" },
               { text: "One lowercase character", errorKey: "lowercase" },
               { text: "One number", errorKey: "number" },
               { text: "One special character", errorKey: "special" },
-            ].map(({ text, errorKey }) => {
-              const isError = errors.password?.find((error) => error.includes(errorKey));
-              return (
-                <HStack key={text} className="items-center gap-x-2">
-                  <Icon
-                    as={isError ? AlertCircleIcon : CheckCircleIcon}
-                    className={clsx("text-base", isError ? "text-red-500" : "text-gray-500")}
-                  />
-                  <Text className={clsx("text-sm", isError ? "text-red-500" : "text-gray-500")}>
-                    {text}
-                  </Text>
-                </HStack>
-              );
-            })}
-          </VStack>
+            ]}
+          />
 
-          <VStack className="gap-y-1">
-            <Input>
-              <InputField
-                placeholder="Confirm Password"
-                className="text-sm"
-                type={showConfirmPassword ? "text" : "password"}
-                value={confirmPassword}
-                onChangeText={(text) => {
-                  setConfirmPassword(text);
-                }}
-                onSubmitEditing={() => {
-                  Keyboard.dismiss();
-                }}
-                returnKeyType="done"
-              />
-              <InputSlot
-                onPress={() => {
-                  setShowConfirmPassword(!showConfirmPassword);
-                }}
-                className="pr-3"
-              >
-                <InputIcon as={showConfirmPassword ? EyeIcon : EyeOffIcon} />
-              </InputSlot>
-            </Input>
-            {errors.confirmPassword && (
-              <HStack className="gap-x-2">
-                <Icon as={AlertCircleIcon} className="text-red-500" />
-                <Text className="text-sm text-error-500">{errors.confirmPassword}</Text>
-              </HStack>
-            )}
-          </VStack>
+          <AuthSimplePasswordInput
+            placeholder="Confirm Password"
+            password={confirmPassword}
+            setPassword={setConfirmPassword}
+            showPassword={showConfirmPassword}
+            toggleShowPassword={toggleShowConfirmPassword}
+            error={errors.confirmPassword}
+          />
 
           <Checkbox
             size="sm"

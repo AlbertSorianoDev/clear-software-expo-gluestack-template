@@ -1,5 +1,3 @@
-// src/components/EmailInputField.tsx
-
 import { Keyboard } from "react-native";
 
 import { HStack } from "@/components/ui/hstack";

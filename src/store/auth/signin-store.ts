@@ -4,28 +4,32 @@ import { immer } from "zustand/middleware/immer";
 interface SignInStore {
   email: string;
   password: string;
-  showPassword: boolean;
   rememberMe: boolean;
   otp: string[];
-  otpStep: number;
+
   errors: { email?: string; password?: string; otp?: string };
+
+  otpStep: number;
+
+  showPassword: boolean;
   isLoginCodeModalVisible: boolean;
   isForgotPasswordModalVisible: boolean;
 
   setEmail: (email: string) => void;
   setPassword: (password: string) => void;
-  toggleShowPassword: () => void;
   setRememberMe: (rememberMe: boolean) => void;
+  setOtp: (otp: string[]) => void;
   setErrors: (errors: SignInStore["errors"]) => void;
+
   setOtpStep: (step: number) => void;
 
+  toggleShowPassword: () => void;
   showLoginCodeModal: () => void;
   hideLoginCodeModal: () => void;
-  setOtp: (otp: string[]) => void;
-  validateOtp: (length: number) => boolean;
-
   showForgotPasswordModal: () => void;
   hideForgotPasswordModal: () => void;
+
+  validateOtp: (length: number) => boolean;
 
   reset: () => void;
 }
@@ -34,11 +38,14 @@ const initialState = {
   email: "",
   password: "",
   rememberMe: false,
-  showPassword: false,
+  otp: [],
+
   errors: {},
+
+  showPassword: false,
   isLoginCodeModalVisible: false,
   isForgotPasswordModalVisible: false,
-  otp: [],
+
   otpStep: 0,
 };
 
@@ -68,6 +75,12 @@ export const useSignInStore = create<SignInStore>()(
         state.rememberMe = rememberMe;
       });
     },
+    setOtp: (otp) => {
+      set((state) => {
+        state.otp = otp;
+        state.errors.otp = undefined;
+      });
+    },
     setErrors: (errors) => {
       set((state) => {
         state.errors = errors;
@@ -87,12 +100,19 @@ export const useSignInStore = create<SignInStore>()(
         state.errors.otp = undefined;
       });
     },
-    setOtp: (otp) => {
+    showForgotPasswordModal: () => {
       set((state) => {
-        state.otp = otp;
-        state.errors.otp = undefined;
+        state.isForgotPasswordModalVisible = true;
       });
     },
+    hideForgotPasswordModal: () => {
+      set((state) => {
+        state.isForgotPasswordModalVisible = false;
+        state.email = "";
+        state.errors.email = undefined;
+      });
+    },
+
     setOtpStep: (step) => {
       set((state) => {
         state.otpStep = step;
@@ -106,19 +126,6 @@ export const useSignInStore = create<SignInStore>()(
         state.errors.otp = isValid ? undefined : "Please enter a valid OTP.";
       });
       return isValid;
-    },
-
-    showForgotPasswordModal: () => {
-      set((state) => {
-        state.isForgotPasswordModalVisible = true;
-      });
-    },
-    hideForgotPasswordModal: () => {
-      set((state) => {
-        state.isForgotPasswordModalVisible = false;
-        state.email = "";
-        state.errors.email = undefined;
-      });
     },
 
     reset: () => {

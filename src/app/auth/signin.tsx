@@ -1,24 +1,17 @@
 import { AntDesign, Ionicons } from "@expo/vector-icons";
 import { Link, router } from "expo-router";
 import { useEffect } from "react";
-import { Keyboard, View } from "react-native";
+import { View } from "react-native";
 
 import { AuthEmailInput } from "@/components/auth/auth-email-input";
+import { AuthSimplePasswordInput } from "@/components/auth/auth-simple-password-input";
 import { ForgotPasswordModal } from "@/components/auth/forgot-password-modal";
 import { LoginCodeModal } from "@/components/auth/login-code-modal";
 import { Button, ButtonIcon, ButtonText } from "@/components/ui/button";
 import { Checkbox, CheckboxIcon, CheckboxIndicator, CheckboxLabel } from "@/components/ui/checkbox";
 import { Heading } from "@/components/ui/heading";
 import { HStack } from "@/components/ui/hstack";
-import {
-  AlertCircleIcon,
-  ArrowLeftIcon,
-  CheckIcon,
-  EyeIcon,
-  EyeOffIcon,
-  Icon,
-} from "@/components/ui/icon";
-import { Input, InputField, InputIcon, InputSlot } from "@/components/ui/input";
+import { ArrowLeftIcon, CheckIcon, Icon } from "@/components/ui/icon";
 import { LinkText } from "@/components/ui/link";
 import { Pressable } from "@/components/ui/pressable";
 import { ScrollView } from "@/components/ui/scroll-view";
@@ -144,31 +137,14 @@ export default function SignIn() {
           <VStack className="w-full gap-y-4">
             <AuthEmailInput email={email} setEmail={setEmail} error={errors.email} />
 
-            <VStack className="gap-y-1">
-              <Input>
-                <InputField
-                  type={showPassword ? "text" : "password"}
-                  placeholder="Enter password"
-                  value={password}
-                  onChangeText={(text) => {
-                    setPassword(text);
-                  }}
-                  onSubmitEditing={() => {
-                    Keyboard.dismiss();
-                  }}
-                  returnKeyType="done"
-                />
-                <InputSlot onPress={() => toggleShowPassword()} className="pr-3">
-                  <InputIcon as={showPassword ? EyeIcon : EyeOffIcon} />
-                </InputSlot>
-              </Input>
-              {errors.password && (
-                <HStack className="gap-x-2">
-                  <Icon as={AlertCircleIcon} className="text-red-500" />
-                  <Text className="text-sm text-red-500">{errors.password}</Text>
-                </HStack>
-              )}
-            </VStack>
+            <AuthSimplePasswordInput
+              placeholder="Enter password"
+              password={password}
+              setPassword={setPassword}
+              showPassword={showPassword}
+              toggleShowPassword={toggleShowPassword}
+              error={errors.password}
+            />
 
             <HStack className="w-full justify-between">
               <Checkbox
