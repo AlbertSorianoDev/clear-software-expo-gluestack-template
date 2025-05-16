@@ -1,5 +1,6 @@
-import { router } from "expo-router";
-import { useEffect } from "react";
+import { router, useFocusEffect, useGlobalSearchParams } from "expo-router";
+import { useCallback, useEffect } from "react";
+import { validate } from "uuid";
 
 import { AuthPasswordChecklistInput } from "@/components/auth/auth-password-check-list-input";
 import { AuthSimplePasswordInput } from "@/components/auth/auth-simple-password-input";
@@ -15,6 +16,16 @@ import { CreatePasswordSchema } from "@/schemas/auth/create-password-schema";
 import { useCreatePasswordStore } from "@/store/auth/create-password-store";
 
 export default function CreatePassword() {
+  const { id } = useGlobalSearchParams();
+
+  useFocusEffect(
+    useCallback(() => {
+      if (!id || !validate(id)) {
+        router.replace("/auth/signin");
+      }
+    }, [id]),
+  );
+
   const {
     password,
     confirmPassword,
@@ -85,7 +96,11 @@ export default function CreatePassword() {
         <VStack className="md:items-center" space="md">
           <Pressable
             onPress={() => {
-              router.back();
+              if (router.canGoBack()) {
+                router.back();
+              } else {
+                router.navigate("/");
+              }
             }}
           >
             <Icon as={ArrowLeftIcon} className="stroke-background-800 md:hidden" size="xl" />

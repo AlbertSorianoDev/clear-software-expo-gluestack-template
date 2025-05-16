@@ -10,28 +10,28 @@ export default function HomeScreen() {
       <VStack className="w-3/4 max-w-[440px] gap-y-4">
         <Button
           onPress={() => {
-            router.push("/auth/splash-screen");
+            router.navigate("/auth/splash-screen");
           }}
         >
           <ButtonText>SplashScreen</ButtonText>
         </Button>
         <Button
           onPress={() => {
-            router.push("/auth/signin");
+            router.navigate("/auth/signin");
           }}
         >
           <ButtonText>Sign in</ButtonText>
         </Button>
         <Button
           onPress={() => {
-            router.push("/auth/signup");
+            router.navigate("/auth/signup");
           }}
         >
           <ButtonText>Sign up</ButtonText>
         </Button>
         <Button
           onPress={() => {
-            router.push("/auth/create-password/2e675e3d-c1a6-4350-96c7-271a6d40d950");
+            router.navigate("/auth/create-password/2e675e3d-c1a6-4350-96c7-271a6d40d950");
           }}
         >
           <ButtonText>Create password</ButtonText>

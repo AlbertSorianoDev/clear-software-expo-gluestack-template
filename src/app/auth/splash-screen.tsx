@@ -27,14 +27,14 @@ export default function SplashScreen() {
           <Button
             className="w-full"
             onPress={() => {
-              router.push("/auth/signin");
+              router.navigate("/auth/signin");
             }}
           >
             <ButtonText className="font-medium">Log in</ButtonText>
           </Button>
           <Button
             onPress={() => {
-              router.push("/auth/signup");
+              router.navigate("/auth/signup");
             }}
           >
             <ButtonText className="font-medium">Sign Up</ButtonText>

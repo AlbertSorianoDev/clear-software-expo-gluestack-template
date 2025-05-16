@@ -121,7 +121,11 @@ export default function SignIn() {
           <VStack className="md:items-center" space="md">
             <Pressable
               onPress={() => {
-                router.back();
+                if (router.canGoBack()) {
+                  router.back();
+                } else {
+                  router.navigate("/");
+                }
               }}
             >
               <Icon as={ArrowLeftIcon} className="text-background-800 md:hidden" size="xl" />
