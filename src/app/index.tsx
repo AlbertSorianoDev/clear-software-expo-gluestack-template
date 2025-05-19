@@ -36,7 +36,11 @@ export default function HomeScreen() {
         >
           <ButtonText>Create password</ButtonText>
         </Button>
-        <Button onPress={() => {}}>
+        <Button
+          onPress={() => {
+            router.navigate("/news-feed");
+          }}
+        >
           <ButtonText>News feed</ButtonText>
         </Button>
         <Button onPress={() => {}}>
