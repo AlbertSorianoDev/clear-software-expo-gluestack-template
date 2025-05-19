@@ -20,6 +20,9 @@ importers:
       '@gluestack-ui/checkbox':
         specifier: ^0.1.39
         version: 0.1.39(react-dom@19.0.0(react@19.0.0))(react-native@0.79.2(@babel/core@7.27.1)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0)
+      '@gluestack-ui/divider':
+        specifier: ^0.1.10
+        version: 0.1.10(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@gluestack-ui/icon':
         specifier: ^0.1.27
         version: 0.1.27(react-dom@19.0.0(react@19.0.0))(react-native@0.79.2(@babel/core@7.27.1)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0)
@@ -848,6 +851,12 @@ packages:
 
   '@gluestack-ui/checkbox@0.1.39':
     resolution: {integrity: sha512-CPL9+g9qIFuGGQAQuFySATTxrqGMhIx/ASpBdl/YC50Ec/d7gMZlnKww3N1og3a6JqMG8yeWwbH+GH3z07XsfA==}
+    peerDependencies:
+      react: '>=16'
+      react-dom: '>=16'
+
+  '@gluestack-ui/divider@0.1.10':
+    resolution: {integrity: sha512-/hZx1Rmy4Pgln9AwAprAEQcxYPEHjHSNF4xCUWlK/q0peyiMT5Nagt54VnxykVn5A0b2zg5QKP0pOqOF9xeE6w==}
     peerDependencies:
       react: '>=16'
       react-dom: '>=16'
@@ -5864,6 +5873,11 @@ snapshots:
       react-dom: 19.0.0(react@19.0.0)
     transitivePeerDependencies:
       - react-native
+
+  '@gluestack-ui/divider@0.1.10(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
+    dependencies:
+      react: 19.0.0
+      react-dom: 19.0.0(react@19.0.0)
 
   '@gluestack-ui/form-control@0.1.19(react-dom@19.0.0(react@19.0.0))(react-native@0.79.2(@babel/core@7.27.1)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0)':
     dependencies:

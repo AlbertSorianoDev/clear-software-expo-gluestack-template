@@ -2,10 +2,10 @@ import { Slot } from "expo-router";
 import { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-import MobileFooter from "@/components/news-feed/mobile-footer";
-import { MobileHeader } from "@/components/news-feed/mobile-header";
-import { Sidebar } from "@/components/news-feed/sidebar";
-import { WebHeader } from "@/components/news-feed/web-header";
+import MobileFooter from "@/components/(pages)/mobile-footer";
+import { MobileHeader } from "@/components/(pages)/mobile-header";
+import { Sidebar } from "@/components/(pages)/sidebar";
+import { WebHeader } from "@/components/(pages)/web-header";
 import { Box } from "@/components/ui/box";
 import { HStack } from "@/components/ui/hstack";
 import { VStack } from "@/components/ui/vstack";

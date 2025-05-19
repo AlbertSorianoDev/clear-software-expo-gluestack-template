@@ -43,7 +43,11 @@ export default function HomeScreen() {
         >
           <ButtonText>News feed</ButtonText>
         </Button>
-        <Button onPress={() => {}}>
+        <Button
+          onPress={() => {
+            router.navigate("/dashboard");
+          }}
+        >
           <ButtonText>Dashboard</ButtonText>
         </Button>
         <Button onPress={() => {}}>
