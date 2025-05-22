@@ -1,3 +1,2 @@
-export const placeholderName = "ClearSoftwareTemplate";
+export const placeholderName = "ClearSoftwareExpoGluestackTemplate";
 export const templateDir = "./";
-export const postInitScript = "./post-init.js";
