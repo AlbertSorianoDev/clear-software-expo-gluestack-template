@@ -1,9 +1,7 @@
 import { Keyboard } from "react-native";
 
-import { HStack } from "@/components/ui/hstack";
-import { AlertCircleIcon, Icon } from "@/components/ui/icon";
+import { InputErrorMessage } from "@/components/custom/input-error-message";
 import { Input, InputField } from "@/components/ui/input";
-import { Text } from "@/components/ui/text";
 import { VStack } from "@/components/ui/vstack";
 
 interface AuthEmailInputProps {
@@ -29,12 +27,7 @@ export function AuthEmailInput({ email, setEmail, error }: AuthEmailInputProps) 
           returnKeyType="done"
         />
       </Input>
-      {error && (
-        <HStack className="gap-x-2">
-          <Icon as={AlertCircleIcon} className="text-red-500" />
-          <Text className="text-sm text-red-500">{error}</Text>
-        </HStack>
-      )}
+      <InputErrorMessage error={error} />
     </VStack>
   );
 }

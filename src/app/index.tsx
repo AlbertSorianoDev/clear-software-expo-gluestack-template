@@ -38,6 +38,13 @@ export default function HomeScreen() {
         </Button>
         <Button
           onPress={() => {
+            router.navigate("/dashboard");
+          }}
+        >
+          <ButtonText>Dashboard</ButtonText>
+        </Button>
+        <Button
+          onPress={() => {
             router.navigate("/news-feed");
           }}
         >
@@ -45,12 +52,9 @@ export default function HomeScreen() {
         </Button>
         <Button
           onPress={() => {
-            router.navigate("/dashboard");
+            router.navigate("/profile");
           }}
         >
-          <ButtonText>Dashboard</ButtonText>
-        </Button>
-        <Button onPress={() => {}}>
           <ButtonText>Profile</ButtonText>
         </Button>
       </VStack>
