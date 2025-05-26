@@ -1,4 +1,4 @@
-import AntDesign from "@expo/vector-icons/AntDesign";
+import { AntDesign } from "@expo/vector-icons";
 import clsx from "clsx";
 import { Link, router } from "expo-router";
 import { useEffect } from "react";

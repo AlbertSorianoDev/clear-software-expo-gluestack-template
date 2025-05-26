@@ -5,9 +5,9 @@ import image4 from "@assets/dashboard/image4.png";
 import image5 from "@assets/dashboard/image5.png";
 import image6 from "@assets/dashboard/image6.png";
 import image7 from "@assets/dashboard/image7.png";
-import { AntDesign } from "@expo/vector-icons";
-import { cn } from "@gluestack-ui/nativewind-utils/cn";
 import { isWeb } from "@gluestack-ui/nativewind-utils/IsWeb";
+import clsx from "clsx";
+import { Calendar } from "lucide-react-native";
 
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Box } from "@/components/ui/box";
@@ -16,6 +16,7 @@ import { Divider } from "@/components/ui/divider";
 import { Grid, GridItem } from "@/components/ui/grid";
 import { Heading } from "@/components/ui/heading";
 import { HStack } from "@/components/ui/hstack";
+import { Icon } from "@/components/ui/icon";
 import { ScrollView } from "@/components/ui/scroll-view";
 import { Text } from "@/components/ui/text";
 import { VStack } from "@/components/ui/vstack";
@@ -209,7 +210,7 @@ export default function MainContent() {
                   return (
                     <HStack space="lg" key={index} className="w-full px-4 py-2">
                       <Avatar className="h-10 w-10 bg-background-50">
-                        <AntDesign name="calendar" size={24} color={"gray"} />
+                        <Icon as={Calendar} className="stroke-[2.5] text-gray-600" />
                       </Avatar>
                       <VStack>
                         <Text className="line-clamp-1 font-roboto text-typography-900">
@@ -246,14 +247,14 @@ export default function MainContent() {
                     >
                       <HStack space="xl" className="items-center">
                         <Box
-                          className={cn(
+                          className={clsx(
                             "h-10 w-10 items-center justify-center rounded-full",
                             { "bg-success-0": item.leaves !== 0 },
                             { "bg-error-50": item.leaves === 0 },
                           )}
                         >
                           <Text
-                            className={cn(
+                            className={clsx(
                               { "text-success-800": item.leaves !== 0 },
                               { "text-error-700": item.leaves === 0 },
                             )}

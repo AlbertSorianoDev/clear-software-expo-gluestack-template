@@ -1,17 +1,17 @@
 import { router } from "expo-router";
+import { House, Rss, User } from "lucide-react-native";
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
 
 import type { Href } from "expo-router";
 
-import { FeatherGlyphs } from "@/types/icons/expo-vector-icons";
 import { TabItem } from "@/types/icons/tab-item";
 
 interface PagesStore {
   pageTitle: string;
   isSidebarExpanded: boolean;
   tabSelectedIndex: number;
-  tabsList: TabItem<FeatherGlyphs>[];
+  tabsList: TabItem[];
 
   setPageTitle: (pageTitle: string) => void;
   toggleSidebarExpanded: () => void;
@@ -25,21 +25,21 @@ const initialState = {
   tabSelectedIndex: 0,
   tabsList: [
     {
-      iconName: "home",
+      icon: House,
       tabTitle: "Dashboard",
       route: "/dashboard",
     },
     {
-      iconName: "rss",
+      icon: Rss,
       tabTitle: "News Feed",
       route: "/news-feed",
     },
     {
-      iconName: "user",
+      icon: User,
       tabTitle: "Profile",
       route: "/profile",
     },
-  ] as TabItem<FeatherGlyphs>[],
+  ] as TabItem[],
 };
 
 export const usePagesStore = create<PagesStore>()(

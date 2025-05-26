@@ -1,9 +1,9 @@
 import type { Href } from "expo-router";
 
-export interface TabItem<T = string> {
-  iconName: T;
+export interface TabItem {
+  icon: React.ElementType;
   tabTitle: string;
   route: Href;
-  onlyMobile?: boolean;
+  mobileOnly?: boolean;
   webOnly?: boolean;
 }

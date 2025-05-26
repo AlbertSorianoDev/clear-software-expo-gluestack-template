@@ -1,6 +1,6 @@
 import image from "@assets/profile/image.png";
 import image2 from "@assets/profile/image2.png";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { ImagePlus, SquarePen } from "lucide-react-native";
 import { useRef } from "react";
 
 import { InputErrorMessage } from "@/components/custom/input-error-message";
@@ -119,7 +119,7 @@ export function EditUserInfoModal() {
               alt="Banner Image"
             />
             <Pressable className="absolute bottom-2 right-2 h-8 w-8 items-center justify-center rounded-full bg-background-500">
-              <MaterialCommunityIcons name="camera-plus" size={16} color="white" />
+              <Icon as={ImagePlus} className="w-2/3 text-white" />
             </Pressable>
           </Box>
 
@@ -141,7 +141,7 @@ export function EditUserInfoModal() {
             <Avatar size="2xl">
               <AvatarImage source={image} />
               <AvatarBadge className="items-center justify-center bg-background-500">
-                <MaterialCommunityIcons name="image-edit" size={16} color="white" />
+                <Icon as={SquarePen} className="w-2/3 text-white" />
               </AvatarBadge>
             </Avatar>
           </Center>

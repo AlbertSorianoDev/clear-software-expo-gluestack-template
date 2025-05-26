@@ -1,16 +1,15 @@
-import { Feather } from "@expo/vector-icons";
 import clsx from "clsx";
 import { router } from "expo-router";
 import { Platform } from "react-native";
 
 import { HStack } from "@/components/ui/hstack";
+import { Icon } from "@/components/ui/icon";
 import { Pressable } from "@/components/ui/pressable";
 import { Text } from "@/components/ui/text";
-import { FeatherGlyphs } from "@/types/icons/expo-vector-icons";
 import { TabItem } from "@/types/icons/tab-item";
 
 interface MobileFooterProps {
-  tabList: TabItem<FeatherGlyphs>[];
+  tabList: TabItem[];
   tabSelectedIndex: number;
   selectTabIndex: (index: number) => void;
 }
@@ -34,6 +33,9 @@ export default function MobileFooter({
       )}
     >
       {tabList.map((item, index) => {
+        if (item.webOnly) {
+          return null;
+        }
         return (
           <Pressable
             className={clsx("flex w-[100px] flex-col items-center rounded px-1 py-1", {
@@ -43,10 +45,12 @@ export default function MobileFooter({
             key={index}
             onPress={() => handlePress(index)}
           >
-            <Feather
-              name={item.iconName}
-              size={20}
-              color={index === tabSelectedIndex ? "white" : "black"}
+            <Icon
+              as={item.icon}
+              className={clsx("h-[20px] w-[20px] shrink-0 grow-0", {
+                "text-typography-950": tabSelectedIndex !== index,
+                "text-typography-0": tabSelectedIndex === index,
+              })}
             />
             <Text
               className={clsx("overflow-hidden truncate whitespace-nowrap text-center text-xs", {

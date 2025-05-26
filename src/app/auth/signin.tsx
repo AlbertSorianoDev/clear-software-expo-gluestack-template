@@ -1,5 +1,6 @@
-import { AntDesign, Ionicons } from "@expo/vector-icons";
+import { AntDesign } from "@expo/vector-icons";
 import { Link, router } from "expo-router";
+import { ShieldCheck } from "lucide-react-native";
 import { useEffect } from "react";
 import { View } from "react-native";
 
@@ -187,11 +188,7 @@ export default function SignIn() {
 
             <Button variant="outline" className="w-full gap-1" onPress={() => showLoginCodeModal()}>
               <ButtonText className="font-medium">Get login code</ButtonText>
-              <ButtonIcon
-                as={() => (
-                  <Ionicons name="keypad" size={16} className="text-black dark:text-white" />
-                )}
-              />
+              <ButtonIcon as={ShieldCheck} className="stroke-[3] text-black dark:text-white" />
             </Button>
             <Button variant="outline" className="w-full gap-1" onPress={() => {}}>
               <ButtonText className="font-medium">Continue with Google</ButtonText>
