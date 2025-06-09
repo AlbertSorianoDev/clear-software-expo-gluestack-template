@@ -77,11 +77,16 @@ export default function MainContent() {
           <VStack className="h-full w-full pb-8" space="2xl">
             <Box className="relative h-[380px] w-full md:h-[478px]">
               <Image source={image2} alt="Banner Image" className="h-full w-full rounded-b-xl" />
+              <Box className="absolute inset-0 rounded-b-xl bg-black/20" />
             </Box>
 
             <HStack className="absolute hidden px-10 pt-6 md:flex">
-              <Text className="font-roboto text-typography-900">home &gt; {` `}</Text>
-              <Text className="font-semibold text-typography-900">profile</Text>
+              <Text className="font-roboto text-white drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">
+                home{" > "}
+              </Text>
+              <Text className="font-semibold text-white drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">
+                profile
+              </Text>
             </HStack>
 
             <Center className="absolute mt-6 w-full pb-4 md:mt-14 md:px-10 md:pt-6">
@@ -92,46 +97,59 @@ export default function MainContent() {
                 </Avatar>
 
                 <VStack className="w-full items-center gap-1">
-                  <Text size="2xl" className="text-dark font-roboto">
+                  <Text
+                    size="2xl"
+                    className="font-roboto text-white drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]"
+                  >
                     Alexander Leslie
                   </Text>
-                  <Text className="font-roboto text-sm text-typography-700">United States</Text>
+                  <Text className="font-roboto text-sm text-white drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">
+                    United States
+                  </Text>
                 </VStack>
 
                 <>
                   <HStack className="items-center gap-1">
                     <VStack className="items-center px-4 py-3" space="xs">
-                      <Text className="text-dark items-center justify-center font-roboto font-semibold">
+                      <Text className="items-center justify-center font-roboto font-semibold text-white drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">
                         {userData.friends}
                       </Text>
-                      <Text className="text-dark font-roboto text-xs">{userData.friendsText}</Text>
+                      <Text className="text-xs text-white drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">
+                        {userData.friendsText}
+                      </Text>
                     </VStack>
 
-                    <Divider orientation="vertical" className="h-10" />
+                    <Divider orientation="vertical" className="h-10 bg-white" />
 
                     <VStack className="items-center px-4 py-3" space="xs">
-                      <Text className="text-dark font-roboto font-semibold">
+                      <Text className="font-roboto font-semibold text-white drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">
                         {userData.followers}
                       </Text>
-                      <Text className="text-dark font-roboto text-xs">
+                      <Text className="font-roboto text-xs text-white drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">
                         {userData.followersText}
                       </Text>
                     </VStack>
 
-                    <Divider orientation="vertical" className="h-10" />
+                    <Divider orientation="vertical" className="h-10 bg-white" />
 
                     <VStack className="items-center px-4 py-3" space="xs">
-                      <Text className="text-dark font-roboto font-semibold">
+                      <Text className="font-roboto font-semibold text-white drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">
                         {userData.rewards}
                       </Text>
-                      <Text className="text-dark font-roboto text-xs">{userData.rewardsText}</Text>
+                      <Text className="font-roboto text-xs text-white drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">
+                        {userData.rewardsText}
+                      </Text>
                     </VStack>
 
-                    <Divider orientation="vertical" className="h-10" />
+                    <Divider orientation="vertical" className="h-10 bg-white" />
 
                     <VStack className="items-center px-4 py-3" space="xs">
-                      <Text className="text-dark font-roboto font-semibold">{userData.posts}</Text>
-                      <Text className="text-dark font-roboto text-xs">{userData.postsText}</Text>
+                      <Text className="font-roboto font-semibold text-white drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">
+                        {userData.posts}
+                      </Text>
+                      <Text className="font-roboto text-xs text-white drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">
+                        {userData.postsText}
+                      </Text>
                     </VStack>
                   </HStack>
                 </>
@@ -140,10 +158,10 @@ export default function MainContent() {
                   variant="outline"
                   action="secondary"
                   onPress={showModal}
-                  className="relative gap-3 border-gray-600"
+                  className="group relative gap-3 border-white"
                 >
-                  <ButtonText className="text-dark">Edit Profile</ButtonText>
-                  <ButtonIcon as={EditIcon} />
+                  <ButtonText className="text-white">Edit Profile</ButtonText>
+                  <ButtonIcon as={EditIcon} className="text-white group-hover:text-black" />
                 </Button>
               </VStack>
             </Center>
