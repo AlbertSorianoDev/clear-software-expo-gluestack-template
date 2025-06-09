@@ -2,7 +2,7 @@ import "@/global.css";
 
 import OpenSansFont from "@assets/fonts/OpenSans-Regular.ttf";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
-import { DarkTheme, DefaultTheme, ThemeProvider } from "@react-navigation/native";
+import { DefaultTheme, ThemeProvider } from "@react-navigation/native";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
@@ -43,9 +43,12 @@ function LayoutNav() {
   const colorScheme = useColorScheme();
 
   return (
-    <GluestackUIProvider mode={(colorScheme ?? "light") as "light" | "dark"}>
-      <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-        <StatusBar style={colorScheme === "dark" ? "light" : "dark"} />
+    //  (colorScheme ?? "light") as "light" | "dark"}
+    <GluestackUIProvider mode={"light"}>
+      {/* colorScheme === "dark" ? DarkTheme : DefaultTheme */}
+      <ThemeProvider value={DefaultTheme}>
+        {/* colorScheme === "dark" ? "light" : "dark" */}
+        <StatusBar style={"light"} />
         <Stack screenOptions={{ headerShown: false }} />
       </ThemeProvider>
     </GluestackUIProvider>
