@@ -105,12 +105,12 @@ export default function CreatePassword() {
           >
             <Icon as={ArrowLeftIcon} className="stroke-background-800 md:hidden" size="xl" />
           </Pressable>
-          <VStack>
+          <VStack className="gap-[10px]">
             <Heading className="md:text-center" size="3xl">
               Create new password
             </Heading>
             <Text className="md:text-center">
-              Your new password must be different from previously used passwords{" "}
+              Your new password must be different from previously used passwords.
             </Text>
           </VStack>
         </VStack>
@@ -148,7 +148,7 @@ export default function CreatePassword() {
 
           <VStack className="mt-7 w-full">
             <Button className="w-full" onPress={handleSubmit}>
-              <ButtonText className="font-medium">Update Password</ButtonText>
+              <ButtonText className="font-medium">Update password</ButtonText>
             </Button>
           </VStack>
         </VStack>

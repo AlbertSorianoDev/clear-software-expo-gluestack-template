@@ -14,7 +14,7 @@ export const CreatePasswordBaseSchema = z.object({
 export const CreatePasswordSchema = CreatePasswordBaseSchema.refine(
   (data) => data.password === data.confirmPassword,
   {
-    message: "Passwords do not match",
+    message: "Passwords must match",
     path: ["confirmPassword"],
   },
 );

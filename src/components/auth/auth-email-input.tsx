@@ -15,7 +15,7 @@ export function AuthEmailInput({ email, setEmail, error }: AuthEmailInputProps) 
     <VStack className="gap-y-1">
       <Input>
         <InputField
-          placeholder="Enter email"
+          placeholder="Email"
           type="text"
           autoCapitalize="none"
           autoCorrect={false}

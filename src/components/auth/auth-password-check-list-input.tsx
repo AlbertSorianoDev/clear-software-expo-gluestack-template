@@ -38,7 +38,7 @@ export function AuthPasswordChecklistInput({
   handlePasswordChange,
 }: AuthPasswordChecklistInputProps) {
   return (
-    <VStack className="gap-y-1">
+    <VStack className="gap-y-[5px]">
       <Input>
         <InputField
           className="text-sm"
@@ -70,10 +70,11 @@ export function AuthPasswordChecklistInput({
         return (
           <HStack key={errorKey} className="items-center gap-x-2">
             <Icon
+              size="2xs"
               as={isError ? AlertCircleIcon : CheckCircleIcon}
-              className={clsx("text-base", isError ? "text-red-500" : "text-gray-500")}
+              className={clsx("", isError ? "text-red-500" : "text-gray-500")}
             />
-            <Text className={clsx("text-sm", isError ? "text-red-500" : "text-gray-500")}>
+            <Text size="xs" className={clsx("", isError ? "text-red-500" : "text-gray-500")}>
               {text}
             </Text>
           </HStack>

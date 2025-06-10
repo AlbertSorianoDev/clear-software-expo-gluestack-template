@@ -27,6 +27,7 @@ export default function SignUp() {
     password,
     confirmPassword,
     acceptTerms,
+    rememberMe,
     showPassword,
     showConfirmPassword,
     passwordTouched,
@@ -37,6 +38,7 @@ export default function SignUp() {
     toggleShowPassword,
     toggleShowConfirmPassword,
     setAcceptTerms,
+    setRememberMe,
     passwordWasTouched,
     setErrors,
     reset,
@@ -92,7 +94,7 @@ export default function SignUp() {
       className="w-full"
       contentContainerStyle={{ flexGrow: 1, justifyContent: "center", padding: 20 }}
     >
-      <VStack className="mx-auto w-full max-w-[440px]" space="md">
+      <VStack className="mx-auto w-full max-w-[440px]" space="xl">
         <VStack className="md:items-center" space="md">
           <Pressable
             onPress={() => {
@@ -105,14 +107,14 @@ export default function SignUp() {
           >
             <Icon as={ArrowLeftIcon} className="stroke-background-800 md:hidden" size="xl" />
           </Pressable>
-          <VStack>
-            <Heading className="md:text-center" size="3xl">
+          <VStack className="flex gap-[10px] text-center">
+            <Heading className="text-center" size="3xl">
               Sign up
             </Heading>
-            <Text>Sign up and start using gluestack</Text>
+            <Text className="text-center">Sign up and start using gluestack</Text>
           </VStack>
         </VStack>
-        <VStack className="gap-y-4">
+        <VStack className="gap-y-5">
           <AuthEmailInput email={email} setEmail={setEmail} error={errors.email} />
 
           <AuthPasswordChecklistInput
@@ -142,25 +144,39 @@ export default function SignUp() {
             toggleShowPassword={toggleShowConfirmPassword}
             error={errors.confirmPassword}
           />
-
-          <Checkbox
-            size="sm"
-            value="acceptTerms"
-            isChecked={acceptTerms}
-            onChange={() => {
-              setAcceptTerms(!acceptTerms);
-            }}
-          >
-            <CheckboxIndicator className={clsx(errors.acceptTerms && "border-red-500")}>
-              <CheckboxIcon as={CheckIcon} />
-            </CheckboxIndicator>
-            <CheckboxLabel className={clsx(errors.acceptTerms && "text-red-500")}>
-              I accept the Terms of Use & Privacy Policy
-            </CheckboxLabel>
-          </Checkbox>
+          <VStack className="flex gap-[5px]">
+            <Checkbox
+              size="sm"
+              value="acceptTerms"
+              isChecked={acceptTerms}
+              onChange={() => {
+                setAcceptTerms(!acceptTerms);
+              }}
+            >
+              <CheckboxIndicator className={clsx(errors.acceptTerms && "border-red-500")}>
+                <CheckboxIcon as={CheckIcon} />
+              </CheckboxIndicator>
+              <CheckboxLabel className={clsx(errors.acceptTerms && "text-red-500")}>
+                I accept the Terms of Use & Privacy Policy
+              </CheckboxLabel>
+            </Checkbox>
+            <Checkbox
+              size="sm"
+              value="rememberMe"
+              isChecked={rememberMe}
+              onChange={() => {
+                setRememberMe(!rememberMe);
+              }}
+            >
+              <CheckboxIndicator>
+                <CheckboxIcon as={CheckIcon} />
+              </CheckboxIndicator>
+              <CheckboxLabel>Remember me</CheckboxLabel>
+            </Checkbox>
+          </VStack>
         </VStack>
 
-        <VStack className="my-7 w-full" space="lg">
+        <VStack className="w-full" space="xl">
           <Button className="w-full" onPress={handleSubmit}>
             <ButtonText className="font-medium">Sign up</ButtonText>
           </Button>
@@ -173,18 +189,14 @@ export default function SignUp() {
 
           <Button variant="outline" className="w-full gap-1" onPress={() => {}}>
             <ButtonText className="font-medium">Continue with Google</ButtonText>
-            <ButtonIcon
-              as={() => (
-                <AntDesign name="google" size={16} className="text-black dark:text-white" />
-              )}
-            />
+            <ButtonIcon as={() => <AntDesign name="google" size={16} className="text-black" />} />
           </Button>
         </VStack>
 
         <HStack className="self-center" space="sm">
           <Text size="md">Already have an account?</Text>
           <Link href="/auth/signin">
-            <LinkText className="font-medium text-primary-700" size="md">
+            <LinkText className="font-base text-primary-700" size="md">
               Login
             </LinkText>
           </Link>

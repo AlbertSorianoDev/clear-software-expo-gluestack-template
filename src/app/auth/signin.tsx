@@ -131,11 +131,11 @@ export default function SignIn() {
             >
               <Icon as={ArrowLeftIcon} className="text-background-800 md:hidden" size="xl" />
             </Pressable>
-            <VStack>
-              <Heading className="md:text-center" size="3xl">
+            <VStack className="flex justify-center gap-[10px] text-center">
+              <Heading className="text-center" size="3xl">
                 Log in
               </Heading>
-              <Text>Login to start using gluestack</Text>
+              <Text className="text-center">Log in to start using gluestack</Text>
             </VStack>
           </VStack>
 
@@ -143,7 +143,7 @@ export default function SignIn() {
             <AuthEmailInput email={email} setEmail={setEmail} error={errors.email} />
 
             <AuthSimplePasswordInput
-              placeholder="Enter password"
+              placeholder="Password"
               password={password}
               setPassword={setPassword}
               showPassword={showPassword}
@@ -168,7 +168,7 @@ export default function SignIn() {
               </Checkbox>
 
               <Pressable onPress={showForgotPasswordModal}>
-                <LinkText className="text-sm font-medium text-primary-700 group-hover/link:text-primary-600">
+                <LinkText className="font-base text-sm text-primary-700 group-hover/link:text-primary-600">
                   Forgot Password?
                 </LinkText>
               </Pressable>
@@ -204,7 +204,7 @@ export default function SignIn() {
             <Text size="md">Don't have an account?</Text>
             <Link href="/auth/signup">
               <LinkText
-                className="font-medium text-primary-700 group-hover/link:text-primary-600 group-hover/pressed:text-primary-700"
+                className="font-base text-primary-700 group-hover/link:text-primary-600 group-hover/pressed:text-primary-700"
                 size="md"
               >
                 Sign up

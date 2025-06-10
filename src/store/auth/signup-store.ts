@@ -7,6 +7,7 @@ type SignUpStore = {
   password: string;
   confirmPassword: string;
   acceptTerms: boolean;
+  rememberMe: boolean;
 
   errors: {
     email?: string;
@@ -23,6 +24,7 @@ type SignUpStore = {
   setPassword: (password: string) => void;
   setConfirmPassword: (confirmPassword: string) => void;
   setAcceptTerms: (acceptTerms: boolean) => void;
+  setRememberMe: (rememberMe: boolean) => void;
   setErrors: (errors: SignUpStore["errors"]) => void;
 
   toggleShowPassword: () => void;
@@ -38,6 +40,7 @@ const initialState = {
   password: "",
   confirmPassword: "",
   acceptTerms: false,
+  rememberMe: false,
 
   errors: {},
 
@@ -72,6 +75,12 @@ export const useSignUpStore = create<SignUpStore>()(
       set((state) => {
         state.acceptTerms = acceptTerms;
         state.errors.acceptTerms = undefined;
+      });
+    },
+    setRememberMe: (rememberMe) => {
+      set((state) => {
+        state.rememberMe = rememberMe;
+        // state.errors.r = undefined;
       });
     },
     setErrors: (errors) => {

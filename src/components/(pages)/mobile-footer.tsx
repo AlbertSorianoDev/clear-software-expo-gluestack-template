@@ -27,7 +27,7 @@ export default function MobileFooter({
   return (
     <HStack
       className={clsx(
-        "border-t-border-300 absolute bottom-0 left-0 right-0 w-full items-center justify-around overflow-hidden border-t bg-background-0 p-3 md:hidden",
+        "border-300 absolute bottom-0 left-0 right-0 w-full items-center justify-around overflow-hidden border-t bg-background-0 p-3 md:hidden",
         { "pb-5": Platform.OS === "ios" },
         { "pb-5": Platform.OS === "android" },
       )}
@@ -38,7 +38,7 @@ export default function MobileFooter({
         }
         return (
           <Pressable
-            className={clsx("flex w-[100px] flex-col items-center rounded px-1 py-1", {
+            className={clsx("flex max-w-[80px] flex-1 flex-col items-center rounded px-1 py-1", {
               ["bg-background-950"]: index === tabSelectedIndex,
               ["bg-background-0"]: index !== tabSelectedIndex,
             })}

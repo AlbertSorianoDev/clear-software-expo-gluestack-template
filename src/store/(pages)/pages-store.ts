@@ -1,5 +1,5 @@
 import { router } from "expo-router";
-import { House, Rss, User } from "lucide-react-native";
+import { House, Rss } from "lucide-react-native";
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
 
@@ -34,11 +34,11 @@ const initialState = {
       tabTitle: "News Feed",
       route: "/news-feed",
     },
-    {
-      icon: User,
-      tabTitle: "Profile",
-      route: "/profile",
-    },
+    // {
+    //   icon: User,
+    //   tabTitle: "Profile",
+    //   route: "/profile",
+    // },
   ] as TabItem[],
 };
 

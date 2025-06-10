@@ -15,7 +15,7 @@ export default function SplashScreen() {
       className="w-full"
       contentContainerStyle={{ flexGrow: 1, justifyContent: "center", padding: 20 }}
     >
-      <VStack className="mx-auto w-full max-w-[440px]" space="lg">
+      <VStack className="mx-auto w-full max-w-[350px]" space="lg">
         <HStack className="mb-4 items-center justify-center gap-x-2">
           <Icon as={Waypoints} className="h-10 w-10 stroke-[2] text-black dark:text-white" />
           <Heading>

@@ -12,9 +12,11 @@ export function InputErrorMessage({ error, className }: InputErrorMessageProps) 
   return (
     <Box className={className}>
       {typeof error === "string" && error.trim() !== "" && (
-        <HStack className="gap-x-2">
-          <Icon as={AlertCircleIcon} className="text-red-500" />
-          <Text className="text-sm text-red-500">{String(error)}</Text>
+        <HStack className="items-center gap-x-2">
+          <Icon size="2xs" as={AlertCircleIcon} className="text-red-500" />
+          <Text size="xs" className="text-red-500">
+            {String(error)}
+          </Text>
         </HStack>
       )}
     </Box>

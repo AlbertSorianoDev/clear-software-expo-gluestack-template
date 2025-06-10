@@ -12,7 +12,7 @@ const EmailTermsSchema = z.object({
 export const SignUpSchema = EmailTermsSchema.merge(CreatePasswordBaseSchema).refine(
   (data) => data.password === data.confirmPassword,
   {
-    message: "Passwords do not match",
+    message: "Passwords must match",
     path: ["confirmPassword"],
   },
 );
