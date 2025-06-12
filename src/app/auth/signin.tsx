@@ -168,7 +168,7 @@ export default function SignIn() {
               </Checkbox>
 
               <Pressable onPress={showForgotPasswordModal}>
-                <LinkText className="font-base text-sm text-primary-700 group-hover/link:text-primary-600">
+                <LinkText className="font-base text-sm text-typography-600 group-hover/link:text-primary-600">
                   Forgot Password?
                 </LinkText>
               </Pressable>
@@ -188,14 +188,12 @@ export default function SignIn() {
 
             <Button variant="outline" className="w-full gap-1" onPress={() => showLoginCodeModal()}>
               <ButtonText className="font-medium">Get login code</ButtonText>
-              <ButtonIcon as={ShieldCheck} className="stroke-[3] text-black dark:text-white" />
+              <ButtonIcon as={ShieldCheck} className="stroke-[3] text-primary-500" />
             </Button>
             <Button variant="outline" className="w-full gap-1" onPress={() => {}}>
               <ButtonText className="font-medium">Continue with Google</ButtonText>
               <ButtonIcon
-                as={() => (
-                  <AntDesign name="google" size={16} className="text-black dark:text-white" />
-                )}
+                as={() => <AntDesign name="google" size={16} className="text-primary-500" />}
               />
             </Button>
           </VStack>
@@ -204,7 +202,7 @@ export default function SignIn() {
             <Text size="md">Don't have an account?</Text>
             <Link href="/auth/signup">
               <LinkText
-                className="font-base text-primary-700 group-hover/link:text-primary-600 group-hover/pressed:text-primary-700"
+                className="font-base text-typography-950 group-hover/link:text-primary-600 group-hover/pressed:text-primary-700"
                 size="md"
               >
                 Sign up

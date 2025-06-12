@@ -277,7 +277,7 @@ export default function MainContent() {
                         action="secondary"
                         size="xs"
                       >
-                        <ButtonText>Apply</ButtonText>
+                        <ButtonText className="text-primary-500">Apply</ButtonText>
                       </Button>
                     </HStack>
                   );

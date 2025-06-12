@@ -160,8 +160,10 @@ export default function MainContent() {
                   onPress={showModal}
                   className="group relative gap-3 border-white"
                 >
-                  <ButtonText className="text-white">Edit Profile</ButtonText>
-                  <ButtonIcon as={EditIcon} className="text-white group-hover:text-black" />
+                  <ButtonText className="text-white group-hover:text-primary-500">
+                    Edit Profile
+                  </ButtonText>
+                  <ButtonIcon as={EditIcon} className="text-white group-hover:text-primary-500" />
                 </Button>
               </VStack>
             </Center>
@@ -184,7 +186,7 @@ export default function MainContent() {
                   </VStack>
                 </HStack>
 
-                <Button className="bg-background-0 p-0 active:bg-background-0 md:bg-background-900 md:px-4 md:py-2">
+                <Button className="bg-background-0 p-0 active:bg-background-0 md:bg-primary-500 md:px-4 md:py-2">
                   <ButtonText className="text-sm text-typography-800 md:text-typography-0">
                     Invite
                   </ButtonText>

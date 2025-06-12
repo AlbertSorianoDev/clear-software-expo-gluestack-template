@@ -189,14 +189,16 @@ export default function SignUp() {
 
           <Button variant="outline" className="w-full gap-1" onPress={() => {}}>
             <ButtonText className="font-medium">Continue with Google</ButtonText>
-            <ButtonIcon as={() => <AntDesign name="google" size={16} className="text-black" />} />
+            <ButtonIcon
+              as={() => <AntDesign name="google" size={16} className="text-primary-500" />}
+            />
           </Button>
         </VStack>
 
         <HStack className="self-center" space="sm">
           <Text size="md">Already have an account?</Text>
           <Link href="/auth/signin">
-            <LinkText className="font-base text-primary-700" size="md">
+            <LinkText className="font-base text-typography-950" size="md">
               Login
             </LinkText>
           </Link>

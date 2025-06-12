@@ -17,9 +17,9 @@ export default function SplashScreen() {
     >
       <VStack className="mx-auto w-full max-w-[350px]" space="lg">
         <HStack className="mb-4 items-center justify-center gap-x-2">
-          <Icon as={Waypoints} className="h-10 w-10 stroke-[2] text-black dark:text-white" />
+          <Icon as={Waypoints} className="h-10 w-10 stroke-[2] text-black" />
           <Heading>
-            <Text className="text-3xl font-bold text-black dark:text-white">Clear Software</Text>
+            <Text className="text-3xl font-bold text-black">Clear Software</Text>
           </Heading>
         </HStack>
         <VStack className="w-full" space="lg">

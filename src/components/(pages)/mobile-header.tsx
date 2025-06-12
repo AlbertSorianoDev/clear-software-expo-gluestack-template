@@ -27,9 +27,9 @@ export function MobileHeader({ title }: MobileHeaderProps) {
             }
           }}
         >
-          <Icon className="text-primary-950" size="xl" as={ChevronLeftIcon} />
+          <Icon className="text-typography-950" size="xl" as={ChevronLeftIcon} />
         </Pressable>
-        <Heading size="md" className="text-primary-950">
+        <Heading size="md" className="text-typography-950">
           {title}
         </Heading>
       </HStack>

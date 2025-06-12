@@ -39,7 +39,7 @@ export default function MobileFooter({
         return (
           <Pressable
             className={clsx("flex max-w-[80px] flex-1 flex-col items-center rounded px-1 py-1", {
-              ["bg-background-950"]: index === tabSelectedIndex,
+              ["bg-primary-500"]: index === tabSelectedIndex,
               ["bg-background-0"]: index !== tabSelectedIndex,
             })}
             key={index}
@@ -48,14 +48,14 @@ export default function MobileFooter({
             <Icon
               as={item.icon}
               className={clsx("h-[20px] w-[20px] shrink-0 grow-0", {
-                "text-typography-950": tabSelectedIndex !== index,
+                "text-primary-500": tabSelectedIndex !== index,
                 "text-typography-0": tabSelectedIndex === index,
               })}
             />
             <Text
               className={clsx("overflow-hidden truncate whitespace-nowrap text-center text-xs", {
                 ["text-typography-0"]: index === tabSelectedIndex,
-                ["text-typography-600"]: index !== tabSelectedIndex,
+                ["text-primary-600"]: index !== tabSelectedIndex,
               })}
             >
               {item.tabTitle}

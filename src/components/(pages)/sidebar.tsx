@@ -40,7 +40,7 @@ export function Sidebar({
                 key={index}
                 aria-pressed={index === tabSelectedIndex}
                 className={clsx("h-[50px] items-center gap-2 rounded px-4 py-3", {
-                  ["bg-background-950"]: index === tabSelectedIndex,
+                  ["bg-primary-500"]: index === tabSelectedIndex,
                   ["bg-background-0"]: index !== tabSelectedIndex,
                 })}
               >
@@ -48,7 +48,7 @@ export function Sidebar({
                   <Icon
                     as={item.icon}
                     className={clsx("h-[20px] w-[20px] shrink-0 grow-0", {
-                      "text-typography-950": tabSelectedIndex !== index,
+                      "text-primary-500": tabSelectedIndex !== index,
                       "text-typography-0": tabSelectedIndex === index,
                     })}
                   />
@@ -56,7 +56,7 @@ export function Sidebar({
                     <Text
                       className={clsx(
                         "overflow-hidden truncate whitespace-nowrap",
-                        index === tabSelectedIndex ? "text-typography-0" : "text-typography-700",
+                        index === tabSelectedIndex ? "text-typography-0" : "text-primary-500",
                       )}
                     >
                       {item.tabTitle}

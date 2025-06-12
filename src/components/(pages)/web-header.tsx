@@ -19,10 +19,10 @@ export function WebHeader(props: WebHeaderProps) {
             props.toggleSidebar();
           }}
         >
-          <Icon as={MenuIcon} size="lg" className="ml-2 mr-5 text-primary-950" />
+          <Icon as={MenuIcon} size="lg" className="ml-2 mr-5 text-typography-950" />
         </Pressable>
       </HStack>
-      <Heading className="text-primary-950" size="lg">
+      <Heading className="text-typography-950" size="lg">
         {props.title}
       </Heading>
       <Avatar className="h-9 w-9">
