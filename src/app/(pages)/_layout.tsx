@@ -4,14 +4,14 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 import type { Href } from "expo-router";
 
-import MobileFooter from "@/components/(pages)/mobile-footer";
-import { MobileHeader } from "@/components/(pages)/mobile-header";
-import { Sidebar } from "@/components/(pages)/sidebar";
-import { WebHeader } from "@/components/(pages)/web-header";
-import { Box } from "@/components/ui/box";
-import { HStack } from "@/components/ui/hstack";
-import { VStack } from "@/components/ui/vstack";
-import { usePagesStore } from "@/store/(pages)/pages-store";
+import MobileFooter from "@/screens/(pages)/components/(pages)/mobile-footer";
+import { MobileHeader } from "@/screens/(pages)/components/(pages)/mobile-header";
+import { Sidebar } from "@/screens/(pages)/components/(pages)/sidebar";
+import { WebHeader } from "@/screens/(pages)/components/(pages)/web-header";
+import { usePagesStore } from "@/screens/(pages)/store/pages-store";
+import { Box } from "@/screens/components/ui/box";
+import { HStack } from "@/screens/components/ui/hstack";
+import { VStack } from "@/screens/components/ui/vstack";
 
 export default function DashboardLayout() {
   const {

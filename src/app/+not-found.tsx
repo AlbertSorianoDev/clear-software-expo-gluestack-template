@@ -1,7 +1,7 @@
 import { router } from "expo-router";
 import { Text, View } from "react-native";
 
-import { Button, ButtonText } from "@/components/ui/button";
+import { Button, ButtonText } from "@/screens/components/ui/button";
 
 export default function NotFound() {
   return (

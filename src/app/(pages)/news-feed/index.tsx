@@ -6,20 +6,20 @@ import image5 from "@assets/news-feed/image5.png";
 import image6 from "@assets/news-feed/image6.png";
 import image7 from "@assets/news-feed/image7.png";
 import image8 from "@assets/news-feed/image8.png";
+import { DownloadIcon, SearchIcon } from "lucide-react-native";
 
-import { ColumnsWebScrollMobileView } from "@/components/custom/columns-web-scroll-mobile-view";
-import { Avatar, AvatarFallbackText, AvatarImage } from "@/components/ui/avatar";
-import { Box } from "@/components/ui/box";
-import { Button, ButtonIcon, ButtonText } from "@/components/ui/button";
-import { Heading } from "@/components/ui/heading";
-import { HStack } from "@/components/ui/hstack";
-import { DownloadIcon, SearchIcon } from "@/components/ui/icon";
-import { Image } from "@/components/ui/image";
-import { Input, InputField, InputIcon, InputSlot } from "@/components/ui/input";
-import { ScrollView } from "@/components/ui/scroll-view";
-import { Text } from "@/components/ui/text";
-import { VStack } from "@/components/ui/vstack";
-import { useIsMobile } from "@/hooks/use-is-mobile";
+import { ColumnsWebScrollMobileView } from "@/screens/components/custom/columns-web-scroll-mobile-view";
+import { Avatar, AvatarFallbackText, AvatarImage } from "@/screens/components/ui/avatar";
+import { Box } from "@/screens/components/ui/box";
+import { Button, ButtonIcon, ButtonText } from "@/screens/components/ui/button";
+import { Heading } from "@/screens/components/ui/heading";
+import { HStack } from "@/screens/components/ui/hstack";
+import { Image } from "@/screens/components/ui/image";
+import { Input, InputField, InputIcon, InputSlot } from "@/screens/components/ui/input";
+import { ScrollView } from "@/screens/components/ui/scroll-view";
+import { Text } from "@/screens/components/ui/text";
+import { VStack } from "@/screens/components/ui/vstack";
+import { useIsMobile } from "@/screens/hooks/use-is-mobile";
 
 interface BlogData {
   bannerImage: number;

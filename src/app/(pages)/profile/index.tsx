@@ -5,20 +5,20 @@ import { isWeb } from "@gluestack-ui/nativewind-utils/IsWeb";
 import { Bell, Cog, Package } from "lucide-react-native";
 import React from "react";
 
-import { EditUserInfoModal } from "@/components/(pages)/profile/edit-user-info-modal";
-import { Avatar, AvatarBadge, AvatarImage } from "@/components/ui/avatar";
-import { Box } from "@/components/ui/box";
-import { Button, ButtonIcon, ButtonText } from "@/components/ui/button";
-import { Center } from "@/components/ui/center";
-import { Divider } from "@/components/ui/divider";
-import { Heading } from "@/components/ui/heading";
-import { HStack } from "@/components/ui/hstack";
-import { ChevronRightIcon, EditIcon, Icon } from "@/components/ui/icon";
-import { Image } from "@/components/ui/image";
-import { ScrollView } from "@/components/ui/scroll-view";
-import { Text } from "@/components/ui/text";
-import { VStack } from "@/components/ui/vstack";
-import { useEditUserInfoStore } from "@/store/(pages)/profile/edit-user-info-store";
+import { EditUserInfoModal } from "@/screens/(pages)/profile/components/edit-user-info-modal";
+import { useEditUserInfoStore } from "@/screens/(pages)/profile/store/edit-user-info-store";
+import { Avatar, AvatarBadge, AvatarImage } from "@/screens/components/ui/avatar";
+import { Box } from "@/screens/components/ui/box";
+import { Button, ButtonIcon, ButtonText } from "@/screens/components/ui/button";
+import { Center } from "@/screens/components/ui/center";
+import { Divider } from "@/screens/components/ui/divider";
+import { Heading } from "@/screens/components/ui/heading";
+import { HStack } from "@/screens/components/ui/hstack";
+import { ChevronRightIcon, EditIcon, Icon } from "@/screens/components/ui/icon";
+import { Image } from "@/screens/components/ui/image";
+import { ScrollView } from "@/screens/components/ui/scroll-view";
+import { Text } from "@/screens/components/ui/text";
+import { VStack } from "@/screens/components/ui/vstack";
 
 interface UserStats {
   friends: string;

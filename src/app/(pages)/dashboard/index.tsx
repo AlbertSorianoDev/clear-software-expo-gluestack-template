@@ -9,17 +9,17 @@ import { isWeb } from "@gluestack-ui/nativewind-utils/IsWeb";
 import clsx from "clsx";
 import { Calendar } from "lucide-react-native";
 
-import { Avatar, AvatarImage } from "@/components/ui/avatar";
-import { Box } from "@/components/ui/box";
-import { Button, ButtonText } from "@/components/ui/button";
-import { Divider } from "@/components/ui/divider";
-import { Grid, GridItem } from "@/components/ui/grid";
-import { Heading } from "@/components/ui/heading";
-import { HStack } from "@/components/ui/hstack";
-import { Icon } from "@/components/ui/icon";
-import { ScrollView } from "@/components/ui/scroll-view";
-import { Text } from "@/components/ui/text";
-import { VStack } from "@/components/ui/vstack";
+import { Avatar, AvatarImage } from "@/screens/components/ui/avatar";
+import { Box } from "@/screens/components/ui/box";
+import { Button, ButtonText } from "@/screens/components/ui/button";
+import { Divider } from "@/screens/components/ui/divider";
+import { Grid, GridItem } from "@/screens/components/ui/grid";
+import { Heading } from "@/screens/components/ui/heading";
+import { HStack } from "@/screens/components/ui/hstack";
+import { Icon } from "@/screens/components/ui/icon";
+import { ScrollView } from "@/screens/components/ui/scroll-view";
+import { Text } from "@/screens/components/ui/text";
+import { VStack } from "@/screens/components/ui/vstack";
 
 interface CardData {
   bannerImage: number;

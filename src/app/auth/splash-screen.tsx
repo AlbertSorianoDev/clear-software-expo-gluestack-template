@@ -1,13 +1,13 @@
 import { router } from "expo-router";
 import { Waypoints } from "lucide-react-native";
 
-import { Button, ButtonText } from "@/components/ui/button";
-import { Heading } from "@/components/ui/heading";
-import { HStack } from "@/components/ui/hstack";
-import { Icon } from "@/components/ui/icon";
-import { ScrollView } from "@/components/ui/scroll-view";
-import { Text } from "@/components/ui/text";
-import { VStack } from "@/components/ui/vstack";
+import { Button, ButtonText } from "@/screens/components/ui/button";
+import { Heading } from "@/screens/components/ui/heading";
+import { HStack } from "@/screens/components/ui/hstack";
+import { Icon } from "@/screens/components/ui/icon";
+import { ScrollView } from "@/screens/components/ui/scroll-view";
+import { Text } from "@/screens/components/ui/text";
+import { VStack } from "@/screens/components/ui/vstack";
 
 export default function SplashScreen() {
   return (

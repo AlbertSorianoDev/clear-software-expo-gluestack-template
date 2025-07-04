@@ -2,9 +2,9 @@ import radialGradient from "@assets/auth/radialGradient.png";
 import { Stack } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-import { HStack } from "@/components/ui/hstack";
-import { Image } from "@/components/ui/image";
-import { VStack } from "@/components/ui/vstack";
+import { HStack } from "@/screens/components/ui/hstack";
+import { Image } from "@/screens/components/ui/image";
+import { VStack } from "@/screens/components/ui/vstack";
 
 export default function AuthLayout() {
   return (

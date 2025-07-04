@@ -1,8 +1,8 @@
 import { router } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-import { Button, ButtonText } from "@/components/ui/button";
-import { VStack } from "@/components/ui/vstack";
+import { Button, ButtonText } from "@/screens/components/ui/button";
+import { VStack } from "@/screens/components/ui/vstack";
 
 export default function HomeScreen() {
   return (

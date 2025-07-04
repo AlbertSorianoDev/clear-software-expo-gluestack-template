@@ -2,18 +2,18 @@ import { router, useFocusEffect, useGlobalSearchParams } from "expo-router";
 import { useCallback, useEffect } from "react";
 import { validate } from "uuid";
 
-import { AuthPasswordChecklistInput } from "@/components/auth/auth-password-check-list-input";
-import { AuthSimplePasswordInput } from "@/components/auth/auth-simple-password-input";
-import { Button, ButtonText } from "@/components/ui/button";
-import { Heading } from "@/components/ui/heading";
-import { ArrowLeftIcon, Icon } from "@/components/ui/icon";
-import { Pressable } from "@/components/ui/pressable";
-import { ScrollView } from "@/components/ui/scroll-view";
-import { Text } from "@/components/ui/text";
-import { Toast, ToastTitle, useToast } from "@/components/ui/toast";
-import { VStack } from "@/components/ui/vstack";
-import { CreatePasswordSchema } from "@/schemas/auth/create-password-schema";
-import { useCreatePasswordStore } from "@/store/auth/create-password-store";
+import { AuthPasswordChecklistInput } from "@/screens/auth/components/auth/auth-password-check-list-input";
+import { AuthSimplePasswordInput } from "@/screens/auth/components/auth/auth-simple-password-input";
+import { CreatePasswordSchema } from "@/screens/auth/schemas/auth/create-password-schema";
+import { useCreatePasswordStore } from "@/screens/auth/store/create-password-store";
+import { Button, ButtonText } from "@/screens/components/ui/button";
+import { Heading } from "@/screens/components/ui/heading";
+import { ArrowLeftIcon, Icon } from "@/screens/components/ui/icon";
+import { Pressable } from "@/screens/components/ui/pressable";
+import { ScrollView } from "@/screens/components/ui/scroll-view";
+import { Text } from "@/screens/components/ui/text";
+import { Toast, ToastTitle, useToast } from "@/screens/components/ui/toast";
+import { VStack } from "@/screens/components/ui/vstack";
 
 export default function CreatePassword() {
   const { id } = useGlobalSearchParams();

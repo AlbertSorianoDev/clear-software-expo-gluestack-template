@@ -4,22 +4,27 @@ import { Link, router } from "expo-router";
 import { useEffect } from "react";
 import { View } from "react-native";
 
-import { AuthEmailInput } from "@/components/auth/auth-email-input";
-import { AuthPasswordChecklistInput } from "@/components/auth/auth-password-check-list-input";
-import { AuthSimplePasswordInput } from "@/components/auth/auth-simple-password-input";
-import { Button, ButtonIcon, ButtonText } from "@/components/ui/button";
-import { Checkbox, CheckboxIcon, CheckboxIndicator, CheckboxLabel } from "@/components/ui/checkbox";
-import { Heading } from "@/components/ui/heading";
-import { HStack } from "@/components/ui/hstack";
-import { ArrowLeftIcon, CheckIcon, Icon } from "@/components/ui/icon";
-import { LinkText } from "@/components/ui/link";
-import { Pressable } from "@/components/ui/pressable";
-import { ScrollView } from "@/components/ui/scroll-view";
-import { Text } from "@/components/ui/text";
-import { Toast, ToastTitle, useToast } from "@/components/ui/toast";
-import { VStack } from "@/components/ui/vstack";
-import { SignUpSchema } from "@/schemas/auth/signup-schema";
-import { useSignUpStore } from "@/store/auth/signup-store";
+import { AuthEmailInput } from "@/screens/auth/components/auth/auth-email-input";
+import { AuthPasswordChecklistInput } from "@/screens/auth/components/auth/auth-password-check-list-input";
+import { AuthSimplePasswordInput } from "@/screens/auth/components/auth/auth-simple-password-input";
+import { SignUpSchema } from "@/screens/auth/schemas/auth/signup-schema";
+import { useSignUpStore } from "@/screens/auth/store/signup-store";
+import { Button, ButtonIcon, ButtonText } from "@/screens/components/ui/button";
+import {
+  Checkbox,
+  CheckboxIcon,
+  CheckboxIndicator,
+  CheckboxLabel,
+} from "@/screens/components/ui/checkbox";
+import { Heading } from "@/screens/components/ui/heading";
+import { HStack } from "@/screens/components/ui/hstack";
+import { ArrowLeftIcon, CheckIcon, Icon } from "@/screens/components/ui/icon";
+import { LinkText } from "@/screens/components/ui/link";
+import { Pressable } from "@/screens/components/ui/pressable";
+import { ScrollView } from "@/screens/components/ui/scroll-view";
+import { Text } from "@/screens/components/ui/text";
+import { Toast, ToastTitle, useToast } from "@/screens/components/ui/toast";
+import { VStack } from "@/screens/components/ui/vstack";
 
 export default function SignUp() {
   const {
