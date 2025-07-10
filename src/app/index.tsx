@@ -10,6 +10,14 @@ export default function HomeScreen() {
       <VStack className="w-3/4 max-w-[440px] gap-y-4">
         <Button
           onPress={() => {
+            router.navigate("/kanban-board");
+          }}
+        >
+          <ButtonText>Kanban Board</ButtonText>
+        </Button>
+
+        <Button
+          onPress={() => {
             router.navigate("/auth/splash-screen");
           }}
         >
