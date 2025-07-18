@@ -15,7 +15,6 @@ export const pickImage = async () => {
 };
 
 export const pickImageFromCamera = async () => {
-  console.log(await ImagePicker.getCameraPermissionsAsync());
   const { status } = await ImagePicker.requestCameraPermissionsAsync();
   if (status !== "granted") return;
   const options: ImagePicker.ImagePickerOptions = {

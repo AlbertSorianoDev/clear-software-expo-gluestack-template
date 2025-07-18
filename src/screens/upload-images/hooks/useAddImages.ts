@@ -1,4 +1,5 @@
 import { ImagePickerAsset } from "expo-image-picker";
+import mime from "mime";
 import { useState } from "react";
 
 export function useUploadImage() {
@@ -18,7 +19,7 @@ export function useUploadImage() {
         const mime_type = imgAsset.mimeType;
         const base64 = imgAsset.base64;
         images.push({
-          filename: filename ?? "",
+          filename: filename ?? "asddasdsa." + mime.getExtension(mime_type ?? "jpg"),
           mime_type: mime_type ?? "",
           base_64: base64 ?? "",
         });
