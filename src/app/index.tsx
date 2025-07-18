@@ -65,6 +65,13 @@ export default function HomeScreen() {
         >
           <ButtonText>Profile</ButtonText>
         </Button>
+        <Button
+          onPress={() => {
+            router.navigate("/upload-images");
+          }}
+        >
+          <ButtonText>Upload Images</ButtonText>
+        </Button>
       </VStack>
     </SafeAreaView>
   );
