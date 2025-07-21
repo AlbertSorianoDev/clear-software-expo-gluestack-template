@@ -1,4 +1,3 @@
-import { ImagePickerAsset } from "expo-image-picker";
 import mime from "mime";
 import { useState } from "react";
 
@@ -7,7 +6,9 @@ export function useUploadImage() {
   const [error, setError] = useState<null | string>(null);
   const [success, setSuccess] = useState(false);
 
-  const uploadImage = async (imageAssets: ImagePickerAsset[]) => {
+  const uploadImage = async (
+    imageAssets: { fileName?: string | null; mimeType?: string; base64?: string | null }[],
+  ) => {
     try {
       setLoading(true);
       setError(null);
@@ -19,7 +20,7 @@ export function useUploadImage() {
         const mime_type = imgAsset.mimeType;
         const base64 = imgAsset.base64;
         images.push({
-          filename: filename ?? "asddasdsa." + mime.getExtension(mime_type ?? "jpg"),
+          filename: filename ?? `photo-${Date.now()}.${mime.getExtension(mime_type ?? "jpg")}`,
           mime_type: mime_type ?? "",
           base_64: base64 ?? "",
         });

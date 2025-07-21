@@ -1,4 +1,4 @@
-import { useUploadImage } from "../hooks/useAddImages";
+import { useUploadImage } from "../hooks/use-upload-images";
 import { pickImage } from "../utils/pick-image";
 
 import { Button, ButtonText } from "@/screens/components/ui/button";
