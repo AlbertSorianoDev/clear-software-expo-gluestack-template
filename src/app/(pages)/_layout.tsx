@@ -4,10 +4,10 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 import type { Href } from "expo-router";
 
-import MobileFooter from "@/screens/(pages)/components/(pages)/mobile-footer";
-import { MobileHeader } from "@/screens/(pages)/components/(pages)/mobile-header";
-import { Sidebar } from "@/screens/(pages)/components/(pages)/sidebar";
-import { WebHeader } from "@/screens/(pages)/components/(pages)/web-header";
+import MobileFooter from "@/screens/(pages)/components/mobile-footer";
+import { MobileHeader } from "@/screens/(pages)/components/mobile-header";
+import { Sidebar } from "@/screens/(pages)/components/sidebar";
+import { WebHeader } from "@/screens/(pages)/components/web-header";
 import { usePagesStore } from "@/screens/(pages)/store/pages-store";
 import { Box } from "@/screens/components/ui/box";
 import { HStack } from "@/screens/components/ui/hstack";
