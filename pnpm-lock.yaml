@@ -71,6 +71,9 @@ importers:
       '@legendapp/motion':
         specifier: ^2.4.0
         version: 2.4.0(nativewind@4.1.23(react-native-reanimated@3.17.5(@babel/core@7.27.1)(react-native@0.79.5(@babel/core@7.27.1)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0))(react-native-safe-area-context@5.4.0(react-native@0.79.5(@babel/core@7.27.1)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0))(react-native-svg@15.11.2(react-native@0.79.5(@babel/core@7.27.1)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0))(react-native@0.79.5(@babel/core@7.27.1)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0)(tailwindcss@3.4.17))(react-native@0.79.5(@babel/core@7.27.1)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0)
+      '@lucide/lab':
+        specifier: ^0.1.2
+        version: 0.1.2
       '@react-navigation/native':
         specifier: ^7.1.6
         version: 7.1.6(react-native@0.79.5(@babel/core@7.27.1)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0)
@@ -158,6 +161,9 @@ importers:
       react-native-webview:
         specifier: ^13.13.5
         version: 13.13.5(react-native@0.79.5(@babel/core@7.27.1)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0)
+      simple-icons:
+        specifier: ^15.7.0
+        version: 15.7.0
       uuid:
         specifier: ^11.1.0
         version: 11.1.0
@@ -1137,6 +1143,9 @@ packages:
     peerDependenciesMeta:
       react:
         optional: true
+
+  '@lucide/lab@0.1.2':
+    resolution: {integrity: sha512-VprF2BJa7ZuTGOhUd5cf8tHJXyL63wdxcGieAiVVoR9hO0YmPsnZO0AGqDiX2/br+/MC6n8BoJcmPilltOXIJA==}
 
   '@modelcontextprotocol/sdk@1.11.0':
     resolution: {integrity: sha512-k/1pb70eD638anoi0e8wUGAlbMJXyvdV4p62Ko+EZ7eBe1xMx8Uhak1R5DgfoofsK5IBBnRwsYGTaLZl+6/+RQ==}
@@ -4489,6 +4498,10 @@ packages:
     resolution: {integrity: sha512-bzyZ1e88w9O1iNJbKnOlvYTrWPDl46O1bG0D3XInv+9tkPrxrN8jUUTiFlDkkmKWgn1M6CfIA13SuGqOa9Korw==}
     engines: {node: '>=14'}
 
+  simple-icons@15.7.0:
+    resolution: {integrity: sha512-buN9moq1lh6Tujgr2Nc3Vgi4naE0IOKon48G42aLWqSNxjWJlUx+YSqobKcefom4uv1xyAVFcjQOJIhBJvXjGw==}
+    engines: {node: '>=0.12.18'}
+
   simple-plist@1.3.1:
     resolution: {integrity: sha512-iMSw5i0XseMnrhtIzRb7XpQEXepa9xhWxGUojHBL43SIpQuDQkh3Wpy67ZbDzZVr6EKxvwVChnVpdl8hEVLDiw==}
 
@@ -6385,6 +6398,8 @@ snapshots:
   '@legendapp/tools@2.0.1(react@19.0.0)':
     optionalDependencies:
       react: 19.0.0
+
+  '@lucide/lab@0.1.2': {}
 
   '@modelcontextprotocol/sdk@1.11.0':
     dependencies:
@@ -10407,6 +10422,8 @@ snapshots:
   signal-exit@3.0.7: {}
 
   signal-exit@4.1.0: {}
+
+  simple-icons@15.7.0: {}
 
   simple-plist@1.3.1:
     dependencies:
