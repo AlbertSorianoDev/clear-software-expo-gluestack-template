@@ -3,10 +3,10 @@ import { Link, router } from "expo-router";
 import { useEffect } from "react";
 import { View } from "react-native";
 
-import { AuthEmailInput } from "@/screens/auth/components/auth/auth-email-input";
-import { AuthPasswordChecklistInput } from "@/screens/auth/components/auth/auth-password-check-list-input";
-import { AuthSimplePasswordInput } from "@/screens/auth/components/auth/auth-simple-password-input";
-import { SignUpSchema } from "@/screens/auth/schemas/auth/signup-schema";
+import { AuthEmailInput } from "@/screens/auth/components/auth-email-input";
+import { AuthPasswordChecklistInput } from "@/screens/auth/components/auth-password-check-list-input";
+import { AuthSimplePasswordInput } from "@/screens/auth/components/auth-simple-password-input";
+import { SignUpSchema } from "@/screens/auth/schemas/signup-schema";
 import { useSignUpStore } from "@/screens/auth/store/signup-store";
 import { Button, ButtonIcon, ButtonText } from "@/screens/components/ui/button";
 import {

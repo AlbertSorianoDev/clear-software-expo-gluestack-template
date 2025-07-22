@@ -3,11 +3,11 @@ import { ShieldCheck } from "lucide-react-native";
 import { useEffect } from "react";
 import { View } from "react-native";
 
-import { AuthEmailInput } from "@/screens/auth/components/auth/auth-email-input";
-import { AuthSimplePasswordInput } from "@/screens/auth/components/auth/auth-simple-password-input";
-import { ForgotPasswordModal } from "@/screens/auth/components/auth/forgot-password-modal";
-import { LoginCodeModal } from "@/screens/auth/components/auth/login-code-modal";
-import { SignInSchema } from "@/screens/auth/schemas/auth/signin-schema";
+import { AuthEmailInput } from "@/screens/auth/components/auth-email-input";
+import { AuthSimplePasswordInput } from "@/screens/auth/components/auth-simple-password-input";
+import { ForgotPasswordModal } from "@/screens/auth/components/forgot-password-modal";
+import { LoginCodeModal } from "@/screens/auth/components/login-code-modal";
+import { SignInSchema } from "@/screens/auth/schemas/signin-schema";
 import { useSignInStore } from "@/screens/auth/store/signin-store";
 import { Button, ButtonIcon, ButtonText } from "@/screens/components/ui/button";
 import {
