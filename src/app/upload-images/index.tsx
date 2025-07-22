@@ -9,11 +9,13 @@ import { ImagesGrid } from "@/screens/upload-images/components/images-grid";
 import { TakePictureButton } from "@/screens/upload-images/components/take-pic-button";
 import { UploadButton } from "@/screens/upload-images/components/upload-button";
 import { WebCameraViewModal } from "@/screens/upload-images/components/web-camera-view-modal";
+import { PhotoUploadToastManager } from "@/screens/upload-images/hooks/use-photo-upload-toast";
 import { useUploadImagesPageStore } from "@/screens/upload-images/store/upload-images-page-store";
 
 export default function UploadImagesPage() {
   const [refreshKey, setRefreshKey] = useState(0);
   const setShowCameraModal = useUploadImagesPageStore((state) => state.setShowCameraModal);
+  const isNewPhotoUploading = useUploadImagesPageStore((state) => state.isNewPhotoUploading);
 
   const onUploadComplete = () => {
     setRefreshKey((prev) => prev + 1);
@@ -21,6 +23,7 @@ export default function UploadImagesPage() {
 
   return (
     <>
+      <PhotoUploadToastManager isUploading={isNewPhotoUploading} />
       <WebCameraViewModal onComplete={onUploadComplete} />
       <View className="flex-1">
         <View className="flex-1 bg-white text-typography-950">

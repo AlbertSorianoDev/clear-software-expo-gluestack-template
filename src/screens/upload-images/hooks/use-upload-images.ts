@@ -1,7 +1,11 @@
 import mime from "mime";
 import { useState } from "react";
 
+import { useUploadImagesPageStore } from "../store/upload-images-page-store";
+
 export function useUploadImage() {
+  const setIsNewPhotoUploading = useUploadImagesPageStore((state) => state.setIsNewPhotoUploading);
+
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<null | string>(null);
   const [success, setSuccess] = useState(false);
@@ -10,6 +14,7 @@ export function useUploadImage() {
     imageAssets: { fileName?: string | null; mimeType?: string; base64?: string | null }[],
   ) => {
     try {
+      setIsNewPhotoUploading(true);
       setLoading(true);
       setError(null);
       setSuccess(false);
@@ -43,6 +48,7 @@ export function useUploadImage() {
     } catch (err) {
       setError((err as Error).message || "Error desconocido");
     } finally {
+      setIsNewPhotoUploading(false);
       setLoading(false);
     }
   };

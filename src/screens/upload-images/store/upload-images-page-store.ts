@@ -4,13 +4,15 @@ import { immer } from "zustand/middleware/immer";
 type UploadPageStore = {
   showCameraModal: boolean;
   setShowCameraModal: (visible: boolean) => void;
+  isNewPhotoUploading?: boolean;
+  setIsNewPhotoUploading: (uploading: boolean) => void;
 
-  // Reset state
   reset: () => void;
 };
 
 const initialState = {
   showCameraModal: false,
+  isNewPhotoUploading: undefined,
 };
 
 export const useUploadImagesPageStore = create<UploadPageStore>()(
@@ -19,6 +21,12 @@ export const useUploadImagesPageStore = create<UploadPageStore>()(
     setShowCameraModal: (visisble) => {
       set((state) => {
         state.showCameraModal = visisble;
+      });
+    },
+
+    setIsNewPhotoUploading: (uploading) => {
+      set((state) => {
+        state.isNewPhotoUploading = uploading;
       });
     },
 
