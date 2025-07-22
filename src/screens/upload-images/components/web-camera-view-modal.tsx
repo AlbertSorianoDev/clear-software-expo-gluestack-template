@@ -41,7 +41,6 @@ export const WebCameraViewModal = ({ onComplete }: { onComplete: () => void }) =
     const filename = `web-photo-${Date.now()}.jpg`;
 
     await uploadImage([{ fileName: filename, mimeType, base64 }]);
-    console.log("first upload done");
     onComplete?.();
     setPhoto(null);
     setShowCameraModal(false);
