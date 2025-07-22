@@ -72,6 +72,13 @@ export default function HomeScreen() {
         >
           <ButtonText>Upload Images</ButtonText>
         </Button>
+        <Button
+          onPress={() => {
+            router.navigate("/extra-components");
+          }}
+        >
+          <ButtonText>Extra components</ButtonText>
+        </Button>
       </VStack>
     </SafeAreaView>
   );
