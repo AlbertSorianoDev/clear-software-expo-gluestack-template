@@ -16,8 +16,7 @@ import { FormInputTypeEnum } from "@/screens/features/types/form-input-type";
 
 const form = {
   title: "Form 1",
-  description:
-    "Ut sunt sit deserunt culpa ipsum nisi sit tempor proident mollit proident cupidatat. Fugiat amet qui labore mollit Lorem. Magna ipsum cillum ipsum ad culpa velit anim dolore quis culpa irure deserunt nostrud. Velit commodo proident aliquip amet nisi cillum exercitation laboris esse nulla. Pariatur cillum culpa incididunt eiusmod.",
+  description: "Ut sunt sit deserunt culpa ipsum.",
 };
 
 const questions: { title: string; description: string; type: FormInputTypeEnum }[] = [
@@ -106,8 +105,7 @@ export default function EditFormPage() {
                         <VStack space="sm" className="p-5">
                           <Heading size="md">{question.title}</Heading>
                           <Text size="md">{question.description}</Text>
-                          {RenderPreviewQuestion(question.type)}
-                          {/* {RenderEditQuestion(question.type)} */}
+                          {RenderPreviewQuestion({ type: question.type })}
                         </VStack>
                       )
                     }

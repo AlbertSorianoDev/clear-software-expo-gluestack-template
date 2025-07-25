@@ -5,7 +5,6 @@ import image4 from "@assets/dashboard/image4.png";
 import image5 from "@assets/dashboard/image5.png";
 import image6 from "@assets/dashboard/image6.png";
 import image7 from "@assets/dashboard/image7.png";
-import { isWeb } from "@gluestack-ui/nativewind-utils/IsWeb";
 import clsx from "clsx";
 import { Calendar } from "lucide-react-native";
 
@@ -142,10 +141,8 @@ export default function MainContent() {
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{
-          paddingBottom: isWeb ? 0 : 100,
           flexGrow: 1,
         }}
-        className="mb-20 flex-1 md:mb-2"
       >
         <VStack className="w-full p-4 pb-0 md:px-10 md:pt-6" space="2xl">
           <Heading size="2xl" className="font-roboto">
@@ -190,7 +187,7 @@ export default function MainContent() {
               To view analytics you need client ID. Add it to your settings and you’re good to go.
             </Text>
           </Box>
-          <Grid className="gap-5" _extra={{ className: "" }}>
+          <Grid className="gap-5 pb-4" _extra={{ className: "" }}>
             <GridItem
               _extra={{
                 className: "col-span-12 sm:col-span-6 lg:col-span-4",

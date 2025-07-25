@@ -124,13 +124,18 @@ export default function NewsFeed() {
         </InputSlot>
       </Input>
 
-      <ColumnsWebScrollMobileView scrollViewProps={{ showsVerticalScrollIndicator: false }}>
+      <ColumnsWebScrollMobileView
+        scrollViewProps={{
+          showsVerticalScrollIndicator: false,
+          contentContainerStyle: { flexGrow: 1 },
+        }}
+      >
         <ScrollView
           showsVerticalScrollIndicator={false}
           scrollEnabled={!isMobile}
           className="w-full"
         >
-          <Heading size="2xl" className="mb-4 font-roboto">
+          <Heading size="2xl" className="pb-4 font-roboto">
             What's new?
           </Heading>
           <VStack className="gap-4">

@@ -49,7 +49,7 @@ export function ColumnsWebScrollMobileView({
   );
 
   return isMobile ? (
-    <ScrollView {...scrollViewProps} className="w-full flex-1">
+    <ScrollView {...scrollViewProps} className="w-full">
       {Content}
     </ScrollView>
   ) : (

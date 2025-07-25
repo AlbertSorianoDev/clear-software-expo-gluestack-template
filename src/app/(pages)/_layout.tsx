@@ -39,7 +39,7 @@ export default function DashboardLayout() {
         <Box className="hidden md:flex">
           <WebHeader toggleSidebar={toggleSidebarExpanded} title={pageTitle} />
         </Box>
-        <VStack className="h-full w-full">
+        <VStack className="flex-1">
           <HStack className="flex h-full w-full">
             <Box className="hidden h-full md:flex">
               <Sidebar
@@ -54,12 +54,14 @@ export default function DashboardLayout() {
             </VStack>
           </HStack>
         </VStack>
+        <Box className="md:hidden">
+          <MobileFooter
+            tabList={tabsList}
+            tabSelectedIndex={tabSelectedIndex}
+            selectTabIndex={navigateWithIndex}
+          />
+        </Box>
       </VStack>
-      <MobileFooter
-        tabList={tabsList}
-        tabSelectedIndex={tabSelectedIndex}
-        selectTabIndex={navigateWithIndex}
-      />
     </SafeAreaView>
   );
 }

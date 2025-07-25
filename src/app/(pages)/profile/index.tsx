@@ -1,7 +1,6 @@
 import image from "@assets/profile/image.png";
 import image1 from "@assets/profile/image1.png";
 import image2 from "@assets/profile/image2.png";
-import { isWeb } from "@gluestack-ui/nativewind-utils/IsWeb";
 import { Bell, Cog, Package } from "lucide-react-native";
 import React from "react";
 
@@ -66,11 +65,10 @@ export default function MainContent() {
   return (
     <>
       <EditUserInfoModal />
-      <VStack className="mb-16 h-full w-full md:mb-0">
+      <VStack className="h-full w-full">
         <ScrollView
           showsVerticalScrollIndicator={false}
           contentContainerStyle={{
-            paddingBottom: isWeb ? 0 : 160,
             flexGrow: 1,
           }}
         >

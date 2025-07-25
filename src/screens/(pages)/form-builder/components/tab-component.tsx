@@ -2,6 +2,8 @@ import clsx from "clsx";
 import { createContext, FC, ReactNode, useContext, useState } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 
+import { ScrollView } from "@/screens/components/ui/scroll-view";
+
 interface TabsContextProps {
   activeIndex: number;
   setActiveIndex: (index: number) => void;
@@ -75,7 +77,16 @@ const TabsPanel: FC<{
 
   if (activeIndex !== index) return null;
 
-  return <View className={clsx("rounded-lg p-4", className)}>{children}</View>;
+  return (
+    <ScrollView
+      contentContainerStyle={{
+        flexGrow: 1,
+      }}
+      className={clsx("rounded-lg p-4", className)}
+    >
+      {children}
+    </ScrollView>
+  );
 };
 
 // Subcomponentes

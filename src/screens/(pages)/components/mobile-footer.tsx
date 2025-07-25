@@ -27,7 +27,7 @@ export default function MobileFooter({
   return (
     <HStack
       className={clsx(
-        "border-300 absolute bottom-0 left-0 right-0 w-full items-center justify-around overflow-hidden border-t bg-background-0 p-3 md:hidden",
+        "border-300 w-full items-center justify-around overflow-hidden border-t bg-background-0 p-3",
         { "pb-5": Platform.OS === "ios" },
         { "pb-5": Platform.OS === "android" },
       )}
