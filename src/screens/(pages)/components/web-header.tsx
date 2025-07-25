@@ -1,6 +1,5 @@
-import { Heading } from "../../../components/ui/heading";
-
 import { Avatar, AvatarFallbackText } from "@/screens/components/ui/avatar";
+import { Heading } from "@/screens/components/ui/heading";
 import { HStack } from "@/screens/components/ui/hstack";
 import { Icon, MenuIcon } from "@/screens/components/ui/icon";
 import { Pressable } from "@/screens/components/ui/pressable";

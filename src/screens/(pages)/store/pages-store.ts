@@ -5,7 +5,7 @@ import { immer } from "zustand/middleware/immer";
 
 import type { Href } from "expo-router";
 
-import { TabItem } from "@/screens/types/icons/tab-item";
+import { TabItem } from "@/screens/types/tab-item";
 
 interface PagesStore {
   pageTitle: string;

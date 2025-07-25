@@ -3,10 +3,9 @@ import { AlertCircleIcon } from "lucide-react-native";
 import { useEffect, useState } from "react";
 import { Pressable } from "react-native";
 
-import { VStack } from "../../../components/ui/vstack";
 import { AuthEmailInput } from "./auth-email-input";
 
-import { SignInSchema } from "@/screens/auth/schemas/auth/signin-schema";
+import { SignInSchema } from "@/screens/auth/schemas/signin-schema";
 import { useSignInStore } from "@/screens/auth/store/signin-store";
 import { OTPInput } from "@/screens/components/custom/otp-input";
 import { Button, ButtonText } from "@/screens/components/ui/button";
@@ -25,6 +24,7 @@ import {
 } from "@/screens/components/ui/modal";
 import { Text } from "@/screens/components/ui/text";
 import { Toast, ToastTitle, useToast } from "@/screens/components/ui/toast";
+import { VStack } from "@/screens/components/ui/vstack";
 import { useIsMobile } from "@/screens/hooks/use-is-mobile";
 
 export function LoginCodeModal({ successToast }: { successToast: () => void }) {

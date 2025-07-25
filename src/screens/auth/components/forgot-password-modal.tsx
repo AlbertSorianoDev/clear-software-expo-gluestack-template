@@ -1,6 +1,6 @@
-import { SignInSchema } from "../../schemas/auth/signin-schema";
 import { AuthEmailInput } from "./auth-email-input";
 
+import { SignInSchema } from "@/screens/auth/schemas/signin-schema";
 import { useSignInStore } from "@/screens/auth/store/signin-store";
 import { Button, ButtonText } from "@/screens/components/ui/button";
 import { Heading } from "@/screens/components/ui/heading";

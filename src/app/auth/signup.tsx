@@ -1,13 +1,12 @@
-import { AntDesign } from "@expo/vector-icons";
 import clsx from "clsx";
 import { Link, router } from "expo-router";
 import { useEffect } from "react";
 import { View } from "react-native";
 
-import { AuthEmailInput } from "@/screens/auth/components/auth/auth-email-input";
-import { AuthPasswordChecklistInput } from "@/screens/auth/components/auth/auth-password-check-list-input";
-import { AuthSimplePasswordInput } from "@/screens/auth/components/auth/auth-simple-password-input";
-import { SignUpSchema } from "@/screens/auth/schemas/auth/signup-schema";
+import { AuthEmailInput } from "@/screens/auth/components/auth-email-input";
+import { AuthPasswordChecklistInput } from "@/screens/auth/components/auth-password-check-list-input";
+import { AuthSimplePasswordInput } from "@/screens/auth/components/auth-simple-password-input";
+import { SignUpSchema } from "@/screens/auth/schemas/signup-schema";
 import { useSignUpStore } from "@/screens/auth/store/signup-store";
 import { Button, ButtonIcon, ButtonText } from "@/screens/components/ui/button";
 import {
@@ -25,6 +24,7 @@ import { ScrollView } from "@/screens/components/ui/scroll-view";
 import { Text } from "@/screens/components/ui/text";
 import { Toast, ToastTitle, useToast } from "@/screens/components/ui/toast";
 import { VStack } from "@/screens/components/ui/vstack";
+import { getSimpleIcon } from "@/screens/utils/get-simple-icon";
 
 export default function SignUp() {
   const {
@@ -194,9 +194,7 @@ export default function SignUp() {
 
           <Button variant="outline" className="w-full gap-1" onPress={() => {}}>
             <ButtonText className="font-medium">Continue with Google</ButtonText>
-            <ButtonIcon
-              as={() => <AntDesign name="google" size={16} className="text-primary-500" />}
-            />
+            <ButtonIcon as={getSimpleIcon("siGoogle")} className="text-primary-500" />
           </Button>
         </VStack>
 

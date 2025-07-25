@@ -1,14 +1,13 @@
-import { AntDesign } from "@expo/vector-icons";
 import { Link, router } from "expo-router";
 import { ShieldCheck } from "lucide-react-native";
 import { useEffect } from "react";
 import { View } from "react-native";
 
-import { AuthEmailInput } from "@/screens/auth/components/auth/auth-email-input";
-import { AuthSimplePasswordInput } from "@/screens/auth/components/auth/auth-simple-password-input";
-import { ForgotPasswordModal } from "@/screens/auth/components/auth/forgot-password-modal";
-import { LoginCodeModal } from "@/screens/auth/components/auth/login-code-modal";
-import { SignInSchema } from "@/screens/auth/schemas/auth/signin-schema";
+import { AuthEmailInput } from "@/screens/auth/components/auth-email-input";
+import { AuthSimplePasswordInput } from "@/screens/auth/components/auth-simple-password-input";
+import { ForgotPasswordModal } from "@/screens/auth/components/forgot-password-modal";
+import { LoginCodeModal } from "@/screens/auth/components/login-code-modal";
+import { SignInSchema } from "@/screens/auth/schemas/signin-schema";
 import { useSignInStore } from "@/screens/auth/store/signin-store";
 import { Button, ButtonIcon, ButtonText } from "@/screens/components/ui/button";
 import {
@@ -26,6 +25,7 @@ import { ScrollView } from "@/screens/components/ui/scroll-view";
 import { Text } from "@/screens/components/ui/text";
 import { Toast, ToastTitle, useToast } from "@/screens/components/ui/toast";
 import { VStack } from "@/screens/components/ui/vstack";
+import { getSimpleIcon } from "@/screens/utils/get-simple-icon";
 
 const USERS = [
   {
@@ -197,9 +197,7 @@ export default function SignIn() {
             </Button>
             <Button variant="outline" className="w-full gap-1" onPress={() => {}}>
               <ButtonText className="font-medium">Continue with Google</ButtonText>
-              <ButtonIcon
-                as={() => <AntDesign name="google" size={16} className="text-primary-500" />}
-              />
+              <ButtonIcon as={getSimpleIcon("siGoogle")} className="text-primary-500" />
             </Button>
           </VStack>
 

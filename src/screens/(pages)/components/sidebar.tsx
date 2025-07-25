@@ -6,7 +6,7 @@ import { Pressable } from "@/screens/components/ui/pressable";
 import { ScrollView } from "@/screens/components/ui/scroll-view";
 import { Text } from "@/screens/components/ui/text";
 import { VStack } from "@/screens/components/ui/vstack";
-import { TabItem } from "@/screens/types/icons/tab-item";
+import { TabItem } from "@/screens/types/tab-item";
 
 interface SidebarProps {
   tabsList: TabItem[];

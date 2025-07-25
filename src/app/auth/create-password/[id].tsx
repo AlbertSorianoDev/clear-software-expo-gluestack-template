@@ -2,9 +2,9 @@ import { router, useFocusEffect, useGlobalSearchParams } from "expo-router";
 import { useCallback, useEffect } from "react";
 import { validate } from "uuid";
 
-import { AuthPasswordChecklistInput } from "@/screens/auth/components/auth/auth-password-check-list-input";
-import { AuthSimplePasswordInput } from "@/screens/auth/components/auth/auth-simple-password-input";
-import { CreatePasswordSchema } from "@/screens/auth/schemas/auth/create-password-schema";
+import { AuthPasswordChecklistInput } from "@/screens/auth/components/auth-password-check-list-input";
+import { AuthSimplePasswordInput } from "@/screens/auth/components/auth-simple-password-input";
+import { CreatePasswordSchema } from "@/screens/auth/schemas/create-password-schema";
 import { useCreatePasswordStore } from "@/screens/auth/store/create-password-store";
 import { Button, ButtonText } from "@/screens/components/ui/button";
 import { Heading } from "@/screens/components/ui/heading";

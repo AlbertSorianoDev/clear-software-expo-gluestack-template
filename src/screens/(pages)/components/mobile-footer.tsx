@@ -6,7 +6,7 @@ import { HStack } from "@/screens/components/ui/hstack";
 import { Icon } from "@/screens/components/ui/icon";
 import { Pressable } from "@/screens/components/ui/pressable";
 import { Text } from "@/screens/components/ui/text";
-import { TabItem } from "@/screens/types/icons/tab-item";
+import { TabItem } from "@/screens/types/tab-item";
 
 interface MobileFooterProps {
   tabList: TabItem[];

@@ -1,8 +1,7 @@
 import { router } from "expo-router";
 
-import { Avatar, AvatarFallbackText } from "../../../components/ui/avatar";
-import { Heading } from "../../../components/ui/heading";
-
+import { Avatar, AvatarFallbackText } from "@/screens/components/ui/avatar";
+import { Heading } from "@/screens/components/ui/heading";
 import { HStack } from "@/screens/components/ui/hstack";
 import { ChevronLeftIcon, Icon } from "@/screens/components/ui/icon";
 import { Pressable } from "@/screens/components/ui/pressable";
