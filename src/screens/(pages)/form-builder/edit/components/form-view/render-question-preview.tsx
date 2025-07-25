@@ -23,8 +23,7 @@ import { Text } from "@/screens/components/ui/text";
 import { VStack } from "@/screens/components/ui/vstack";
 import { FormInputTypeEnum } from "@/screens/features/types/form-input-type";
 
-export const RenderPreviewQuestion = (type: FormInputTypeEnum) => {
-  //   const [values, setValues] = useState(["Eng"]);
+export const RenderPreviewQuestion = ({ type }: { type: FormInputTypeEnum }) => {
   switch (type) {
     case FormInputTypeEnum.shortText:
       return (
