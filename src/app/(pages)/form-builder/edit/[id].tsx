@@ -106,8 +106,7 @@ export default function EditFormPage() {
                         <VStack space="sm" className="p-5">
                           <Heading size="md">{question.title}</Heading>
                           <Text size="md">{question.description}</Text>
-                          {RenderPreviewQuestion(question.type)}
-                          {/* {RenderEditQuestion(question.type)} */}
+                          {RenderPreviewQuestion({ type: question.type })}
                         </VStack>
                       )
                     }

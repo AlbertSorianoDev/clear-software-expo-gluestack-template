@@ -17,7 +17,7 @@ export default function FormBuilderPage() {
   return (
     <View className="flex-1">
       <HStack className="items-center justify-between border-b border-typography-100 px-5 py-2">
-        <View /> <Heading>Forms</Heading>
+        <Heading>Forms</Heading>
         <Button variant="outline" size="xs" className="place-self-end">
           <ButtonText>New form</ButtonText>
         </Button>

@@ -74,6 +74,13 @@ export default function HomeScreen() {
         </Button>
         <Button
           onPress={() => {
+            router.navigate("/form-builder");
+          }}
+        >
+          <ButtonText>Form builder</ButtonText>
+        </Button>
+        <Button
+          onPress={() => {
             router.navigate("/extra-components");
           }}
         >
