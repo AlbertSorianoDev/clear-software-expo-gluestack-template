@@ -3,10 +3,9 @@ import { LinearScaleQuestion } from "./linear-scale-question";
 import { MultipleChoiceQuestion } from "./multiple-choice-question";
 import { SingleChoiceQuestion } from "./single-choice-question";
 import { ShortTextQuestion } from "./text-question";
+import { UploadFileQuestion } from "./upload-file-question";
 
-import { Button, ButtonText } from "@/screens/components/ui/button";
 import { Text } from "@/screens/components/ui/text";
-import { VStack } from "@/screens/components/ui/vstack";
 import { FormInputTypeEnum } from "@/screens/features/types/form-input-type";
 
 export const RenderQuestion = ({ type }: { type: FormInputTypeEnum }) => {
@@ -30,16 +29,10 @@ export const RenderQuestion = ({ type }: { type: FormInputTypeEnum }) => {
       return <DropdownQuestion />;
 
     case FormInputTypeEnum.fileUpload:
-      return (
-        <VStack space="md">
-          <Button size="sm" isDisabled className="w-fit">
-            <ButtonText>Add file</ButtonText>
-          </Button>
-        </VStack>
-      );
+      return <UploadFileQuestion />;
 
     // case FormInputTypeEnum.date:
-    //   return <EditDateQuestion />;
+    // return <DateQuestion />;
 
     // case FormInputTypeEnum.time:
     //   return <EditTimeQuestion />;
