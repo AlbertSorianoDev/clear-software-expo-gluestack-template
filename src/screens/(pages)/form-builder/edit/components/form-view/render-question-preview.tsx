@@ -1,5 +1,7 @@
 import { CheckIcon, Circle } from "lucide-react-native";
 
+import { DateQuestion } from "@/screens/(pages)/form-builder/(form)/components/date-question";
+import { TimeQuestion } from "@/screens/(pages)/form-builder/(form)/components/time-question";
 import { Box } from "@/screens/components/ui/box";
 import { Button, ButtonText } from "@/screens/components/ui/button";
 import {
@@ -70,7 +72,7 @@ export const RenderPreviewQuestion = ({ type }: { type: FormInputTypeEnum }) => 
           >
             <VStack space="md">
               {Array.from({ length: 2 }).map((_, index) => (
-                <Checkbox value="Eng" size="sm">
+                <Checkbox value="Eng" size="sm" key={index}>
                   <CheckboxIndicator>
                     <CheckboxIcon as={CheckIcon} />
                   </CheckboxIndicator>
@@ -88,7 +90,7 @@ export const RenderPreviewQuestion = ({ type }: { type: FormInputTypeEnum }) => 
           <Text className="md:mx-4">asdsadsa</Text>
           <Box className="ml-8 flex-1 flex-col md:ml-0 md:flex-row md:justify-between">
             {Array.from({ length: 10 }).map((_, index) => (
-              <Box className="flex-row items-center gap-2 md:flex-col">
+              <Box className="flex-row items-center gap-2 md:flex-col" key={index}>
                 <Text>{index + 1}</Text>
                 <Icon as={Circle} />
               </Box>
@@ -119,11 +121,11 @@ export const RenderPreviewQuestion = ({ type }: { type: FormInputTypeEnum }) => 
         </VStack>
       );
 
-    // case FormInputTypeEnum.date:
-    //   return <EditDateQuestion />;
+    case FormInputTypeEnum.date:
+      return <DateQuestion />;
 
-    // case FormInputTypeEnum.time:
-    //   return <EditTimeQuestion />;
+    case FormInputTypeEnum.time:
+      return <TimeQuestion />;
 
     default:
       return <Text className="text-red-500">Unknown form input type</Text>;

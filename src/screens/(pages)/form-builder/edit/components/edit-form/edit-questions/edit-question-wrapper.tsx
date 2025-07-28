@@ -39,12 +39,7 @@ export const EditQuestionWrapper = ({
     <VStack space="sm" className={clsx("bg-white p-5")}>
       <HStack space="sm">
         <Input className="flex-1 border-x-0 border-t-0 bg-typography-50/55 hover:bg-typography-50/70">
-          <InputField
-            placeholder="Tittle"
-            value={editTitle}
-            onChangeText={setEditTitle}
-            selection={{ start: 0, end: 0 }}
-          />
+          <InputField placeholder="Tittle" value={editTitle} onChangeText={setEditTitle} />
         </Input>
         <Badge action="info" size="sm">
           <BadgeText>{type}</BadgeText>
@@ -56,7 +51,6 @@ export const EditQuestionWrapper = ({
           placeholder="Description"
           value={editDescription}
           onChangeText={setEditDescription}
-          selection={{ start: 0, end: 0 }}
         />
       </Input>
 
