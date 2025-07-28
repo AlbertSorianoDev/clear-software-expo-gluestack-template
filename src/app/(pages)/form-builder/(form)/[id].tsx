@@ -3,6 +3,7 @@ import { View } from "react-native";
 import { RenderQuestion } from "@/screens/(pages)/form-builder/(form)/components/render-question";
 import { FormSectionWrapper } from "@/screens/(pages)/form-builder/edit/components/form-section-wrapper";
 import { FormPrincipalInfo } from "@/screens/(pages)/form-builder/edit/components/form-view/form-principal-info";
+import { useEditFormBuilderPageStore } from "@/screens/(pages)/form-builder/edit/store/edit-form-builder-page-store";
 import { Box } from "@/screens/components/ui/box";
 import { Heading } from "@/screens/components/ui/heading";
 import { ScrollView } from "@/screens/components/ui/scroll-view";
@@ -67,6 +68,9 @@ const questions: { title: string; description: string; type: FormInputTypeEnum }
 ];
 
 export default function FormAnswerPage() {
+  const setSelectedItemId = useEditFormBuilderPageStore((s) => s.setSelectedItemId);
+  setSelectedItemId(null);
+
   return (
     <>
       <View className="flex-1">
@@ -77,13 +81,12 @@ export default function FormAnswerPage() {
 
               <VStack className="w-full max-w-screen-md" space="md">
                 {questions.map((question, index) => (
-                  <FormSectionWrapper key={index}>
-                    {(_) => (
+                  <FormSectionWrapper key={index} id={index}>
+                    {() => (
                       <VStack space="sm" className="p-5">
                         <Heading size="md">{question.title}</Heading>
                         <Text size="md">{question.description}</Text>
-                        {RenderQuestion({ type: question.type })}
-                        {/* {RenderEditQuestion(question.type)} */}
+                        <RenderQuestion type={question.type} />
                       </VStack>
                     )}
                   </FormSectionWrapper>

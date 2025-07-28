@@ -11,7 +11,7 @@ import { EditTimeQuestion } from "./edit-time";
 import { Text } from "@/screens/components/ui/text";
 import { FormInputTypeEnum } from "@/screens/features/types/form-input-type";
 
-export const RenderEditQuestion = (type: FormInputTypeEnum) => {
+export const RenderEditQuestion = ({ type }: { type: FormInputTypeEnum }) => {
   switch (type) {
     case FormInputTypeEnum.shortText:
       return <EditShortTextQuestion />;

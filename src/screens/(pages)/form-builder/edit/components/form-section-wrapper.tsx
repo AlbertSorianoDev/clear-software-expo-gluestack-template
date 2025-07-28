@@ -1,5 +1,6 @@
 import clsx from "clsx";
-import { ReactNode, useEffect, useRef } from "react";
+import { ReactNode } from "react";
+import { Platform } from "react-native";
 
 import { useEditFormBuilderPageStore } from "../store/edit-form-builder-page-store";
 
@@ -9,30 +10,29 @@ import { VStack } from "@/screens/components/ui/vstack";
 
 export const FormSectionWrapper = ({
   children,
+  id,
 }: {
   children: (isSelected: boolean) => ReactNode;
+  id: number;
 }) => {
-  const localRef = useRef(null);
+  const selectedItemId = useEditFormBuilderPageStore((s) => s.selectedItemId);
+  const setSelectedItemId = useEditFormBuilderPageStore((s) => s.setSelectedItemId);
 
-  const selectedItemRef = useEditFormBuilderPageStore((s) => s.selectedItemRef);
-  const setSelectedItemRef = useEditFormBuilderPageStore((s) => s.setSelectedItemRef);
+  const isWeb = Platform.OS === "web";
+  const isSelected = selectedItemId === null ? false : selectedItemId === id;
 
-  const isSelected = selectedItemRef?.current === localRef.current;
-
-  useEffect(() => {
-    if (localRef.current) {
-      setSelectedItemRef(localRef);
-    }
-  }, [setSelectedItemRef]);
+  const handlePress = () => {
+    setSelectedItemId(id);
+  };
 
   return (
-    <Pressable onPress={() => setSelectedItemRef(localRef)}>
+    <Pressable onPressIn={isWeb ? handlePress : undefined}>
       <Box className="relative">
         <VStack
-          ref={localRef}
+          {...(!isWeb && { onTouchStart: handlePress })}
           space="sm"
           className={clsx(
-            "h-full rounded border border-typography-100 bg-white text-typography-950 transition-all ease-in-out",
+            "rounded border border-typography-100 bg-white text-typography-950 transition-all ease-in-out",
             {
               "border-l-8 border-primary-400": isSelected,
             },

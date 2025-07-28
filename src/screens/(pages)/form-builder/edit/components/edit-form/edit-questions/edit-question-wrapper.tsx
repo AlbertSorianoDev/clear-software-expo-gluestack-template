@@ -43,8 +43,7 @@ export const EditQuestionWrapper = ({
             placeholder="Tittle"
             value={editTitle}
             onChangeText={setEditTitle}
-            // onFocus={() => setIsEditable(true)}
-            // onBlur={() => setIsEditable(false)}
+            selection={{ start: 0, end: 0 }}
           />
         </Input>
         <Badge action="info" size="sm">
@@ -57,8 +56,7 @@ export const EditQuestionWrapper = ({
           placeholder="Description"
           value={editDescription}
           onChangeText={setEditDescription}
-          // onFocus={() => setIsEditable(true)}
-          // onBlur={() => setIsEditable(false)}
+          selection={{ start: 0, end: 0 }}
         />
       </Input>
 
