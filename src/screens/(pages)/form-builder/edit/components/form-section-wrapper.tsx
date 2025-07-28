@@ -31,12 +31,9 @@ export const FormSectionWrapper = ({
         <VStack
           ref={localRef}
           space="sm"
-          className={clsx(
-            "h-full rounded border border-typography-100 bg-white text-typography-950 transition-all ease-in-out",
-            {
-              "border-l-8 border-primary-400": isSelected,
-            },
-          )}
+          className={clsx("rounded border border-typography-100 bg-white text-typography-950", {
+            "border-l-8 border-primary-400": isSelected,
+          })}
         >
           {children(isSelected)}
         </VStack>

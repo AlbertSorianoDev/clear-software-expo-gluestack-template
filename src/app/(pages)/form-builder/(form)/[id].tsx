@@ -4,7 +4,10 @@ import { RenderQuestion } from "@/screens/(pages)/form-builder/(form)/components
 import { FormSectionWrapper } from "@/screens/(pages)/form-builder/edit/components/form-section-wrapper";
 import { FormPrincipalInfo } from "@/screens/(pages)/form-builder/edit/components/form-view/form-principal-info";
 import { Box } from "@/screens/components/ui/box";
+import { Button, ButtonText } from "@/screens/components/ui/button";
 import { Heading } from "@/screens/components/ui/heading";
+import { HStack } from "@/screens/components/ui/hstack";
+import { Pressable } from "@/screens/components/ui/pressable";
 import { ScrollView } from "@/screens/components/ui/scroll-view";
 import { Text } from "@/screens/components/ui/text";
 import { VStack } from "@/screens/components/ui/vstack";
@@ -68,31 +71,37 @@ const questions: { title: string; description: string; type: FormInputTypeEnum }
 
 export default function FormAnswerPage() {
   return (
-    <>
-      <View className="flex-1">
-        <ScrollView>
-          <Box className="flex-1 items-center justify-center bg-background-100">
-            <VStack className="w-full max-w-screen-md py-4" space="xl">
-              <FormPrincipalInfo title={form.title} description={form.description} />
+    <View className="flex-1">
+      <ScrollView>
+        <Box className="flex-1 items-center justify-center bg-background-100">
+          <VStack className="w-full max-w-screen-md py-4" space="xl">
+            <FormPrincipalInfo title={form.title} description={form.description} />
 
-              <VStack className="w-full max-w-screen-md" space="md">
-                {questions.map((question, index) => (
-                  <FormSectionWrapper key={index}>
-                    {(_) => (
-                      <VStack space="sm" className="p-5">
-                        <Heading size="md">{question.title}</Heading>
-                        <Text size="md">{question.description}</Text>
-                        {RenderQuestion({ type: question.type })}
-                        {/* {RenderEditQuestion(question.type)} */}
-                      </VStack>
-                    )}
-                  </FormSectionWrapper>
-                ))}
-              </VStack>
+            <VStack className="w-full max-w-screen-md" space="md">
+              {questions.map((question, index) => (
+                <FormSectionWrapper key={index}>
+                  {(_) => (
+                    <VStack space="sm" className="p-5" key={index}>
+                      <Heading size="md">{question.title}</Heading>
+                      <Text size="md">{question.description}</Text>
+                      {RenderQuestion({ type: question.type })}
+                    </VStack>
+                  )}
+                </FormSectionWrapper>
+              ))}
             </VStack>
-          </Box>
-        </ScrollView>
-      </View>
-    </>
+
+            <HStack className="items-center justify-end" space="xl">
+              <Pressable className="h-10 items-center justify-center px-4 hover:bg-background-200">
+                <Text className="text-center font-medium text-primary-500">Erase form answers</Text>
+              </Pressable>
+              <Button>
+                <ButtonText>Send</ButtonText>
+              </Button>
+            </HStack>
+          </VStack>
+        </Box>
+      </ScrollView>
+    </View>
   );
 }
