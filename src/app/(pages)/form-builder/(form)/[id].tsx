@@ -72,30 +72,28 @@ export default function FormAnswerPage() {
   setSelectedItemId(null);
 
   return (
-    <>
-      <View className="flex-1">
-        <ScrollView>
-          <Box className="flex-1 items-center justify-center bg-background-100">
-            <VStack className="w-full max-w-screen-md py-4" space="xl">
-              <FormPrincipalInfo title={form.title} description={form.description} />
+    <View className="flex-1">
+      <ScrollView>
+        <Box className="flex-1 items-center justify-center bg-background-100">
+          <VStack className="w-full max-w-screen-md py-4" space="xl">
+            <FormPrincipalInfo title={form.title} description={form.description} />
 
-              <VStack className="w-full max-w-screen-md" space="md">
-                {questions.map((question, index) => (
-                  <FormSectionWrapper key={index} id={index}>
-                    {() => (
-                      <VStack space="sm" className="p-5">
-                        <Heading size="md">{question.title}</Heading>
-                        <Text size="md">{question.description}</Text>
-                        <RenderQuestion type={question.type} />
-                      </VStack>
-                    )}
-                  </FormSectionWrapper>
-                ))}
-              </VStack>
+            <VStack className="w-full max-w-screen-md" space="md">
+              {questions.map((question, index) => (
+                <FormSectionWrapper key={index} id={index}>
+                  {() => (
+                    <VStack space="sm" className="p-5">
+                      <Heading size="md">{question.title}</Heading>
+                      <Text size="md">{question.description}</Text>
+                      <RenderQuestion type={question.type} />
+                    </VStack>
+                  )}
+                </FormSectionWrapper>
+              ))}
             </VStack>
-          </Box>
-        </ScrollView>
-      </View>
-    </>
+          </VStack>
+        </Box>
+      </ScrollView>
+    </View>
   );
 }

@@ -1,8 +1,10 @@
+import { DateQuestion } from "./date-question";
 import { DropdownQuestion } from "./dropdown-question";
 import { LinearScaleQuestion } from "./linear-scale-question";
 import { MultipleChoiceQuestion } from "./multiple-choice-question";
 import { SingleChoiceQuestion } from "./single-choice-question";
 import { ShortTextQuestion } from "./text-question";
+import { TimeQuestion } from "./time-question";
 import { UploadFileQuestion } from "./upload-file-question";
 
 import { Text } from "@/screens/components/ui/text";
@@ -31,11 +33,11 @@ export const RenderQuestion = ({ type }: { type: FormInputTypeEnum }) => {
     case FormInputTypeEnum.fileUpload:
       return <UploadFileQuestion />;
 
-    // case FormInputTypeEnum.date:
-    // return <DateQuestion />;
+    case FormInputTypeEnum.date:
+      return <DateQuestion />;
 
-    // case FormInputTypeEnum.time:
-    //   return <EditTimeQuestion />;
+    case FormInputTypeEnum.time:
+      return <TimeQuestion />;
 
     default:
       return <Text className="text-red-500">Unknown form input type</Text>;
