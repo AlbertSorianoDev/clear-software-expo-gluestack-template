@@ -12,7 +12,7 @@ export const FormPrincipalInfo = ({
   return (
     <VStack
       space="sm"
-      className="rounded border border-t-8 border-typography-100 border-t-primary-600 bg-white p-5 text-typography-950"
+      className="rounded border border-t-8 border-b-typography-100 border-t-primary-600 bg-white p-5 text-typography-950"
     >
       <Heading size="xl">{title}</Heading>
       <Text>{description}</Text>

@@ -1,7 +1,5 @@
-import { CheckIcon, Circle } from "lucide-react-native";
+import { CalendarDays, CheckIcon, Circle, Clock } from "lucide-react-native";
 
-import { DateQuestion } from "@/screens/(pages)/form-builder/(form)/components/date-question";
-import { TimeQuestion } from "@/screens/(pages)/form-builder/(form)/components/time-question";
 import { Box } from "@/screens/components/ui/box";
 import { Button, ButtonText } from "@/screens/components/ui/button";
 import {
@@ -13,7 +11,7 @@ import {
 } from "@/screens/components/ui/checkbox";
 import { HStack } from "@/screens/components/ui/hstack";
 import { Icon } from "@/screens/components/ui/icon";
-import { Input, InputField } from "@/screens/components/ui/input";
+import { Input, InputField, InputIcon } from "@/screens/components/ui/input";
 import {
   Radio,
   RadioGroup,
@@ -122,10 +120,22 @@ export const RenderPreviewQuestion = ({ type }: { type: FormInputTypeEnum }) => 
       );
 
     case FormInputTypeEnum.date:
-      return <DateQuestion />;
+      return (
+        <Input className="w-fit" isDisabled>
+          <InputField placeholder="__ / __ / __" className="w-fit" readOnly />
+
+          <InputIcon as={CalendarDays} className="mr-4" />
+        </Input>
+      );
 
     case FormInputTypeEnum.time:
-      return <TimeQuestion />;
+      return (
+        <Input className="w-fit" isDisabled>
+          <InputField placeholder="-- / --" className="w-fit" readOnly />
+
+          <InputIcon as={Clock} className="mr-4" />
+        </Input>
+      );
 
     default:
       return <Text className="text-red-500">Unknown form input type</Text>;
