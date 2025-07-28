@@ -131,9 +131,9 @@ export const FormListView = () => {
           </SortableContext>
         </DndContext>
       ) : (
-        <VStack>
+        <VStack space="lg">
           {items.map((question) => (
-            <FormSectionWrapper>
+            <FormSectionWrapper id={question.id} key={question.id}>
               {(isSelected) =>
                 isSelected ? (
                   <EditQuestionWrapper
@@ -141,13 +141,13 @@ export const FormListView = () => {
                     description={question.description}
                     type={question.type}
                   >
-                    {RenderEditQuestion(question.type)}
+                    <RenderEditQuestion type={question.type} />
                   </EditQuestionWrapper>
                 ) : (
                   <VStack space="sm" className="p-5">
                     <Heading size="md">{question.title}</Heading>
                     <Text size="md">{question.description}</Text>
-                    {RenderPreviewQuestion({ type: question.type })}
+                    <RenderPreviewQuestion type={question.type} />
                   </VStack>
                 )
               }
