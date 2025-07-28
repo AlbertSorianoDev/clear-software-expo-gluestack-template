@@ -5,8 +5,8 @@ import { EditQuestionWrapper } from "../edit/components/edit-form/edit-questions
 import { RenderEditQuestion } from "../edit/components/edit-form/edit-questions/render-question";
 import { FormSectionWrapper } from "../edit/components/form-section-wrapper";
 import { RenderPreviewQuestion } from "../edit/components/form-view/render-question-preview";
-import { QuestionModel } from "./form-list-view";
 
+import { QuestionModel } from "@/screens/(pages)/form-builder/components/form-list-view";
 import { Heading } from "@/screens/components/ui/heading";
 import { Text } from "@/screens/components/ui/text";
 import { VStack } from "@/screens/components/ui/vstack";

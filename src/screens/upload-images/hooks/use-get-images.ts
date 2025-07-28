@@ -11,7 +11,7 @@ export function useGetImages() {
     const fetchImages = async () => {
       try {
         setLoading(true);
-        const res = await fetch("https://gomigo.org/api:c5o3WOXc/upload_image_test");
+        const res = await fetch("https://gomigo.org/api:Fk-HCMDC/upload_image_test");
         if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
         const data = (await res.json()) as UploadImageTestResponse;
 

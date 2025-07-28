@@ -31,7 +31,7 @@ export function useUploadImage() {
         });
       });
 
-      const res = await fetch("https://gomigo.org/api:c5o3WOXc/upload_image_test", {
+      const res = await fetch("https://gomigo.org/api:Fk-HCMDC/upload_image_test", {
         method: "POST",
         body: JSON.stringify({ images: images }),
         headers: {

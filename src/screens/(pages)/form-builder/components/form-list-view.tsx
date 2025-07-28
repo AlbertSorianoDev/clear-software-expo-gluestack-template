@@ -20,8 +20,8 @@ import { EditQuestionWrapper } from "../edit/components/edit-form/edit-questions
 import { RenderEditQuestion } from "../edit/components/edit-form/edit-questions/render-question";
 import { FormSectionWrapper } from "../edit/components/form-section-wrapper";
 import { RenderPreviewQuestion } from "../edit/components/form-view/render-question-preview";
-import { SortableQuestionItem } from "./sortable-question-item-web";
 
+import { SortableQuestionItem } from "@/screens/(pages)/form-builder/components/sortable-question-item-web";
 import { Box } from "@/screens/components/ui/box";
 import { Heading } from "@/screens/components/ui/heading";
 import { Text } from "@/screens/components/ui/text";
