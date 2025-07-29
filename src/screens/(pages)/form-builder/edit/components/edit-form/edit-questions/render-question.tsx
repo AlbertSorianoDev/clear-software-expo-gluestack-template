@@ -8,7 +8,7 @@ import { EditShortTextQuestion } from "./edit-short-text";
 import { EditSingleChoiceQuestion } from "./edit-single-choice";
 import { EditTimeQuestion } from "./edit-time";
 
-import { InputTypeEnum } from "@/data/forms/types/form-field";
+import { InputTypeEnum } from "@/data/forms/types/enums";
 import { Text } from "@/screens/components/ui/text";
 
 export const RenderEditQuestion = ({ type }: { type: InputTypeEnum }) => {

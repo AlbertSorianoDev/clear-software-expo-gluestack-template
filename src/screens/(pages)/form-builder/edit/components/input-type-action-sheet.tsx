@@ -1,7 +1,7 @@
 // import { DownloadIcon, EditIcon, EyeOffIcon, TrashIcon } from "@/components/ui/icon";
 import { useEditFormBuilderPageStore } from "../store/edit-form-builder-page-store";
 
-import { InputTypeEnum } from "@/data/forms/types/form-field";
+import { InputTypeEnum } from "@/data/forms/types/enums";
 import {
   Actionsheet,
   ActionsheetBackdrop,

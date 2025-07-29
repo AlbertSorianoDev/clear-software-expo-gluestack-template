@@ -21,7 +21,7 @@ import { RenderEditQuestion } from "../edit/components/edit-form/edit-questions/
 import { FormSectionWrapper } from "../edit/components/form-section-wrapper";
 import { RenderPreviewQuestion } from "../edit/components/form-view/render-question-preview";
 
-import { InputTypeEnum } from "@/data/forms/types/form-field";
+import { InputTypeEnum } from "@/data/forms/types/enums";
 import { SortableQuestionItem } from "@/screens/(pages)/form-builder/components/sortable-question-item-web";
 import { Box } from "@/screens/components/ui/box";
 import { Heading } from "@/screens/components/ui/heading";

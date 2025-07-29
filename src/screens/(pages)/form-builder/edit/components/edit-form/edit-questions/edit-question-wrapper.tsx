@@ -4,7 +4,7 @@ import { ReactNode, useState } from "react";
 
 import { useEditFormBuilderPageStore } from "../../../store/edit-form-builder-page-store";
 
-import { InputTypeEnum } from "@/data/forms/types/form-field";
+import { InputTypeEnum } from "@/data/forms/types/enums";
 import { Badge, BadgeText } from "@/screens/components/ui/badge";
 import { Box } from "@/screens/components/ui/box";
 import { Divider } from "@/screens/components/ui/divider";

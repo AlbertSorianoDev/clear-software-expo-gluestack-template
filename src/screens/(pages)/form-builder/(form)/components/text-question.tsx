@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import { useState } from "react";
 
-import { InputTypeEnum } from "@/data/forms/types/form-field";
+import { InputTypeEnum } from "@/data/forms/types/enums";
 import { Input, InputField } from "@/screens/components/ui/input";
 
 export const ShortTextQuestion = ({

@@ -1,6 +1,6 @@
 import { View } from "react-native";
 
-import { InputTypeEnum } from "@/data/forms/types/form-field";
+import { InputTypeEnum } from "@/data/forms/types/enums";
 import { RenderQuestion } from "@/screens/(pages)/form-builder/(form)/components/render-question";
 import { FormSectionWrapper } from "@/screens/(pages)/form-builder/edit/components/form-section-wrapper";
 import { FormPrincipalInfo } from "@/screens/(pages)/form-builder/edit/components/form-view/form-principal-info";

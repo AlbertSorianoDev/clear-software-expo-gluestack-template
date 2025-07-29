@@ -1,7 +1,7 @@
 import { Circle, Square, X } from "lucide-react-native";
 import { useState } from "react";
 
-import { InputTypeEnum } from "@/data/forms/types/form-field";
+import { InputTypeEnum } from "@/data/forms/types/enums";
 import { HStack } from "@/screens/components/ui/hstack";
 import { Icon } from "@/screens/components/ui/icon";
 import { Input, InputField } from "@/screens/components/ui/input";

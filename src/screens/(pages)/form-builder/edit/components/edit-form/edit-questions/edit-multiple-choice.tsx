@@ -2,7 +2,7 @@ import { Square } from "lucide-react-native";
 
 import { EditRadioChoice } from "./edit-radio-choice";
 
-import { InputTypeEnum } from "@/data/forms/types/form-field";
+import { InputTypeEnum } from "@/data/forms/types/enums";
 import { HStack } from "@/screens/components/ui/hstack";
 import { Icon } from "@/screens/components/ui/icon";
 import { Pressable } from "@/screens/components/ui/pressable";

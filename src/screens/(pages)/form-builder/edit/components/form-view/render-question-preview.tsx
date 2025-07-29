@@ -1,6 +1,6 @@
 import { CalendarDays, CheckIcon, Circle, Clock } from "lucide-react-native";
 
-import { InputTypeEnum } from "@/data/forms/types/form-field";
+import { InputTypeEnum } from "@/data/forms/types/enums";
 import { Box } from "@/screens/components/ui/box";
 import { Button, ButtonText } from "@/screens/components/ui/button";
 import {

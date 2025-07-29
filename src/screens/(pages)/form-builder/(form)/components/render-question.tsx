@@ -7,7 +7,7 @@ import { ShortTextQuestion } from "./text-question";
 import { TimeQuestion } from "./time-question";
 import { UploadFileQuestion } from "./upload-file-question";
 
-import { InputTypeEnum } from "@/data/forms/types/form-field";
+import { InputTypeEnum } from "@/data/forms/types/enums";
 import { Text } from "@/screens/components/ui/text";
 
 export const RenderQuestion = ({ type }: { type: InputTypeEnum }) => {

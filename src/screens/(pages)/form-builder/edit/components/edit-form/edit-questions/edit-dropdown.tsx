@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import { EditRadioChoice } from "./edit-radio-choice";
 
-import { InputTypeEnum } from "@/data/forms/types/form-field";
+import { InputTypeEnum } from "@/data/forms/types/enums";
 import { HStack } from "@/screens/components/ui/hstack";
 import { Pressable } from "@/screens/components/ui/pressable";
 import { Text } from "@/screens/components/ui/text";
