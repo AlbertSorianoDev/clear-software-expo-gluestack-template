@@ -1,13 +1,13 @@
 import clsx from "clsx";
 import { useState } from "react";
 
+import { InputTypeEnum } from "@/data/forms/types/form-field";
 import { Input, InputField } from "@/screens/components/ui/input";
-import { FormInputTypeEnum } from "@/screens/features/types/form-input-type";
 
 export const ShortTextQuestion = ({
   type,
 }: {
-  type: FormInputTypeEnum.shortText | FormInputTypeEnum.longText;
+  type: InputTypeEnum.shortText | InputTypeEnum.longText;
 }) => {
   const [textAnswer, setTextAnswer] = useState("");
   return (
@@ -15,12 +15,12 @@ export const ShortTextQuestion = ({
       variant="underlined"
       className={clsx(
         "",
-        { "w-1/2": type == FormInputTypeEnum.shortText },
-        { "w-full": type == FormInputTypeEnum.longText },
+        { "w-1/2": type == InputTypeEnum.shortText },
+        { "w-full": type == InputTypeEnum.longText },
       )}
     >
       <InputField
-        placeholder={`${type == FormInputTypeEnum.shortText ? "Short" : "Long"} answer text`}
+        placeholder={`${type == InputTypeEnum.shortText ? "Short" : "Long"} answer text`}
         value={textAnswer}
         onChangeText={setTextAnswer}
       />

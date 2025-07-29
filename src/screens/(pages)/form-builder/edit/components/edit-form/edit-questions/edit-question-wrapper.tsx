@@ -4,6 +4,7 @@ import { ReactNode, useState } from "react";
 
 import { useEditFormBuilderPageStore } from "../../../store/edit-form-builder-page-store";
 
+import { InputTypeEnum } from "@/data/forms/types/form-field";
 import { Badge, BadgeText } from "@/screens/components/ui/badge";
 import { Box } from "@/screens/components/ui/box";
 import { Divider } from "@/screens/components/ui/divider";
@@ -14,17 +15,16 @@ import { Pressable } from "@/screens/components/ui/pressable";
 import { Switch } from "@/screens/components/ui/switch";
 import { Text } from "@/screens/components/ui/text";
 import { VStack } from "@/screens/components/ui/vstack";
-import { FormInputTypeEnum } from "@/screens/features/types/form-input-type";
 
 export const EditQuestionWrapper = ({
   title,
   description,
-  type = FormInputTypeEnum.shortText,
+  type = InputTypeEnum.shortText,
   children,
 }: {
   title: string;
   description: string;
-  type?: FormInputTypeEnum;
+  type?: InputTypeEnum;
   children: ReactNode;
 }) => {
   const setShowInputTypeActionSheet = useEditFormBuilderPageStore(

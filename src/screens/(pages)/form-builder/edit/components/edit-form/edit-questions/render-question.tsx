@@ -8,36 +8,36 @@ import { EditShortTextQuestion } from "./edit-short-text";
 import { EditSingleChoiceQuestion } from "./edit-single-choice";
 import { EditTimeQuestion } from "./edit-time";
 
+import { InputTypeEnum } from "@/data/forms/types/form-field";
 import { Text } from "@/screens/components/ui/text";
-import { FormInputTypeEnum } from "@/screens/features/types/form-input-type";
 
-export const RenderEditQuestion = ({ type }: { type: FormInputTypeEnum }) => {
+export const RenderEditQuestion = ({ type }: { type: InputTypeEnum }) => {
   switch (type) {
-    case FormInputTypeEnum.shortText:
+    case InputTypeEnum.shortText:
       return <EditShortTextQuestion />;
 
-    case FormInputTypeEnum.longText:
+    case InputTypeEnum.longText:
       return <EditLongTextQuestion />;
 
-    case FormInputTypeEnum.singleChoice:
+    case InputTypeEnum.singleChoice:
       return <EditSingleChoiceQuestion />;
 
-    case FormInputTypeEnum.multipleChoice:
+    case InputTypeEnum.multipleChoice:
       return <EditMultipleChoiceQuestion />;
 
-    case FormInputTypeEnum.dropdown:
+    case InputTypeEnum.dropdown:
       return <EditDropdownQuestion />;
 
-    case FormInputTypeEnum.linearScale:
+    case InputTypeEnum.linearScale:
       return <EditLinearScaleQuestion />;
 
-    case FormInputTypeEnum.fileUpload:
+    case InputTypeEnum.fileUpload:
       return <EditFileUploadQuestion />;
 
-    case FormInputTypeEnum.date:
+    case InputTypeEnum.date:
       return <EditDateQuestion />;
 
-    case FormInputTypeEnum.time:
+    case InputTypeEnum.time:
       return <EditTimeQuestion />;
 
     default:

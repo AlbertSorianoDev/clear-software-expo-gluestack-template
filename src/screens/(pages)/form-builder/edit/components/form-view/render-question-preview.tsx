@@ -1,5 +1,6 @@
 import { CalendarDays, CheckIcon, Circle, Clock } from "lucide-react-native";
 
+import { InputTypeEnum } from "@/data/forms/types/form-field";
 import { Box } from "@/screens/components/ui/box";
 import { Button, ButtonText } from "@/screens/components/ui/button";
 import {
@@ -21,25 +22,24 @@ import {
 } from "@/screens/components/ui/radio";
 import { Text } from "@/screens/components/ui/text";
 import { VStack } from "@/screens/components/ui/vstack";
-import { FormInputTypeEnum } from "@/screens/features/types/form-input-type";
 
-export const RenderPreviewQuestion = ({ type }: { type: FormInputTypeEnum }) => {
+export const RenderPreviewQuestion = ({ type }: { type: InputTypeEnum }) => {
   switch (type) {
-    case FormInputTypeEnum.shortText:
+    case InputTypeEnum.shortText:
       return (
         <Input variant="underlined" className="w-1/2" isDisabled>
           <InputField placeholder="Short answer text" />
         </Input>
       );
 
-    case FormInputTypeEnum.longText:
+    case InputTypeEnum.longText:
       return (
         <Input variant="underlined" className="w-1/2" isDisabled>
           <InputField placeholder="Long answer text" />
         </Input>
       );
 
-    case FormInputTypeEnum.singleChoice:
+    case InputTypeEnum.singleChoice:
       return (
         <VStack space="md">
           <RadioGroup>
@@ -59,7 +59,7 @@ export const RenderPreviewQuestion = ({ type }: { type: FormInputTypeEnum }) => 
         </VStack>
       );
 
-    case FormInputTypeEnum.multipleChoice:
+    case InputTypeEnum.multipleChoice:
       return (
         <VStack space="md">
           <CheckboxGroup
@@ -82,7 +82,7 @@ export const RenderPreviewQuestion = ({ type }: { type: FormInputTypeEnum }) => 
         </VStack>
       );
 
-    case FormInputTypeEnum.linearScale:
+    case InputTypeEnum.linearScale:
       return (
         <Box className="flex flex-col gap-2 md:flex-row md:items-end">
           <Text className="md:mx-4">asdsadsa</Text>
@@ -98,7 +98,7 @@ export const RenderPreviewQuestion = ({ type }: { type: FormInputTypeEnum }) => 
         </Box>
       );
 
-    case FormInputTypeEnum.dropdown:
+    case InputTypeEnum.dropdown:
       return (
         <VStack space="md">
           {Array.from({ length: 2 }).map((_, index) => (
@@ -110,7 +110,7 @@ export const RenderPreviewQuestion = ({ type }: { type: FormInputTypeEnum }) => 
         </VStack>
       );
 
-    case FormInputTypeEnum.fileUpload:
+    case InputTypeEnum.fileUpload:
       return (
         <VStack space="md">
           <Button size="sm" isDisabled className="w-fit">
@@ -119,7 +119,7 @@ export const RenderPreviewQuestion = ({ type }: { type: FormInputTypeEnum }) => 
         </VStack>
       );
 
-    case FormInputTypeEnum.date:
+    case InputTypeEnum.date:
       return (
         <Input className="w-fit" isDisabled>
           <InputField placeholder="__ / __ / __" className="w-fit" readOnly />
@@ -128,7 +128,7 @@ export const RenderPreviewQuestion = ({ type }: { type: FormInputTypeEnum }) => 
         </Input>
       );
 
-    case FormInputTypeEnum.time:
+    case InputTypeEnum.time:
       return (
         <Input className="w-fit" isDisabled>
           <InputField placeholder="-- / --" className="w-fit" readOnly />

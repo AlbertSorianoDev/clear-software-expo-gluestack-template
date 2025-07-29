@@ -1,6 +1,7 @@
 // import { DownloadIcon, EditIcon, EyeOffIcon, TrashIcon } from "@/components/ui/icon";
 import { useEditFormBuilderPageStore } from "../store/edit-form-builder-page-store";
 
+import { InputTypeEnum } from "@/data/forms/types/form-field";
 import {
   Actionsheet,
   ActionsheetBackdrop,
@@ -10,9 +11,8 @@ import {
   ActionsheetItem,
   ActionsheetItemText,
 } from "@/screens/components/ui/actionsheet";
-import { FormInputTypeEnum } from "@/screens/features/types/form-input-type";
 
-export const FormInputTypeOptions = Object.entries(FormInputTypeEnum).map(([value, label]) => ({
+export const InputTypeOptions = Object.entries(InputTypeEnum).map(([value, label]) => ({
   value,
   label,
 }));
@@ -36,7 +36,7 @@ export const InputTypeActionSheet = () => {
           <ActionsheetDragIndicator />
         </ActionsheetDragIndicatorWrapper>
 
-        {FormInputTypeOptions.map((type) => (
+        {InputTypeOptions.map((type) => (
           <ActionsheetItem key={type.value} onPress={handleClose}>
             <ActionsheetItemText>{type.label}</ActionsheetItemText>
           </ActionsheetItem>

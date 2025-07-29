@@ -1,8 +1,11 @@
+import { FormField } from "./form-field";
+
 export interface Form {
   id: number;
-  created_at: number;
+  createdAt: number;
   title: string;
   description: string;
   isActive: boolean;
   isPublished: boolean;
+  fields?: FormField[];
 }

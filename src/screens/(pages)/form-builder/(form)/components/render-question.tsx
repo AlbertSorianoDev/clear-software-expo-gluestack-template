@@ -7,36 +7,36 @@ import { ShortTextQuestion } from "./text-question";
 import { TimeQuestion } from "./time-question";
 import { UploadFileQuestion } from "./upload-file-question";
 
+import { InputTypeEnum } from "@/data/forms/types/form-field";
 import { Text } from "@/screens/components/ui/text";
-import { FormInputTypeEnum } from "@/screens/features/types/form-input-type";
 
-export const RenderQuestion = ({ type }: { type: FormInputTypeEnum }) => {
+export const RenderQuestion = ({ type }: { type: InputTypeEnum }) => {
   switch (type) {
-    case FormInputTypeEnum.shortText:
+    case InputTypeEnum.shortText:
       return <ShortTextQuestion type={type} />;
 
-    case FormInputTypeEnum.longText:
+    case InputTypeEnum.longText:
       return <ShortTextQuestion type={type} />;
 
-    case FormInputTypeEnum.singleChoice:
+    case InputTypeEnum.singleChoice:
       return <SingleChoiceQuestion />;
 
-    case FormInputTypeEnum.multipleChoice:
+    case InputTypeEnum.multipleChoice:
       return <MultipleChoiceQuestion />;
 
-    case FormInputTypeEnum.linearScale:
+    case InputTypeEnum.linearScale:
       return <LinearScaleQuestion />;
 
-    case FormInputTypeEnum.dropdown:
+    case InputTypeEnum.dropdown:
       return <DropdownQuestion />;
 
-    case FormInputTypeEnum.fileUpload:
+    case InputTypeEnum.fileUpload:
       return <UploadFileQuestion />;
 
-    case FormInputTypeEnum.date:
+    case InputTypeEnum.date:
       return <DateQuestion />;
 
-    case FormInputTypeEnum.time:
+    case InputTypeEnum.time:
       return <TimeQuestion />;
 
     default:

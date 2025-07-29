@@ -1,12 +1,12 @@
 import { Circle, Square, X } from "lucide-react-native";
 import { useState } from "react";
 
+import { InputTypeEnum } from "@/data/forms/types/form-field";
 import { HStack } from "@/screens/components/ui/hstack";
 import { Icon } from "@/screens/components/ui/icon";
 import { Input, InputField } from "@/screens/components/ui/input";
 import { Pressable } from "@/screens/components/ui/pressable";
-import { Text } from "@/screens/components/ui/text"; // Asegúrate de tenerlo
-import { FormInputTypeEnum } from "@/screens/features/types/form-input-type";
+import { Text } from "@/screens/components/ui/text";
 
 export const EditRadioChoice = ({
   id,
@@ -17,16 +17,16 @@ export const EditRadioChoice = ({
   id: number;
   index: number;
   label: string;
-  type: FormInputTypeEnum;
+  type: InputTypeEnum;
 }) => {
   const [editLabelRadio, setEditRadioChoice] = useState(label);
 
   const renderIcon = () => {
-    if (type === FormInputTypeEnum.multipleChoice)
+    if (type === InputTypeEnum.multipleChoice)
       return <Icon as={Square} className="text-typography-500" size="md" />;
-    if (type === FormInputTypeEnum.singleChoice)
+    if (type === InputTypeEnum.singleChoice)
       return <Icon as={Circle} className="text-typography-500" size="md" />;
-    if (type === FormInputTypeEnum.dropdown)
+    if (type === InputTypeEnum.dropdown)
       return <Text className="w-6 text-center text-typography-500">{index + 1}</Text>;
     return null;
   };
