@@ -74,7 +74,7 @@ export default function HomeScreen() {
         </Button>
         <Button
           onPress={() => {
-            router.navigate("/form-builder/1");
+            router.navigate("/form-builder");
           }}
         >
           <ButtonText>Form builder</ButtonText>

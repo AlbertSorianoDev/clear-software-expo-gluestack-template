@@ -25,7 +25,7 @@ export const FormCard = ({
 }) => {
   const [active, setActive] = useState(isActive);
   return (
-    <Card variant="elevated" className="flex-1 border border-typography-100 p-4">
+    <Card variant="elevated" className="h-fit border border-typography-100 p-4">
       <VStack space="md">
         <HStack className="flex-1 items-center justify-between" space="md">
           <Heading className="flex-1 text-typography-950" size="sm">

@@ -77,6 +77,9 @@ importers:
       '@gluestack-ui/slider':
         specifier: ^0.1.32
         version: 0.1.32(react-dom@19.0.0(react@19.0.0))(react-native@0.79.5(@babel/core@7.27.1)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0)
+      '@gluestack-ui/spinner':
+        specifier: ^0.1.15
+        version: 0.1.15(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@gluestack-ui/switch':
         specifier: ^0.1.29
         version: 0.1.29(react-dom@19.0.0(react@19.0.0))(react-native@0.79.5(@babel/core@7.27.1)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0)
@@ -1090,6 +1093,12 @@ packages:
 
   '@gluestack-ui/slider@0.1.32':
     resolution: {integrity: sha512-g0e7dAGOYYARlL3cdHe3mhN71j85TnqUgK/xOYWjVDE0U+atIXxxTVEXeO0ZPGJ3YUOUUAInIVGaa0xvnjEkYg==}
+    peerDependencies:
+      react: '>=16'
+      react-dom: '>=16'
+
+  '@gluestack-ui/spinner@0.1.15':
+    resolution: {integrity: sha512-jkXOGhna05HM2tcPKbA+t+vqcVRgRowwC6ES0A9kY5fcuURH1V41UFx/YWyHdSsHwmWlIoCCdWycF78UbNVdPg==}
     peerDependencies:
       react: '>=16'
       react-dom: '>=16'
@@ -6549,6 +6558,11 @@ snapshots:
       react-dom: 19.0.0(react@19.0.0)
     transitivePeerDependencies:
       - react-native
+
+  '@gluestack-ui/spinner@0.1.15(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
+    dependencies:
+      react: 19.0.0
+      react-dom: 19.0.0(react@19.0.0)
 
   '@gluestack-ui/switch@0.1.29(react-dom@19.0.0(react@19.0.0))(react-native@0.79.5(@babel/core@7.27.1)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0)':
     dependencies:
