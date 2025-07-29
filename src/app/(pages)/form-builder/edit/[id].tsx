@@ -1,6 +1,7 @@
-import { View } from "react-native";
+import { Platform, View } from "react-native";
 
 import { FormListView } from "@/screens/(pages)/form-builder/components/form-list-view";
+import { FormListViewWeb } from "@/screens/(pages)/form-builder/components/form-list-view-web";
 import { EditFormPrincipalInfo } from "@/screens/(pages)/form-builder/edit/components/edit-form/edit-form-principal-info";
 import { FormSectionWrapper } from "@/screens/(pages)/form-builder/edit/components/form-section-wrapper";
 import { FormPrincipalInfo } from "@/screens/(pages)/form-builder/edit/components/form-view/form-principal-info";
@@ -16,30 +17,35 @@ const form = {
 };
 
 export default function EditFormPage() {
-  // const { id } = useGlobalSearchParams();
   const setSelectedItemId = useEditFormBuilderPageStore((s) => s.setSelectedItemId);
   setSelectedItemId(null);
+
+  const Content = (
+    <Box className="flex-1 items-center justify-center bg-background-100">
+      <VStack className="flex w-full max-w-screen-md flex-1 py-4" space="xl">
+        <FormSectionWrapper id={-1}>
+          {(isSelected) =>
+            isSelected ? (
+              <EditFormPrincipalInfo title={form.title} description={form.description} />
+            ) : (
+              <FormPrincipalInfo title={form.title} description={form.description} />
+            )
+          }
+        </FormSectionWrapper>
+        {Platform.OS === "web" ? <FormListViewWeb /> : <FormListView />}
+      </VStack>
+    </Box>
+  );
 
   return (
     <>
       <InputTypeActionSheet />
       <View className="flex-1">
-        <ScrollView>
-          <Box className="flex-1 items-center justify-center bg-background-100">
-            <VStack className="w-full max-w-screen-md py-4" space="xl">
-              <FormSectionWrapper id={-1}>
-                {(isSelected) =>
-                  isSelected ? (
-                    <EditFormPrincipalInfo title={form.title} description={form.description} />
-                  ) : (
-                    <FormPrincipalInfo title={form.title} description={form.description} />
-                  )
-                }
-              </FormSectionWrapper>
-              <FormListView />
-            </VStack>
-          </Box>
-        </ScrollView>
+        {Platform.OS == "web" ? (
+          <ScrollView>{Content}</ScrollView>
+        ) : (
+          <ScrollView>{Content}</ScrollView>
+        )}
       </View>
     </>
   );

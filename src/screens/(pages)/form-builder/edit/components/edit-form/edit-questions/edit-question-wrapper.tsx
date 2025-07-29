@@ -1,4 +1,3 @@
-import clsx from "clsx";
 import { EllipsisVertical, PlusCircle, Trash } from "lucide-react-native";
 import { ReactNode, useState } from "react";
 
@@ -36,7 +35,7 @@ export const EditQuestionWrapper = ({
   const [editRequired, setEditRequired] = useState(false);
 
   return (
-    <VStack space="sm" className={clsx("bg-white p-5")}>
+    <VStack space="sm" className={"bg-white p-5"}>
       <HStack space="sm">
         <Input className="flex-1 border-x-0 border-t-0 bg-typography-50/55 hover:bg-typography-50/70">
           <InputField placeholder="Tittle" value={editTitle} onChangeText={setEditTitle} />
@@ -58,7 +57,7 @@ export const EditQuestionWrapper = ({
 
       <Divider />
 
-      <HStack className="mt-2 items-center justify-end" space="lg">
+      <HStack className="mt-2 flex h-fit items-center justify-end" space="lg">
         <Pressable onPress={() => setShowInputTypeActionSheet(true)}>
           <Icon as={PlusCircle} className="text-typography-600" size="lg" />
         </Pressable>
@@ -66,7 +65,7 @@ export const EditQuestionWrapper = ({
           <Icon as={Trash} className="text-typography-600" size="lg" />
         </Pressable>
 
-        <Divider orientation="vertical" className="mx-2" />
+        <Divider orientation="vertical" className="flex h-6" />
 
         <HStack className="items-center" space="lg">
           <Text className="text-typography-500" size="sm">

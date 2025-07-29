@@ -1,13 +1,22 @@
+import {
+  closestCorners,
+  DndContext,
+  DragEndEvent,
+  KeyboardSensor,
+  PointerSensor,
+  useSensor,
+  useSensors,
+} from "@dnd-kit/core";
+import {
+  arrayMove,
+  SortableContext,
+  sortableKeyboardCoordinates,
+  verticalListSortingStrategy,
+} from "@dnd-kit/sortable";
 import { useState } from "react";
 
-import { EditQuestionWrapper } from "../edit/components/edit-form/edit-questions/edit-question-wrapper";
-import { RenderEditQuestion } from "../edit/components/edit-form/edit-questions/render-question";
-import { FormSectionWrapper } from "../edit/components/form-section-wrapper";
-import { RenderPreviewQuestion } from "../edit/components/form-view/render-question-preview";
-
-import { Heading } from "@/screens/components/ui/heading";
-import { Text } from "@/screens/components/ui/text";
-import { VStack } from "@/screens/components/ui/vstack";
+import { SortableQuestionItem } from "@/screens/(pages)/form-builder/components/sortable-question-item-web";
+import { Box } from "@/screens/components/ui/box";
 import { FormInputTypeEnum } from "@/screens/features/types/form-input-type";
 
 export interface QuestionModel {
@@ -76,31 +85,42 @@ const questions: QuestionModel[] = [
   },
 ];
 
-export const FormListView = () => {
-  const [items] = useState(questions);
+export const FormListViewWeb = () => {
+  const [items, setItems] = useState(questions);
+
+  const sensors = useSensors(
+    useSensor(PointerSensor),
+    useSensor(KeyboardSensor, {
+      coordinateGetter: sortableKeyboardCoordinates,
+    }),
+  );
+
+  const handleDragEnd = (event: DragEndEvent) => {
+    const { active, over } = event;
+    if (!over?.id) return;
+
+    if (active.id !== over.id) {
+      setItems((items) => {
+        const oldIndex = items.findIndex((item) => item.id.toString() === active.id.toString());
+        const newIndex = items.findIndex((item) => item.id.toString() === over.id.toString());
+
+        return arrayMove(items, oldIndex, newIndex);
+      });
+    }
+  };
+
   return (
-    <VStack space="lg">
-      {items.map((question) => (
-        <FormSectionWrapper id={question.id} key={question.id}>
-          {(isSelected) =>
-            isSelected ? (
-              <EditQuestionWrapper
-                title={question.title}
-                description={question.description}
-                type={question.type}
-              >
-                <RenderEditQuestion type={question.type} />
-              </EditQuestionWrapper>
-            ) : (
-              <VStack space="sm" className="p-5">
-                <Heading size="md">{question.title}</Heading>
-                <Text size="md">{question.description}</Text>
-                <RenderPreviewQuestion type={question.type} />
-              </VStack>
-            )
-          }
-        </FormSectionWrapper>
-      ))}
-    </VStack>
+    <Box className="flex-1">
+      <DndContext sensors={sensors} collisionDetection={closestCorners} onDragEnd={handleDragEnd}>
+        <SortableContext
+          items={items.map((question) => question.id.toString())}
+          strategy={verticalListSortingStrategy}
+        >
+          {items.map((item) => (
+            <SortableQuestionItem key={item.id} question={item} />
+          ))}
+        </SortableContext>
+      </DndContext>
+    </Box>
   );
 };

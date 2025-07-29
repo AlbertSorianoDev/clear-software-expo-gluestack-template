@@ -12,13 +12,12 @@ import { Text } from "@/screens/components/ui/text";
 import { VStack } from "@/screens/components/ui/vstack";
 
 export function SortableQuestionItem({ question }: { question: QuestionModel }) {
-  const { attributes, listeners, setNodeRef, transform, transition } = useSortable({
+  const { attributes, listeners, setNodeRef, transform } = useSortable({
     id: question.id.toString(),
   });
 
   const style = {
     transform: CSS.Transform.toString(transform),
-    transition,
   };
 
   return (

@@ -1,4 +1,4 @@
-import { View } from "react-native";
+import { KeyboardAwareScrollView } from "react-native-keyboard-controller";
 
 import { RenderQuestion } from "@/screens/(pages)/form-builder/(form)/components/render-question";
 import { FormSectionWrapper } from "@/screens/(pages)/form-builder/edit/components/form-section-wrapper";
@@ -17,50 +17,66 @@ const form = {
     "Ut sunt sit deserunt culpa ipsum nisi sit tempor proident mollit proident cupidatat. Fugiat amet qui labore mollit Lorem. Magna ipsum cillum ipsum ad culpa velit anim dolore quis culpa irure deserunt nostrud. Velit commodo proident aliquip amet nisi cillum exercitation laboris esse nulla. Pariatur cillum culpa incididunt eiusmod.",
 };
 
-const questions: { title: string; description: string; type: FormInputTypeEnum }[] = [
+export interface QuestionModel {
+  id: number;
+  title: string;
+  description: string;
+  type: FormInputTypeEnum;
+}
+
+const questions: QuestionModel[] = [
   {
+    id: 1,
     title: "What's your name?",
     description: "Please enter your full name as it appears on official documents.",
     type: FormInputTypeEnum.shortText,
   },
   {
+    id: 2,
     title: "Tell us about yourself",
     description: "You can include your background, interests, or anything you'd like to share.",
     type: FormInputTypeEnum.longText,
   },
   {
+    id: 3,
     title: "What is your favorite season?",
     description: "Select one option that best represents your favorite time of the year.",
     type: FormInputTypeEnum.singleChoice,
   },
   {
+    id: 4,
     title: "Which programming languages do you use?",
     description: "You can select more than one if applicable.",
     type: FormInputTypeEnum.multipleChoice,
   },
   {
+    id: 5,
     title: "How satisfied are you with our service?",
     description: "1 being not satisfied at all, 5 being extremely satisfied.",
     type: FormInputTypeEnum.linearScale,
   },
   {
+    id: 6,
     title: "Select your country",
     description: "Choose the country where you currently reside.",
     type: FormInputTypeEnum.dropdown,
   },
 
   {
+    id: 7,
     title: "Upload your document",
     description:
       "Upload a relevant file such as your ID, certificate, or any other required document.",
     type: FormInputTypeEnum.fileUpload,
   },
   {
+    id: 8,
     title: "Select your birhtday's date",
     description: "Select your birhtday's date",
     type: FormInputTypeEnum.date,
   },
   {
+    id: 9,
     title: "Select a time",
     description: "Pick a specific time that fits your availability or schedule.",
     type: FormInputTypeEnum.time,
@@ -72,7 +88,7 @@ export default function FormAnswerPage() {
   setSelectedItemId(null);
 
   return (
-    <View className="flex-1">
+    <KeyboardAwareScrollView bottomOffset={20} style={{ flex: 1 }}>
       <ScrollView>
         <Box className="flex-1 items-center justify-center bg-background-100">
           <VStack className="w-full max-w-screen-md py-4" space="xl">
@@ -94,6 +110,6 @@ export default function FormAnswerPage() {
           </VStack>
         </Box>
       </ScrollView>
-    </View>
+    </KeyboardAwareScrollView>
   );
 }
