@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { KeyboardAwareScrollView } from "react-native-keyboard-controller";
 
 import { RenderQuestion } from "@/screens/(pages)/form-builder/(form)/components/render-question";
@@ -85,7 +86,11 @@ const questions: QuestionModel[] = [
 
 export default function FormAnswerPage() {
   const setSelectedItemId = useEditFormBuilderPageStore((s) => s.setSelectedItemId);
-  setSelectedItemId(null);
+
+  useEffect(() => {
+    setSelectedItemId(null);
+    return setSelectedItemId(null);
+  }, [setSelectedItemId]);
 
   return (
     <KeyboardAwareScrollView bottomOffset={20} style={{ flex: 1 }}>

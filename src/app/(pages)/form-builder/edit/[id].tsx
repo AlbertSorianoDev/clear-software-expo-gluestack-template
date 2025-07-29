@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Platform, View } from "react-native";
 
 import { FormListView } from "@/screens/(pages)/form-builder/components/form-list-view";
@@ -18,7 +19,11 @@ const form = {
 
 export default function EditFormPage() {
   const setSelectedItemId = useEditFormBuilderPageStore((s) => s.setSelectedItemId);
-  setSelectedItemId(null);
+
+  useEffect(() => {
+    setSelectedItemId(null);
+    return setSelectedItemId(null);
+  }, [setSelectedItemId]);
 
   const Content = (
     <Box className="flex-1 items-center justify-center bg-background-100">
