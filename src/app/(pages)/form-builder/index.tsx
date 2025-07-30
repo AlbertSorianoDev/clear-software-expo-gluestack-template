@@ -1,3 +1,4 @@
+import { router } from "expo-router";
 import { ReactNode } from "react";
 import { View } from "react-native";
 
@@ -18,36 +19,60 @@ const tabs: { tabIndex: number; tabName: string; tabPanel: ReactNode }[] = [
 ];
 
 export default function FormBuilderPage() {
-  const { mutateAsync: formsMutate, isSuccess, isError } = usePostForms();
+  const { mutateAsync: formsMutate, isPending: newFormPending } = usePostForms();
   const toast = useToast();
 
   const newFormHandler = async () => {
     const creatingToastId = toast.show({
       placement: "bottom right",
       duration: null,
-      render: ({ id }) => {
-        const toastId = "toast-" + id;
-        return (
-          <Toast nativeID={toastId} className="flex-row items-center gap-4 px-5 py-3 shadow-soft-1">
-            <Spinner size="small" color="rgb(var(--color-primary-600))" />
-            <Divider orientation="vertical" className="h-[30px] bg-outline-200" />
-            <ToastTitle size="sm">Creating new form.</ToastTitle>
-          </Toast>
-        );
-      },
+      render: ({ id }) => (
+        <Toast
+          nativeID={"toast-" + id}
+          variant="outline"
+          className="flex-row items-center gap-4 px-5 py-3 shadow-soft-1"
+        >
+          <Spinner size="small" color="rgb(var(--color-primary-600))" />
+          <Divider orientation="vertical" className="h-[30px] bg-outline-200" />
+          <ToastTitle size="sm">Creating new form.</ToastTitle>
+        </Toast>
+      ),
     });
 
-    // await formsMutate();
-    await new Promise((res) => setTimeout(res, 3000));
-
-    toast.close(creatingToastId);
+    try {
+      const newForm = await formsMutate();
+      toast.close(creatingToastId);
+      router.push(`/form-builder/${newForm.id}`);
+    } catch {
+      toast.close(creatingToastId);
+      toast.show({
+        placement: "bottom right",
+        duration: 3000,
+        render: ({ id }) => (
+          <Toast
+            nativeID={"toast-" + id}
+            variant="outline"
+            action="error"
+            className="flex-row items-center gap-4 px-5 py-3 shadow-soft-1"
+          >
+            <ToastTitle size="sm">Error creating form</ToastTitle>
+          </Toast>
+        ),
+      });
+    }
   };
 
   return (
     <View className="flex-1">
       <HStack className="items-center justify-between border-b border-typography-100 px-5 py-2">
         <Heading>Forms</Heading>
-        <Button variant="outline" size="xs" className="place-self-end" onPress={newFormHandler}>
+        <Button
+          variant="outline"
+          size="xs"
+          className="place-self-end"
+          onPress={newFormHandler}
+          disabled={newFormPending}
+        >
           <ButtonText>New form</ButtonText>
         </Button>
       </HStack>
