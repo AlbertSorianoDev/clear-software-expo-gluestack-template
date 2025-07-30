@@ -1,7 +1,7 @@
 import { Form } from "../types/form";
 
 import axios from "@/config/axios-instance";
-import { camelCaseParser } from "@/screens/upload-images/utils/camel-case-parser";
+import { camelCaseParser } from "@/data/utils/camel-case-parser";
 
 export const getFormsId = async (id: number) => {
   try {

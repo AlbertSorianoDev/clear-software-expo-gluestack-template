@@ -42,7 +42,7 @@ export default function FormBuilderPage() {
     try {
       const newForm = await formsMutate();
       toast.close(creatingToastId);
-      router.push(`/form-builder/${newForm.id}`);
+      router.push(`/form-builder/edit/${newForm.id}`);
     } catch {
       toast.close(creatingToastId);
       toast.show({
