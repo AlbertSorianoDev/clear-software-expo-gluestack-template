@@ -1,5 +1,5 @@
 import { router } from "expo-router";
-import { House, Rss } from "lucide-react-native";
+import { FileText, House, Rss } from "lucide-react-native";
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
 
@@ -33,6 +33,16 @@ const initialState = {
       icon: Rss,
       tabTitle: "News Feed",
       route: "/news-feed",
+    },
+    {
+      icon: FileText,
+      tabTitle: "Form Builder",
+      route: "/form-builder",
+    },
+    {
+      icon: FileText,
+      tabTitle: "Form Builder",
+      route: "/form-builder/1",
     },
     // {
     //   icon: User,
