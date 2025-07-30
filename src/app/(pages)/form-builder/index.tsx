@@ -7,11 +7,10 @@ import { PublishedTab } from "@/screens/(pages)/form-builder/components/publishe
 import Tabs from "@/screens/(pages)/form-builder/components/tab-component";
 import { Box } from "@/screens/components/ui/box";
 import { Button, ButtonText } from "@/screens/components/ui/button";
-import { Divider } from "@/screens/components/ui/divider";
 import { Heading } from "@/screens/components/ui/heading";
 import { HStack } from "@/screens/components/ui/hstack";
-import { Spinner } from "@/screens/components/ui/spinner";
-import { Toast, ToastTitle, useToast } from "@/screens/components/ui/toast";
+import { useErrorToast } from "@/screens/hooks/use-error-toast";
+import { useLoadingToast } from "@/screens/hooks/use-loading-toast";
 
 const tabs: { tabIndex: number; tabName: string; tabPanel: ReactNode }[] = [
   { tabIndex: 0, tabName: "Published", tabPanel: <PublishedTab published /> },
@@ -19,46 +18,20 @@ const tabs: { tabIndex: number; tabName: string; tabPanel: ReactNode }[] = [
 ];
 
 export default function FormBuilderPage() {
-  const { mutateAsync: formsMutate, isPending: newFormPending } = usePostForms();
-  const toast = useToast();
+  const { mutateAsync: formsMutate, isPending: newFormIsPending } = usePostForms();
+  const { showLoadingToast, closeLoadingToast } = useLoadingToast();
+  const { showErrorToast } = useErrorToast();
 
   const newFormHandler = async () => {
-    const creatingToastId = toast.show({
-      placement: "bottom right",
-      duration: null,
-      render: ({ id }) => (
-        <Toast
-          nativeID={"toast-" + id}
-          variant="outline"
-          className="flex-row items-center gap-4 px-5 py-3 shadow-soft-1"
-        >
-          <Spinner size="small" color="rgb(var(--color-primary-600))" />
-          <Divider orientation="vertical" className="h-[30px] bg-outline-200" />
-          <ToastTitle size="sm">Creating new form.</ToastTitle>
-        </Toast>
-      ),
-    });
+    showLoadingToast({ message: "Creating new form." });
 
     try {
       const newForm = await formsMutate();
-      toast.close(creatingToastId);
+      closeLoadingToast();
       router.push(`/form-builder/edit/${newForm.id}`);
     } catch {
-      toast.close(creatingToastId);
-      toast.show({
-        placement: "bottom right",
-        duration: 3000,
-        render: ({ id }) => (
-          <Toast
-            nativeID={"toast-" + id}
-            variant="outline"
-            action="error"
-            className="flex-row items-center gap-4 px-5 py-3 shadow-soft-1"
-          >
-            <ToastTitle size="sm">Error creating form</ToastTitle>
-          </Toast>
-        ),
-      });
+      closeLoadingToast();
+      showErrorToast({ message: "Error creating from." });
     }
   };
 
@@ -71,7 +44,7 @@ export default function FormBuilderPage() {
           size="xs"
           className="place-self-end"
           onPress={newFormHandler}
-          disabled={newFormPending}
+          disabled={newFormIsPending}
         >
           <ButtonText>New form</ButtonText>
         </Button>
