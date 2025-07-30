@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { KeyboardAwareScrollView } from "react-native-keyboard-controller";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 import { RenderQuestion } from "@/screens/(pages)/form-builder/(form)/components/render-question";
 import { FormSectionWrapper } from "@/screens/(pages)/form-builder/edit/components/form-section-wrapper";
@@ -7,7 +7,6 @@ import { FormPrincipalInfo } from "@/screens/(pages)/form-builder/edit/component
 import { useEditFormBuilderPageStore } from "@/screens/(pages)/form-builder/edit/store/edit-form-builder-page-store";
 import { Box } from "@/screens/components/ui/box";
 import { Heading } from "@/screens/components/ui/heading";
-import { ScrollView } from "@/screens/components/ui/scroll-view";
 import { Text } from "@/screens/components/ui/text";
 import { VStack } from "@/screens/components/ui/vstack";
 import { FormInputTypeEnum } from "@/screens/features/types/form-input-type";
@@ -93,28 +92,30 @@ export default function FormAnswerPage() {
   }, [setSelectedItemId]);
 
   return (
-    <KeyboardAwareScrollView bottomOffset={20} style={{ flex: 1 }}>
-      <ScrollView>
-        <Box className="flex-1 items-center justify-center bg-background-100">
-          <VStack className="w-full max-w-screen-md py-4" space="xl">
-            <FormPrincipalInfo title={form.title} description={form.description} />
+    <KeyboardAwareScrollView
+      style={{ flex: 1 }}
+      keyboardShouldPersistTaps="handled"
+      enableOnAndroid={true}
+    >
+      <Box className="flex-1 items-center justify-center bg-background-100">
+        <VStack className="w-full max-w-screen-md py-4" space="xl">
+          <FormPrincipalInfo title={form.title} description={form.description} />
 
-            <VStack className="w-full max-w-screen-md" space="md">
-              {questions.map((question, index) => (
-                <FormSectionWrapper key={index} id={index}>
-                  {() => (
-                    <VStack space="sm" className="p-5">
-                      <Heading size="md">{question.title}</Heading>
-                      <Text size="md">{question.description}</Text>
-                      <RenderQuestion type={question.type} />
-                    </VStack>
-                  )}
-                </FormSectionWrapper>
-              ))}
-            </VStack>
+          <VStack className="w-full max-w-screen-md" space="md">
+            {questions.map((question, index) => (
+              <FormSectionWrapper key={index} id={index}>
+                {() => (
+                  <VStack space="sm" className="p-5">
+                    <Heading size="md">{question.title}</Heading>
+                    <Text size="md">{question.description}</Text>
+                    <RenderQuestion type={question.type} />
+                  </VStack>
+                )}
+              </FormSectionWrapper>
+            ))}
           </VStack>
-        </Box>
-      </ScrollView>
+        </VStack>
+      </Box>
     </KeyboardAwareScrollView>
   );
 }

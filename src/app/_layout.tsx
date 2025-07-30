@@ -5,7 +5,6 @@ import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
-import { KeyboardProvider } from "react-native-keyboard-controller";
 
 import { GluestackUIProvider } from "@/screens/components/ui/gluestack-ui-provider";
 
@@ -26,11 +25,7 @@ export default function RootLayout() {
     return null;
   }
 
-  return (
-    <KeyboardProvider>
-      <LayoutNav />
-    </KeyboardProvider>
-  );
+  return <LayoutNav />;
 }
 
 function LayoutNav() {
