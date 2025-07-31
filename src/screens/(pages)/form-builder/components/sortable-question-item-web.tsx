@@ -6,12 +6,12 @@ import { RenderEditQuestion } from "../edit/components/edit-form/edit-questions/
 import { FormSectionWrapper } from "../edit/components/form-section-wrapper";
 import { RenderPreviewQuestion } from "../edit/components/form-view/render-question-preview";
 
-import { QuestionModel } from "@/screens/(pages)/form-builder/components/form-list-view";
+import { FormField } from "@/data/forms/types/form-field";
 import { Heading } from "@/screens/components/ui/heading";
 import { Text } from "@/screens/components/ui/text";
 import { VStack } from "@/screens/components/ui/vstack";
 
-export function SortableQuestionItem({ question }: { question: QuestionModel }) {
+export function SortableQuestionItem({ question }: { question: FormField }) {
   const { attributes, listeners, setNodeRef, transform } = useSortable({
     id: question.id.toString(),
   });
@@ -35,16 +35,16 @@ export function SortableQuestionItem({ question }: { question: QuestionModel }) 
           isSelected ? (
             <EditQuestionWrapper
               title={question.title}
-              description={question.description}
-              type={question.type}
+              description={question.description ?? ""}
+              type={question.inputType}
             >
-              <RenderEditQuestion type={question.type} />
+              <RenderEditQuestion type={question.inputType} />
             </EditQuestionWrapper>
           ) : (
             <VStack space="sm" className="p-5">
               <Heading size="md">{question.title}</Heading>
               <Text size="md">{question.description}</Text>
-              <RenderPreviewQuestion type={question.type} />
+              <RenderPreviewQuestion type={question.inputType} />
             </VStack>
           )
         }

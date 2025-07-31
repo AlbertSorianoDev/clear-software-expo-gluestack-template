@@ -30,7 +30,7 @@ export const PublishedTab = ({ published = false }: { published?: boolean }) => 
         formsFiltered?.map((form, index) => (
           <FormCard
             key={index}
-            id={form.id.toString()}
+            id={form.id}
             title={form.title}
             description={form.description}
             isPublished={form.isPublished}

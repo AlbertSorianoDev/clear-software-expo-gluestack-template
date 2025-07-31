@@ -1,3 +1,5 @@
+import { InputTypeEnum } from "./enums";
+
 export interface FormField {
   id: number;
   createdAt: number;
@@ -8,4 +10,9 @@ export interface FormField {
   order: number;
   formId: number;
   options?: FieldOption[];
+}
+
+export interface FormFieldCreate {
+  inputType: InputTypeEnum;
+  afterFieldOrder: number;
 }

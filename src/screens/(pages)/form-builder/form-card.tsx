@@ -1,3 +1,4 @@
+import { router } from "expo-router";
 import { FileInput, Pencil, Trash2 } from "lucide-react-native";
 import { useState } from "react";
 
@@ -17,13 +18,18 @@ export const FormCard = ({
   isActive = false,
   isPublished = false,
 }: {
-  id: string;
+  id: number;
   title: string;
   description: string;
   isActive?: boolean;
   isPublished?: boolean;
 }) => {
   const [active, setActive] = useState(isActive);
+
+  const handleEditForm = () => {
+    router.push(`/form-builder/edit/${id}`);
+  };
+
   return (
     <Card variant="elevated" className="h-fit border border-typography-100 p-4">
       <VStack space="md">
@@ -53,7 +59,7 @@ export const FormCard = ({
           </VStack>
           {!isPublished && (
             <VStack className="items-end" space="xs">
-              <Button variant="outline" size="xs" className="w-fit">
+              <Button variant="outline" size="xs" className="w-fit" onPress={handleEditForm}>
                 <ButtonIcon as={Pencil} />
               </Button>
               <Button variant="outline" size="xs" className="w-fit">

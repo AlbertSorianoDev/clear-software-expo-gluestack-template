@@ -22,7 +22,7 @@ export default function FormBuilderPage() {
   const { showLoadingToast, closeLoadingToast } = useLoadingToast();
   const { showErrorToast } = useErrorToast();
 
-  const newFormHandler = async () => {
+  const handleNewForm = async () => {
     showLoadingToast({ message: "Creating new form." });
 
     try {
@@ -43,7 +43,7 @@ export default function FormBuilderPage() {
           variant="outline"
           size="xs"
           className="place-self-end"
-          onPress={newFormHandler}
+          onPress={handleNewForm}
           disabled={newFormIsPending}
         >
           <ButtonText>New form</ButtonText>

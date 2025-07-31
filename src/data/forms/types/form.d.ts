@@ -9,3 +9,8 @@ export interface Form {
   isPublished: boolean;
   fields?: FormField[];
 }
+
+export interface FormUpdate {
+  tittle: string;
+  description: string;
+}
