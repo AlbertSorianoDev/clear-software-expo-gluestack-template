@@ -46,7 +46,7 @@ export default function EditFormPage() {
     try {
       await updateFormMutate({
         id: form.id,
-        body: { tittle: "hola", description: "hola" },
+        body: { title: "hola", description: "hola" },
       });
       closeLoadingToast();
     } catch {
@@ -63,7 +63,7 @@ export default function EditFormPage() {
     try {
       await updateFormMutate({
         id: form.id,
-        body: { tittle: "hola", description: "hola" },
+        body: { title: "hola", description: "hola" },
       });
       closeLoadingToast();
     } catch {
