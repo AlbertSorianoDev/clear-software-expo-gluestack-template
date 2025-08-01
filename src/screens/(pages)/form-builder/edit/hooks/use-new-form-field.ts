@@ -21,15 +21,18 @@ export const useNewFormField = (form: Form | undefined) => {
 
       showLoadingToast({ message: "Adding form field." });
 
-      setSelectedItemId(null);
-
       try {
         const selectedItemId = useEditFormBuilderPageStore.getState().selectedItemId;
+        const field = useEditFormBuilderPageStore.getState().field;
+
         let orderAfter: number | undefined = undefined;
 
-        if (selectedItemId != -1 && selectedItemId != null) {
-          const field = useEditFormBuilderPageStore.getState().field;
+        console.log("selectedItemId", selectedItemId);
+        console.log("field", field);
+
+        if (selectedItemId !== -1 && selectedItemId !== undefined) {
           orderAfter = field.order;
+          console.log("orderAfter", orderAfter);
         }
 
         await addNewFieldMutate({
@@ -45,6 +48,8 @@ export const useNewFormField = (form: Form | undefined) => {
         closeLoadingToast();
         showErrorToast({ message: "Error adding form field." });
       }
+
+      setSelectedItemId(null);
     },
     [
       form,

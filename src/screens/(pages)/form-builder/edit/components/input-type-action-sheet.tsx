@@ -11,6 +11,7 @@ import {
   ActionsheetItem,
   ActionsheetItemText,
 } from "@/screens/components/ui/actionsheet";
+import { formatSnakeCase } from "@/screens/utils/format-snake-case";
 
 export const InputTypeOptions = Object.entries(InputTypeEnum).map(([value, label]) => ({
   value,
@@ -46,10 +47,10 @@ export const InputTypeActionSheet = ({
             key={type.value}
             onPress={() => {
               handleClose();
-              void onSelect(type.label);
+              onSelect(type.label);
             }}
           >
-            <ActionsheetItemText>{type.label}</ActionsheetItemText>
+            <ActionsheetItemText>{formatSnakeCase(type.label)}</ActionsheetItemText>
           </ActionsheetItem>
         ))}
       </ActionsheetContent>

@@ -9,9 +9,21 @@ import { EditSingleChoiceQuestion } from "./edit-single-choice";
 import { EditTimeQuestion } from "./edit-time";
 
 import { InputTypeEnum } from "@/data/forms/types/enums";
+import { FieldOption } from "@/data/forms/types/field-option";
+import { FileField, SliderField } from "@/data/forms/types/form-field";
 import { Text } from "@/screens/components/ui/text";
 
-export const RenderEditQuestion = ({ type }: { type: InputTypeEnum }) => {
+export const RenderEditQuestion = ({
+  type,
+  options,
+  slider,
+  file,
+}: {
+  type: InputTypeEnum;
+  options: FieldOption[];
+  slider: SliderField;
+  file: FileField;
+}) => {
   switch (type) {
     case InputTypeEnum.shortText:
       return <EditShortTextQuestion />;
@@ -32,7 +44,7 @@ export const RenderEditQuestion = ({ type }: { type: InputTypeEnum }) => {
       return <EditLinearScaleQuestion />;
 
     case InputTypeEnum.fileUpload:
-      return <EditFileUploadQuestion />;
+      return <EditFileUploadQuestion fileType={file.fileType} filesLimit={file.filesLimit} />;
 
     case InputTypeEnum.date:
       return <EditDateQuestion />;

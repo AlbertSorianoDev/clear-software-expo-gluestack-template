@@ -7,7 +7,7 @@ export const getForms = async () => {
   try {
     const response = await axios.get("/forms");
 
-    if (response.status != 200) {
+    if (response.status !== 200) {
       throw Error("Error fetching forms");
     }
 

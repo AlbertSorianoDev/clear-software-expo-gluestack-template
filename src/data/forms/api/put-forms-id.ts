@@ -7,7 +7,7 @@ export const putFormsId = async (id: number, body: FormUpdate) => {
   try {
     const response = await axios.put(`/forms/${id}`, body);
 
-    if (response.status != 200) {
+    if (response.status !== 200) {
       throw Error("Error updating form");
     }
 
