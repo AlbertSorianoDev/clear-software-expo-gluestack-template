@@ -17,7 +17,11 @@ export const InputTypeOptions = Object.entries(InputTypeEnum).map(([value, label
   label,
 }));
 
-export const InputTypeActionSheet = () => {
+export const InputTypeActionSheet = ({
+  onSelect,
+}: {
+  onSelect: (value: InputTypeEnum) => void;
+}) => {
   const showInputTypeActionSheet = useEditFormBuilderPageStore(
     (state) => state.showInputTypeActionSheet,
   );
@@ -28,6 +32,7 @@ export const InputTypeActionSheet = () => {
   const handleClose = () => {
     setShowInputTypeActionSheet(false);
   };
+
   return (
     <Actionsheet isOpen={showInputTypeActionSheet} onClose={handleClose}>
       <ActionsheetBackdrop />
@@ -37,7 +42,13 @@ export const InputTypeActionSheet = () => {
         </ActionsheetDragIndicatorWrapper>
 
         {InputTypeOptions.map((type) => (
-          <ActionsheetItem key={type.value} onPress={handleClose}>
+          <ActionsheetItem
+            key={type.value}
+            onPress={() => {
+              handleClose();
+              void onSelect(type.label);
+            }}
+          >
             <ActionsheetItemText>{type.label}</ActionsheetItemText>
           </ActionsheetItem>
         ))}

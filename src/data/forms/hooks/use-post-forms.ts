@@ -10,7 +10,7 @@ export const usePostForms = () => {
     mutationFn: () => postForms(),
     onSuccess: async (data: Form) => {
       queryClient.setQueryData(["forms", data.id], data);
-      await queryClient.invalidateQueries({ queryKey: ["forms"] });
+      await queryClient.invalidateQueries({ queryKey: ["forms"], exact: true });
     },
   });
 };

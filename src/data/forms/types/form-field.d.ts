@@ -14,5 +14,5 @@ export interface FormField {
 
 export interface FormFieldCreate {
   inputType: InputTypeEnum;
-  afterFieldOrder: number;
+  afterFieldOrder?: number;
 }
