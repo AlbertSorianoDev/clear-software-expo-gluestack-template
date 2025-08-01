@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+import { useQuestionContext } from "../hooks/use-question-context";
 
 import { Box } from "@/screens/components/ui/box";
 import { CircleIcon } from "@/screens/components/ui/icon";
@@ -26,8 +28,17 @@ const options = Array.from(
   (_, i) => scale.min.value + i,
 );
 
-export const LinearScaleQuestion = () => {
-  const [value, setValue] = useState<string>("-1");
+export const LinearScaleQuestion = ({ id }: { id: number }) => {
+  const { submission, isLoading } = useQuestionContext(id);
+  const [value, setValue] = useState("");
+
+  useEffect(() => {
+    if (submission?.numericResponse?.number) {
+      setValue(submission.numericResponse.number.toString());
+    }
+  }, [submission?.numericResponse]);
+
+  if (isLoading) return <Text>Loading...</Text>;
 
   return (
     <Box className="flex flex-col gap-2 md:flex-row md:items-end">

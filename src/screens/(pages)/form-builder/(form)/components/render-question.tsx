@@ -3,41 +3,44 @@ import { DropdownQuestion } from "./dropdown-question";
 import { LinearScaleQuestion } from "./linear-scale-question";
 import { MultipleChoiceQuestion } from "./multiple-choice-question";
 import { SingleChoiceQuestion } from "./single-choice-question";
-import { ShortTextQuestion } from "./text-question";
+import { TextQuestion } from "./text-question";
 import { TimeQuestion } from "./time-question";
 import { UploadFileQuestion } from "./upload-file-question";
 
 import { InputTypeEnum } from "@/data/forms/types/enums";
 import { Text } from "@/screens/components/ui/text";
 
-export const RenderQuestion = ({ type }: { type: InputTypeEnum }) => {
+export const RenderQuestion = ({ id, type }: { id: number; type: InputTypeEnum }) => {
   switch (type) {
     case InputTypeEnum.shortText:
-      return <ShortTextQuestion type={type} />;
+      return <TextQuestion id={id} type={type} />;
 
     case InputTypeEnum.longText:
-      return <ShortTextQuestion type={type} />;
+      return <TextQuestion id={id} type={type} />;
 
     case InputTypeEnum.singleChoice:
-      return <SingleChoiceQuestion />;
+      return <SingleChoiceQuestion id={id} />;
 
     case InputTypeEnum.multipleChoice:
-      return <MultipleChoiceQuestion />;
+      return <MultipleChoiceQuestion id={id} />;
 
     case InputTypeEnum.linearScale:
-      return <LinearScaleQuestion />;
+      return <LinearScaleQuestion id={id} />;
+
+    case InputTypeEnum.slider:
+      return <Text className="text-red-500">Implement slider</Text>;
 
     case InputTypeEnum.dropdown:
-      return <DropdownQuestion />;
+      return <DropdownQuestion id={id} />;
 
     case InputTypeEnum.fileUpload:
-      return <UploadFileQuestion />;
+      return <UploadFileQuestion id={id} />;
 
     case InputTypeEnum.date:
-      return <DateQuestion />;
+      return <DateQuestion id={id} />;
 
     case InputTypeEnum.time:
-      return <TimeQuestion />;
+      return <TimeQuestion id={id} />;
 
     default:
       return <Text className="text-red-500">Unknown form input type</Text>;

@@ -1,42 +1,69 @@
 import { format } from "@formkit/tempo";
 import DateTimePicker, { DateTimePickerEvent } from "@react-native-community/datetimepicker";
+import clsx from "clsx";
 import { Clock } from "lucide-react-native";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Platform } from "react-native";
+
+import { useQuestionContext } from "../hooks/use-question-context";
 
 import { Input, InputField, InputIcon } from "@/screens/components/ui/input";
 import { Pressable } from "@/screens/components/ui/pressable";
 
-export const TimeQuestion = () => {
-  const [time, setTime] = useState(new Date());
+export const TimeQuestion = ({ id }: { id: number }) => {
+  const { submission, isLoading } = useQuestionContext(id);
+
+  // time puede ser undefined si no hay respuesta
+  const [time, setTime] = useState<Date | undefined>(undefined);
   const [showTimePicker, setShowTimePicker] = useState(false);
 
-  const onChangeNative = (event: DateTimePickerEvent, selectedTime?: Date) => {
+  useEffect(() => {
+    if (!isLoading && submission?.numericResponse?.number) {
+      const dateFromNumber = new Date(submission.numericResponse.number);
+      if (!isNaN(dateFromNumber.getTime())) {
+        setTime(dateFromNumber);
+      } else {
+        setTime(undefined);
+      }
+    } else if (!submission?.numericResponse?.number) {
+      setTime(undefined);
+    }
+  }, [isLoading, submission]);
+
+  const onChangeNative = (_event: DateTimePickerEvent, selectedTime?: Date) => {
     setShowTimePicker(false);
     if (selectedTime) setTime(selectedTime);
   };
 
   const onChangeWeb = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const [hour, minute] = event.target.value.split(":").map(Number);
-    const updatedTime = new Date(time);
+    const selectedTime = event.target.value;
+    if (!selectedTime) {
+      setTime(undefined);
+      return;
+    }
+    const [hour, minute] = selectedTime.split(":").map(Number);
+    const updatedTime = time ? new Date(time) : new Date();
     updatedTime.setHours(hour);
     updatedTime.setMinutes(minute);
     updatedTime.setSeconds(0);
+    updatedTime.setMilliseconds(0);
     setTime(updatedTime);
   };
 
-  const formattedTimeValue = `${String(time.getHours()).padStart(2, "0")}:${String(
-    time.getMinutes(),
-  ).padStart(2, "0")}`;
+  const formattedTimeValue = time ? format(time.toISOString(), "HH:mm", "en") : "";
+
+  if (isLoading) return <></>;
 
   if (Platform.OS === "web") {
     return (
       <div>
         <input
           type="time"
-          id="appointment"
-          name="appointment"
-          className="px-2 text-typography-950"
+          className={clsx(
+            "px-2",
+            { "text-typography-950": formattedTimeValue != "" },
+            { "text-typography-600": formattedTimeValue == "" },
+          )}
           value={formattedTimeValue}
           onChange={onChangeWeb}
         />
@@ -51,14 +78,14 @@ export const TimeQuestion = () => {
           placeholder="Hour:Minute"
           className="w-fit"
           readOnly
-          value={format(time.toISOString(), "HH:mm a", "en")}
+          value={time ? format(time.toISOString(), "hh:mm a", "en") : ""}
         />
         <Pressable onPress={() => setShowTimePicker(true)} className="pr-4">
           <InputIcon as={Clock} />
         </Pressable>
       </Input>
 
-      {showTimePicker && (
+      {showTimePicker && time && (
         <DateTimePicker
           testID="timeTimePicker"
           value={time}

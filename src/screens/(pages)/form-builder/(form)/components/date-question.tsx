@@ -1,42 +1,65 @@
 import { format } from "@formkit/tempo";
 import DateTimePicker, { DateTimePickerEvent } from "@react-native-community/datetimepicker";
+import clsx from "clsx";
 import { CalendarDays } from "lucide-react-native";
-import { useState } from "react";
-import { Platform } from "react-native";
+import { useEffect, useState } from "react";
+import { Platform, Text } from "react-native";
+
+import { useQuestionContext } from "../hooks/use-question-context";
 
 import { Input, InputField, InputIcon } from "@/screens/components/ui/input";
 import { Pressable } from "@/screens/components/ui/pressable";
 
-export const DateQuestion = () => {
-  const [date, setDate] = useState(new Date());
+export const DateQuestion = ({ id }: { id: number }) => {
+  const { submission, isLoading } = useQuestionContext(id);
+
+  const [date, setDate] = useState<Date | undefined>(
+    submission?.dateResponse?.date ? new Date(submission.dateResponse.date) : undefined,
+  );
   const [showDatePicker, setShowDatePicker] = useState(false);
 
-  const onChangeNative = (event: DateTimePickerEvent, selectedDate?: Date) => {
+  useEffect(() => {
+    if (submission?.dateResponse?.date) {
+      setDate(new Date(submission.dateResponse.date));
+    } else {
+      setDate(undefined);
+    }
+  }, [submission?.dateResponse?.date]);
+
+  const onChangeNative = (_event: DateTimePickerEvent, selectedDate?: Date) => {
     setShowDatePicker(false);
-    if (selectedDate) setDate(selectedDate);
+    if (selectedDate) {
+      setDate(selectedDate);
+    }
   };
 
   const onChangeWeb = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const selectedDate = event.target.value; // formato: yyyy-mm-dd
+    const selectedDate = event.target.value;
+    if (!selectedDate) {
+      setDate(undefined);
+      return;
+    }
     const [year, month, day] = selectedDate.split("-").map(Number);
-    const updatedDate = new Date(date);
-    updatedDate.setFullYear(year);
-    updatedDate.setMonth(month - 1);
-    updatedDate.setDate(day);
-    updatedDate.setHours(0, 0, 0, 0); // resetear hora para evitar errores visuales
+    const updatedDate = new Date();
+    updatedDate.setFullYear(year, month - 1, day);
+    updatedDate.setHours(0, 0, 0, 0);
     setDate(updatedDate);
   };
 
-  const formattedDateValue = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
+  const formattedDateValue = date ? format(date.toISOString(), "YYYY-MM-DD", "en") : "";
+
+  if (isLoading) return <Text>Loading...</Text>;
 
   if (Platform.OS === "web") {
     return (
       <div>
         <input
           type="date"
-          id="appointment"
-          name="appointment"
-          className="px-2 text-typography-950"
+          className={clsx(
+            "px-2",
+            { "text-typography-950": formattedDateValue != "" },
+            { "text-typography-600": formattedDateValue == "" },
+          )}
           value={formattedDateValue}
           onChange={onChangeWeb}
         />
@@ -51,7 +74,7 @@ export const DateQuestion = () => {
           placeholder="Month, day, year"
           className="w-fit"
           readOnly
-          value={format(date.toISOString(), "MMMM D, YYYY", "en")}
+          value={formattedDateValue}
         />
         <Pressable onPress={() => setShowDatePicker(true)} className="pr-4">
           <InputIcon as={CalendarDays} />
@@ -61,7 +84,7 @@ export const DateQuestion = () => {
       {showDatePicker && (
         <DateTimePicker
           testID="dateTimePicker"
-          value={date}
+          value={date ?? new Date()}
           mode="date"
           is24Hour={true}
           onChange={onChangeNative}
