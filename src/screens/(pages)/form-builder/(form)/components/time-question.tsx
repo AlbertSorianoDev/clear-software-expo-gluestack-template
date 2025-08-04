@@ -5,37 +5,60 @@ import { Clock } from "lucide-react-native";
 import { useEffect, useState } from "react";
 import { Platform } from "react-native";
 
+import { useParsedSearchParams } from "../hooks/use-parsed-submission-page-params";
 import { useQuestionContext } from "../hooks/use-question-context";
 
+import { useGetFormSubmission } from "@/data/forms/hooks/use-get-form-submission";
+import { usePostFormFieldResponse } from "@/data/forms/hooks/use-post-form-field-response";
+import { useUpdateFormFieldResponse } from "@/data/forms/hooks/use-update-form-field-response";
 import { Input, InputField, InputIcon } from "@/screens/components/ui/input";
 import { Pressable } from "@/screens/components/ui/pressable";
 
 export const TimeQuestion = ({ id }: { id: number }) => {
-  const { submission, isLoading } = useQuestionContext(id);
+  const { submissionId } = useParsedSearchParams();
 
-  // time puede ser undefined si no hay respuesta
+  const { data: formSubmission } = useGetFormSubmission(submissionId ?? 0);
+  const { fieldSubmission, isLoading } = useQuestionContext(id);
+  const { mutateAsync: postFormFieldResponse } = usePostFormFieldResponse();
+  const { mutateAsync: updateFormFieldResponse } = useUpdateFormFieldResponse();
+
   const [time, setTime] = useState<Date | undefined>(undefined);
   const [showTimePicker, setShowTimePicker] = useState(false);
+  const [optionKey, setOptionKey] = useState(0);
 
   useEffect(() => {
-    if (!isLoading && submission?.numericResponse?.number) {
-      const dateFromNumber = new Date(submission.numericResponse.number);
+    if (fieldSubmission?.numericResponse) setOptionKey((prev) => prev + 1);
+    if (fieldSubmission?.numericResponse?.number) {
+      const dateFromNumber = new Date(fieldSubmission.numericResponse.number);
       if (!isNaN(dateFromNumber.getTime())) {
         setTime(dateFromNumber);
       } else {
         setTime(undefined);
       }
-    } else if (!submission?.numericResponse?.number) {
+    } else if (!fieldSubmission?.numericResponse?.number) {
       setTime(undefined);
     }
-  }, [isLoading, submission]);
+  }, [fieldSubmission?.numericResponse]);
 
-  const onChangeNative = (_event: DateTimePickerEvent, selectedTime?: Date) => {
+  const onChangeNative = async (_event: DateTimePickerEvent, selectedTime?: Date) => {
     setShowTimePicker(false);
-    if (selectedTime) setTime(selectedTime);
+    if (selectedTime) {
+      setTime(selectedTime);
+      if (!fieldSubmission?.numericResponse) {
+        await postFormFieldResponse({
+          formSubmissionId: submissionId ?? 0,
+          body: { formFieldId: id, numericAnswer: selectedTime?.getTime() },
+        });
+      } else {
+        await updateFormFieldResponse({
+          fieldResponseId: fieldSubmission.id ?? 0,
+          body: { numericAnswer: selectedTime?.getTime() },
+        });
+      }
+    }
   };
 
-  const onChangeWeb = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const onChangeWeb = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const selectedTime = event.target.value;
     if (!selectedTime) {
       setTime(undefined);
@@ -48,6 +71,17 @@ export const TimeQuestion = ({ id }: { id: number }) => {
     updatedTime.setSeconds(0);
     updatedTime.setMilliseconds(0);
     setTime(updatedTime);
+    if (!fieldSubmission?.numericResponse) {
+      await postFormFieldResponse({
+        formSubmissionId: submissionId ?? 0,
+        body: { formFieldId: id, numericAnswer: updatedTime?.getTime() },
+      });
+    } else {
+      await updateFormFieldResponse({
+        fieldResponseId: fieldSubmission.id ?? 0,
+        body: { numericAnswer: updatedTime?.getTime() },
+      });
+    }
   };
 
   const formattedTimeValue = time ? format(time.toISOString(), "HH:mm", "en") : "";
@@ -58,6 +92,7 @@ export const TimeQuestion = ({ id }: { id: number }) => {
     return (
       <div>
         <input
+          key={optionKey}
           type="time"
           className={clsx(
             "px-2",
@@ -66,6 +101,7 @@ export const TimeQuestion = ({ id }: { id: number }) => {
           )}
           value={formattedTimeValue}
           onChange={onChangeWeb}
+          readOnly={formSubmission?.isSubmitted}
         />
       </div>
     );
@@ -73,7 +109,7 @@ export const TimeQuestion = ({ id }: { id: number }) => {
 
   return (
     <>
-      <Input className="w-fit">
+      <Input className="w-fit" key={optionKey}>
         <InputField
           placeholder="Hour:Minute"
           className="w-fit"
@@ -85,7 +121,7 @@ export const TimeQuestion = ({ id }: { id: number }) => {
         </Pressable>
       </Input>
 
-      {showTimePicker && time && (
+      {showTimePicker && time && !formSubmission?.isSubmitted && (
         <DateTimePicker
           testID="timeTimePicker"
           value={time}

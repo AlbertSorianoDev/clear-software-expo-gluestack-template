@@ -8,11 +8,11 @@ import { useGetFormsId } from "@/data/forms/hooks/use-get-forms-id";
 export const useQuestionContext = (fieldId: number) => {
   const { formId, submissionId } = useParsedSearchParams();
   const { data: formData } = useGetFormsId(formId ?? 0);
-  const { submission, isLoading } = useSubmissionByField(fieldId, submissionId);
+  const { fieldSubmission, isLoading } = useSubmissionByField(fieldId, submissionId);
 
   const options = useMemo(() => {
     return formData?.fields?.find((f) => f.id === fieldId)?.options ?? [];
   }, [formData, fieldId]);
 
-  return { options, submission, isLoading };
+  return { options, fieldSubmission, isLoading };
 };

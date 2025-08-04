@@ -1,8 +1,12 @@
 import { useEffect, useState } from "react";
 
+import { useParsedSearchParams } from "../hooks/use-parsed-submission-page-params";
 import { useQuestionContext } from "../hooks/use-question-context";
 import { findSelectInitialLabel } from "../utils/find-select-initial-label";
 
+import { useGetFormSubmission } from "@/data/forms/hooks/use-get-form-submission";
+import { usePostFormFieldResponse } from "@/data/forms/hooks/use-post-form-field-response";
+import { useUpdateFormFieldResponse } from "@/data/forms/hooks/use-update-form-field-response";
 import { ChevronDownIcon } from "@/screens/components/ui/icon";
 import {
   Select,
@@ -20,17 +24,25 @@ import { Text } from "@/screens/components/ui/text";
 import { VStack } from "@/screens/components/ui/vstack";
 
 export const DropdownQuestion = ({ id }: { id: number }) => {
-  const { submission, options, isLoading } = useQuestionContext(id);
-  const [value, setValue] = useState("");
+  const { submissionId } = useParsedSearchParams();
+
+  const { data: formSubmission } = useGetFormSubmission(submissionId ?? 0);
+  const { fieldSubmission, options, isLoading } = useQuestionContext(id);
+  const { mutateAsync: postFormFieldResponse } = usePostFormFieldResponse();
+  const { mutateAsync: updateFormFieldResponse } = useUpdateFormFieldResponse();
+
+  const [dropdownValue, setDropdownValue] = useState("");
+  const [optionKey, setOptionKey] = useState(0);
 
   useEffect(() => {
-    if (submission?.optionResponse?.fieldOptionIds.length) {
-      setValue(submission.optionResponse.fieldOptionIds[0].toString());
+    if (fieldSubmission?.optionResponse) setOptionKey((prev) => prev + 1);
+    if (fieldSubmission?.optionResponse?.fieldOptionIds.length) {
+      setDropdownValue(fieldSubmission.optionResponse.fieldOptionIds[0].toString());
     }
-  }, [submission?.optionResponse]);
+  }, [fieldSubmission?.optionResponse, options]);
 
   const initialLabel = findSelectInitialLabel(
-    submission?.optionResponse?.fieldOptionIds?.[0],
+    fieldSubmission?.optionResponse?.fieldOptionIds?.[0],
     options,
   );
 
@@ -39,8 +51,24 @@ export const DropdownQuestion = ({ id }: { id: number }) => {
   return (
     <VStack space="md" className="md:max-w-[50%]">
       <Select
-        selectedValue={value}
-        onValueChange={setValue}
+        key={optionKey}
+        selectedValue={dropdownValue}
+        isDisabled={formSubmission?.isSubmitted}
+        onValueChange={async (e) => {
+          setDropdownValue(e);
+
+          if (!fieldSubmission) {
+            await postFormFieldResponse({
+              formSubmissionId: submissionId ?? 0,
+              body: { formFieldId: id, optionsIds: [parseInt(e)] },
+            });
+          } else {
+            await updateFormFieldResponse({
+              fieldResponseId: fieldSubmission.id ?? 0,
+              body: { optionsIds: [parseInt(e)] },
+            });
+          }
+        }}
         {...(initialLabel ? { initialLabel } : {})}
       >
         <SelectTrigger variant="outline" size="md">
