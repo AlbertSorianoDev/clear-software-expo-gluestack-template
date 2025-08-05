@@ -11,6 +11,6 @@ export interface Form {
 }
 
 export interface FormUpdate {
-  tittle: string;
+  title: string;
   description: string;
 }

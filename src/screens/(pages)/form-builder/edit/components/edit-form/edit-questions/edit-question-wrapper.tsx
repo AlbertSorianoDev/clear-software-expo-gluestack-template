@@ -1,5 +1,5 @@
 import { EllipsisVertical, PlusCircle, Trash } from "lucide-react-native";
-import { ReactNode, useState } from "react";
+import { ReactNode, useEffect, useRef } from "react";
 
 import { useEditFormBuilderPageStore } from "../../../store/edit-form-builder-page-store";
 
@@ -14,42 +14,89 @@ import { Pressable } from "@/screens/components/ui/pressable";
 import { Switch } from "@/screens/components/ui/switch";
 import { Text } from "@/screens/components/ui/text";
 import { VStack } from "@/screens/components/ui/vstack";
+import { formatSnakeCase } from "@/screens/utils/format-snake-case";
 
 export const EditQuestionWrapper = ({
+  id,
   title,
   description,
-  type = InputTypeEnum.shortText,
+  type,
+  isRequired,
+  order,
   children,
 }: {
+  id: number;
   title: string;
   description: string;
   type?: InputTypeEnum;
+  isRequired: boolean;
+  order: number;
   children: ReactNode;
 }) => {
   const setShowInputTypeActionSheet = useEditFormBuilderPageStore(
     (state) => state.setShowInputTypeActionSheet,
   );
 
-  const [editTitle, setEditTitle] = useState(title);
-  const [editDescription, setEditDescription] = useState(description);
-  const [editRequired, setEditRequired] = useState(false);
+  const {
+    title: fieldTitle,
+    description: fieldDescription,
+    isRequired: fieldIsRequired,
+  } = useEditFormBuilderPageStore((s) => s.field);
+
+  const {
+    setId: setFieldId,
+    setTitle: setFieldTitle,
+    setDescription: setFieldDescription,
+    setIsRequired: setFieldIsRequired,
+    setOrder: setFieldOrder,
+    reset: resetField,
+  } = useEditFormBuilderPageStore((s) => s.setField);
+
+  const didInitRef = useRef(false);
+
+  useEffect(() => {
+    if (!didInitRef.current) {
+      setFieldId(id);
+      setFieldTitle(title);
+      setFieldDescription(description);
+      setFieldIsRequired(isRequired);
+      setFieldOrder(order);
+      didInitRef.current = true;
+    }
+    return () => {
+      resetField();
+      didInitRef.current = false;
+    };
+  }, [
+    id,
+    title,
+    description,
+    isRequired,
+    order,
+    setFieldTitle,
+    setFieldDescription,
+    setFieldIsRequired,
+    setFieldId,
+    resetField,
+    setFieldOrder,
+  ]);
 
   return (
     <VStack space="sm" className={"bg-white p-5"}>
       <HStack space="sm">
         <Input className="flex-1 border-x-0 border-t-0 bg-typography-50/55 hover:bg-typography-50/70">
-          <InputField placeholder="Tittle" value={editTitle} onChangeText={setEditTitle} />
+          <InputField placeholder="Tittle" value={fieldTitle} onChangeText={setFieldTitle} />
         </Input>
         <Badge action="info" size="sm">
-          <BadgeText>{type}</BadgeText>
+          <BadgeText>{formatSnakeCase(type ?? "")}</BadgeText>
         </Badge>
       </HStack>
 
       <Input className="border-x-0 border-t-0 bg-typography-50/55 hover:bg-typography-50/70">
         <InputField
           placeholder="Description"
-          value={editDescription}
-          onChangeText={setEditDescription}
+          value={fieldDescription}
+          onChangeText={setFieldDescription}
         />
       </Input>
 
@@ -72,8 +119,8 @@ export const EditQuestionWrapper = ({
             Required
           </Text>
           <Switch
-            value={editRequired}
-            onToggle={setEditRequired}
+            value={fieldIsRequired}
+            onToggle={setFieldIsRequired}
             trackColor={{ false: "#e2e2e2", true: "#3dd2cc" }}
             thumbColor={"#3dd2cc"}
             ios_backgroundColor={"#e2e2e2"}

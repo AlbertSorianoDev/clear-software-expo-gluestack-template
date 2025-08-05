@@ -1,22 +1,21 @@
-import { Form } from "../types/form";
-import { FormFieldCreate } from "../types/form-field";
+import { FormField, FormFieldUpdate } from "../types/form-field";
 
 import axios from "@/config/axios-instance";
 import { camelCaseParser } from "@/data/utils/camel-case-parser";
 import { snakeCaseParser } from "@/data/utils/snake-case-parser";
 
-export const postFormsIdFields = async (id: number, body: FormFieldCreate) => {
+export const putFormFieldsId = async (id: number, body: FormFieldUpdate) => {
   try {
-    const response = await axios.post(
-      `/forms/${id}/fields`,
+    const response = await axios.put(
+      `/form-fields/${id}`,
       snakeCaseParser({ ...body } as Record<string, unknown>),
     );
 
     if (response.status !== 200) {
-      throw Error("Error posting form field.");
+      throw Error("Error updating form field.");
     }
 
-    return camelCaseParser<Form>(response.data);
+    return camelCaseParser<FormField>(response.data);
   } catch (e) {
     if (e instanceof Error) {
       throw Error(`Axios error: ${e.message}`);

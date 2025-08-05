@@ -1,4 +1,4 @@
-import { InputTypeEnum } from "./enums";
+import { FileTypeEnum, InputTypeEnum } from "./enums";
 
 export interface FormField {
   id: number;
@@ -10,9 +10,33 @@ export interface FormField {
   order: number;
   formId: number;
   options?: FieldOption[];
+  slider?: SliderField;
+  file?: FileField;
+}
+
+export interface SliderField {
+  min: number;
+  max: number;
+  step: number;
+}
+
+export interface FileField {
+  fileType: FileTypeEnum;
+  filesLimit: number;
 }
 
 export interface FormFieldCreate {
   inputType: InputTypeEnum;
-  afterFieldOrder: number;
+  afterFieldOrder?: number;
+}
+
+export interface FormFieldUpdate {
+  title: string;
+  description?: string;
+  isRequired: boolean;
+  min?: number;
+  max?: number;
+  step?: number;
+  fileType?: FileTypeEnum;
+  filesLimit?: number;
 }
