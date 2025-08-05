@@ -7,7 +7,7 @@ export const postForms = async () => {
   try {
     const response = await axios.post("/forms");
 
-    if (response.status != 200) {
+    if (response.status !== 200) {
       throw Error("Error posting forms");
     }
 

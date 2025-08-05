@@ -4,7 +4,7 @@ export const deleteFormsId = async (id: number) => {
   try {
     const response = await axios.delete(`/forms/${id}`);
 
-    if (response.status != 200) {
+    if (response.status !== 200) {
       throw Error("Error deleting form");
     }
 

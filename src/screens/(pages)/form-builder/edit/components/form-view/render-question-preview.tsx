@@ -1,6 +1,8 @@
 import { CalendarDays, CheckIcon, Circle, Clock } from "lucide-react-native";
 
 import { InputTypeEnum } from "@/data/forms/types/enums";
+import { FieldOption } from "@/data/forms/types/field-option";
+import { FileField, SliderField } from "@/data/forms/types/form-field";
 import { Box } from "@/screens/components/ui/box";
 import { Button, ButtonText } from "@/screens/components/ui/button";
 import {
@@ -22,8 +24,19 @@ import {
 } from "@/screens/components/ui/radio";
 import { Text } from "@/screens/components/ui/text";
 import { VStack } from "@/screens/components/ui/vstack";
+import { formatSnakeCase } from "@/screens/utils/format-snake-case";
 
-export const RenderPreviewQuestion = ({ type }: { type: InputTypeEnum }) => {
+export const RenderPreviewQuestion = ({
+  type,
+  options,
+  slider,
+  file,
+}: {
+  type: InputTypeEnum;
+  options: FieldOption[];
+  slider: SliderField;
+  file: FileField;
+}) => {
   switch (type) {
     case InputTypeEnum.shortText:
       return (
@@ -62,12 +75,7 @@ export const RenderPreviewQuestion = ({ type }: { type: InputTypeEnum }) => {
     case InputTypeEnum.multipleChoice:
       return (
         <VStack space="md">
-          <CheckboxGroup
-            value={["values"]}
-            // onChange={(keys) => {
-            //   setValues(keys);
-            // }}
-          >
+          <CheckboxGroup value={["values"]}>
             <VStack space="md">
               {Array.from({ length: 2 }).map((_, index) => (
                 <Checkbox value="Eng" size="sm" key={index}>
@@ -85,7 +93,7 @@ export const RenderPreviewQuestion = ({ type }: { type: InputTypeEnum }) => {
     case InputTypeEnum.linearScale:
       return (
         <Box className="flex flex-col gap-2 md:flex-row md:items-end">
-          <Text className="md:mx-4">asdsadsa</Text>
+          <Text className="md:mx-4">Min</Text>
           <Box className="ml-8 flex-1 flex-col md:ml-0 md:flex-row md:justify-between">
             {Array.from({ length: 10 }).map((_, index) => (
               <Box className="flex-row items-center gap-2 md:flex-col" key={index}>
@@ -94,7 +102,7 @@ export const RenderPreviewQuestion = ({ type }: { type: InputTypeEnum }) => {
               </Box>
             ))}
           </Box>
-          <Text className="md:mx-4">asdsadsa</Text>
+          <Text className="md:mx-4">Max</Text>
         </Box>
       );
 
@@ -112,11 +120,14 @@ export const RenderPreviewQuestion = ({ type }: { type: InputTypeEnum }) => {
 
     case InputTypeEnum.fileUpload:
       return (
-        <VStack space="md">
+        <HStack space="lg" className="items-center">
           <Button size="sm" isDisabled className="w-fit">
             <ButtonText>Add file</ButtonText>
           </Button>
-        </VStack>
+          <Text className="text-typography-500">
+            {formatSnakeCase(file.fileType)} file type - {file.filesLimit} files
+          </Text>
+        </HStack>
       );
 
     case InputTypeEnum.date:

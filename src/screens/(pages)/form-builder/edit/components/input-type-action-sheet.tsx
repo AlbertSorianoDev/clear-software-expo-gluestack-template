@@ -11,13 +11,18 @@ import {
   ActionsheetItem,
   ActionsheetItemText,
 } from "@/screens/components/ui/actionsheet";
+import { formatSnakeCase } from "@/screens/utils/format-snake-case";
 
 export const InputTypeOptions = Object.entries(InputTypeEnum).map(([value, label]) => ({
   value,
   label,
 }));
 
-export const InputTypeActionSheet = () => {
+export const InputTypeActionSheet = ({
+  onSelect,
+}: {
+  onSelect: (value: InputTypeEnum) => void;
+}) => {
   const showInputTypeActionSheet = useEditFormBuilderPageStore(
     (state) => state.showInputTypeActionSheet,
   );
@@ -28,6 +33,7 @@ export const InputTypeActionSheet = () => {
   const handleClose = () => {
     setShowInputTypeActionSheet(false);
   };
+
   return (
     <Actionsheet isOpen={showInputTypeActionSheet} onClose={handleClose}>
       <ActionsheetBackdrop />
@@ -37,8 +43,14 @@ export const InputTypeActionSheet = () => {
         </ActionsheetDragIndicatorWrapper>
 
         {InputTypeOptions.map((type) => (
-          <ActionsheetItem key={type.value} onPress={handleClose}>
-            <ActionsheetItemText>{type.label}</ActionsheetItemText>
+          <ActionsheetItem
+            key={type.value}
+            onPress={() => {
+              handleClose();
+              onSelect(type.label);
+            }}
+          >
+            <ActionsheetItemText>{formatSnakeCase(type.label)}</ActionsheetItemText>
           </ActionsheetItem>
         ))}
       </ActionsheetContent>

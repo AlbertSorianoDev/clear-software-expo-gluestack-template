@@ -11,3 +11,11 @@ export enum InputTypeEnum {
   linearScale = "linear_scale",
   dropdown = "dropdown",
 }
+
+export enum FileTypeEnum {
+  image = "image",
+  pdf = "pdf",
+  zip = "zip",
+  docs = "docs",
+  any = "any",
+}

@@ -9,7 +9,7 @@ export const usePostFormsIdFields = () => {
 
   return useMutation<Form, Error, { id: number; body: FormFieldCreate }>({
     mutationFn: ({ id, body }) => postFormsIdFields(id, body),
-    onSuccess: async (data: Form) => {
+    onSuccess: (data: Form) => {
       queryClient.setQueryData(["forms", data.id], data);
     },
   });
