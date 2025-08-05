@@ -14,5 +14,9 @@ export const useQuestionContext = (fieldId: number) => {
     return formData?.fields?.find((f) => f.id === fieldId)?.options ?? [];
   }, [formData, fieldId]);
 
-  return { options, fieldSubmission, isLoading };
+  const slider = useMemo(() => {
+    return formData?.fields?.find((f) => f.id === fieldId)?.slider ?? null;
+  }, [formData, fieldId]);
+
+  return { slider, options, fieldSubmission, isLoading };
 };

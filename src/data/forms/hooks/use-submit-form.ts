@@ -1,10 +1,10 @@
 import { useMutation } from "@tanstack/react-query";
 
 import { submitForm } from "../api/submit-form";
-import { FormSubmissionResponse } from "../types/form-submission-response";
+import { FieldResponse } from "../types/field-response";
 
 export const useSubmitForm = () => {
-  return useMutation<FormSubmissionResponse, Error, { formSubmissionId: number }>({
+  return useMutation<FieldResponse, Error, { formSubmissionId: number }>({
     mutationFn: ({ formSubmissionId }) => submitForm(formSubmissionId),
   });
 };

@@ -3,6 +3,7 @@ import { DropdownQuestion } from "./dropdown-question";
 import { LinearScaleQuestion } from "./linear-scale-question";
 import { MultipleChoiceQuestion } from "./multiple-choice-question";
 import { SingleChoiceQuestion } from "./single-choice-question";
+import { SliderQuestion } from "./slider-question";
 import { TextQuestion } from "./text-question";
 import { TimeQuestion } from "./time-question";
 import { UploadFileQuestion } from "./upload-file-question";
@@ -28,7 +29,7 @@ export const RenderQuestion = ({ id, type }: { id: number; type: InputTypeEnum }
       return <LinearScaleQuestion id={id} />;
 
     case InputTypeEnum.slider:
-      return <Text className="text-red-500">Implement slider</Text>;
+      return <SliderQuestion id={id} />;
 
     case InputTypeEnum.dropdown:
       return <DropdownQuestion id={id} />;

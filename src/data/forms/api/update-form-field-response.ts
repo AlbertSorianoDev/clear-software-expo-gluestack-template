@@ -1,7 +1,4 @@
-import {
-  FormSubmissionFieldResponseUpdate,
-  FormSubmissionResponse,
-} from "../types/form-submission-response";
+import { FieldResponse, FieldResponseUpdate } from "../types/field-response";
 
 import axios from "@/config/axios-instance";
 import { camelCaseParser } from "@/data/utils/camel-case-parser";
@@ -9,7 +6,7 @@ import { snakeCaseParser } from "@/data/utils/snake-case-parser";
 
 export const updateFormFieldResponse = async (
   fieldResponseId: number,
-  body: FormSubmissionFieldResponseUpdate,
+  body: FieldResponseUpdate,
 ) => {
   try {
     const response = await axios.put(
@@ -21,7 +18,7 @@ export const updateFormFieldResponse = async (
       throw Error("Error posting forms");
     }
 
-    return camelCaseParser<FormSubmissionResponse>(response.data);
+    return camelCaseParser<FieldResponse>(response.data);
   } catch (e) {
     if (e instanceof Error) {
       throw Error(`Axios error: ${e.message}`);

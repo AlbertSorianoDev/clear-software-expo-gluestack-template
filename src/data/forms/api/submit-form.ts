@@ -1,4 +1,4 @@
-import { FormSubmissionResponse } from "../types/form-submission-response";
+import { FieldResponse } from "../types/field-response";
 
 import axios from "@/config/axios-instance";
 import { camelCaseParser } from "@/data/utils/camel-case-parser";
@@ -11,7 +11,7 @@ export const submitForm = async (formSubmissionId: number) => {
       throw Error("Error posting forms");
     }
 
-    return camelCaseParser<FormSubmissionResponse>(response.data);
+    return camelCaseParser<FieldResponse>(response.data);
   } catch (e) {
     if (e instanceof Error) {
       throw Error(`Axios error: ${e.message}`);

@@ -1,4 +1,4 @@
-export interface FormSubmissionResponse {
+export interface FieldResponse {
   id: number;
   createdAt: number;
   formSubmissionId: number;
@@ -51,7 +51,7 @@ export interface AttachmentResponse {
   url: string;
 }
 
-export interface FormSubmissionFieldResponseCreate {
+export interface FieldResponseCreate {
   formFieldId: number;
   textAnswer?: string | undefined;
   dateAnswer?: Date | undefined;
@@ -59,7 +59,7 @@ export interface FormSubmissionFieldResponseCreate {
   optionsIds?: number[] | undefined;
 }
 
-export interface FormSubmissionFieldResponseUpdate {
+export interface FieldResponseUpdate {
   textAnswer?: string | undefined;
   dateAnswer?: Date | undefined;
   numericAnswer?: number | undefined;

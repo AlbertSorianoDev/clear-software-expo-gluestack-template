@@ -1,4 +1,4 @@
-import { FormSubmissionResponse } from "./form-submission-response";
+import { FieldResponse } from "./field-response";
 
 export interface FormSubmission {
   id: number;
@@ -6,5 +6,5 @@ export interface FormSubmission {
   formId: string;
   userId: number;
   isSubmitted: boolean;
-  responses: FormSubmissionResponse[];
+  responses: FieldResponse[];
 }

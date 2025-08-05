@@ -1,4 +1,5 @@
 import { InputTypeEnum } from "./enums";
+import { FieldSlider } from "./field-slider";
 
 export interface FormField {
   id: number;
@@ -10,6 +11,7 @@ export interface FormField {
   order: number;
   formId: number;
   options?: FieldOption[];
+  slider?: FieldSlider;
 }
 
 export interface FormFieldCreate {
