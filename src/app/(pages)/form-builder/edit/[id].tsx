@@ -5,7 +5,8 @@ import { Platform, Pressable, View } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 import { useGetFormsId } from "@/data/forms/hooks/use-get-forms-id";
-import { FormListView } from "@/screens/(pages)/form-builder/components/form-list-view";
+// import { FormListView } from "@/screens/(pages)/form-builder/components/form-list-view";
+import { FormListViewMobile } from "@/screens/(pages)/form-builder/components/form-list-view-mobile";
 import { FormListViewWeb } from "@/screens/(pages)/form-builder/components/form-list-view-web";
 import { EditFormPrincipalInfo } from "@/screens/(pages)/form-builder/edit/components/edit-form/edit-form-principal-info";
 import { FormSectionWrapper } from "@/screens/(pages)/form-builder/edit/components/form-section-wrapper";
@@ -15,7 +16,7 @@ import { useNewFormField } from "@/screens/(pages)/form-builder/edit/hooks/use-n
 import { useSetupFormUpdater } from "@/screens/(pages)/form-builder/edit/hooks/use-setup-form-updater";
 import { useEditFormBuilderPageStore } from "@/screens/(pages)/form-builder/edit/store/edit-form-builder-page-store";
 import { Box } from "@/screens/components/ui/box";
-import { Button, ButtonIcon } from "@/screens/components/ui/button";
+import { Button, ButtonIcon, ButtonText } from "@/screens/components/ui/button";
 import { Text } from "@/screens/components/ui/text";
 import { VStack } from "@/screens/components/ui/vstack";
 
@@ -23,6 +24,9 @@ export default function EditFormPage() {
   const { id: urlFormId } = useLocalSearchParams<{ id?: string }>();
 
   const { data: form } = useGetFormsId(urlFormId ? Number(urlFormId) : 0);
+
+  const mobileSortableMode = useEditFormBuilderPageStore((state) => state.mobileSortableMode);
+  const setMobileSortableMode = useEditFormBuilderPageStore((state) => state.setMobileSortableMode);
 
   const setSelectedItemId = useEditFormBuilderPageStore((s) => s.setSelectedItemId);
   const setShowInputTypeActionSheet = useEditFormBuilderPageStore(
@@ -51,7 +55,7 @@ export default function EditFormPage() {
     Platform.OS === "web" ? (
       <FormListViewWeb key={fieldsKey} fields={form?.fields} />
     ) : (
-      <FormListView key={fieldsKey} />
+      <FormListViewMobile key={fieldsKey} />
     );
 
   const Content = (
@@ -71,6 +75,16 @@ export default function EditFormPage() {
             )
           }
         </FormSectionWrapper>
+        <Box className="fixed right-0 flex w-full items-end justify-end px-2">
+          <Button
+            size="md"
+            className="w-fit"
+            onPress={() => setMobileSortableMode(!mobileSortableMode)}
+          >
+            <ButtonText>Sort mode</ButtonText>
+          </Button>
+        </Box>
+
         {(form?.fields?.length ?? 0 > 0) ? (
           FormList
         ) : (
@@ -88,15 +102,20 @@ export default function EditFormPage() {
   return (
     <>
       <InputTypeActionSheet onSelect={createNewField} />
+
       <View className="flex-1">
-        <KeyboardAwareScrollView
-          style={{ flex: 1 }}
-          keyboardShouldPersistTaps="handled"
-          enableOnAndroid={true}
-          contentContainerStyle={{ flexGrow: 1 }}
-        >
-          {Content}
-        </KeyboardAwareScrollView>
+        {!mobileSortableMode ? (
+          <KeyboardAwareScrollView
+            style={{ flex: 1 }}
+            keyboardShouldPersistTaps="handled"
+            enableOnAndroid={true}
+            contentContainerStyle={{ flexGrow: 1 }}
+          >
+            {Content}
+          </KeyboardAwareScrollView>
+        ) : (
+          Content
+        )}
       </View>
     </>
   );

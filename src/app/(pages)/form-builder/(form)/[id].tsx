@@ -52,7 +52,13 @@ export default function FormAnswerPage() {
                 <FormSectionWrapper key={index} id={field.id}>
                   {() => (
                     <VStack space="sm" className="p-5">
-                      <Heading size="md">{field.title}</Heading>
+                      {/* <HStack className="items-center"> */}
+                      <Heading size="md">
+                        {field.title}
+                        {field.isRequired && <Text className="text-red-500">{" *"}</Text>}
+                      </Heading>
+
+                      {/* </HStack> */}
                       <Text size="md">{field.description}</Text>
                       <RenderQuestion id={field.id} type={field.inputType} />
                     </VStack>

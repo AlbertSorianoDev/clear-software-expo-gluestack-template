@@ -5,6 +5,9 @@ import { FileTypeEnum, InputTypeEnum } from "@/data/forms/types/enums";
 import { FieldOption } from "@/data/forms/types/field-option";
 
 interface EditFormBuilderPageStore {
+  mobileSortableMode: boolean;
+  setMobileSortableMode: (value: boolean) => void;
+
   showInputTypeActionSheet: boolean;
   setShowInputTypeActionSheet: (value: boolean) => void;
 
@@ -78,6 +81,7 @@ interface EditFormBuilderPageStore {
 }
 
 const initialData = {
+  mobileSortableMode: false,
   showInputTypeActionSheet: false,
   selectedNewField: null,
   selectedItemId: null,
@@ -101,6 +105,12 @@ const initialData = {
 export const useEditFormBuilderPageStore = create<EditFormBuilderPageStore>()(
   immer((set) => ({
     ...initialData,
+
+    setMobileSortableMode: (value) => {
+      set((state) => {
+        state.mobileSortableMode = value;
+      });
+    },
 
     setSelectedItemId: (id) => {
       set((state) => {
