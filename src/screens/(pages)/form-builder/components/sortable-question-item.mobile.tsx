@@ -2,6 +2,7 @@ import React, { useCallback } from "react";
 import { View } from "react-native";
 import { SortableItem, SortableRenderItemProps } from "react-native-reanimated-dnd";
 
+import { useUpdateFieldOrder } from "@/data/forms/hooks/use-update-field-order";
 import { FormField } from "@/data/forms/types/form-field";
 import { Badge, BadgeText } from "@/screens/components/ui/badge";
 import { Box } from "@/screens/components/ui/box";
@@ -12,20 +13,21 @@ import { formatSnakeCase } from "@/screens/utils/format-snake-case";
 const Component = (props: SortableRenderItemProps<FormField>) => {
   const { item, id, positions, lowerBound, autoScrollDirection, itemsCount, itemHeight } = props;
 
+  const { mutateAsync: updateFieldOrder } = useUpdateFieldOrder();
+
   const handleDrop = useCallback(
-    (currentId: string, position: number) => {
+    async (currentId: string, position: number) => {
       const currentPosition = position + 1;
       if (currentPosition == item.order) return;
-      console.log(item.id);
-      console.log(`Item ${currentId} dropped at position ${position}`);
+      await updateFieldOrder({ formId: item.formId, fieldId: item.id, toOrder: currentPosition });
     },
-    [item.id, item.order],
+    [item.id, item.order, item.formId, updateFieldOrder],
   );
 
   return (
     <SortableItem
       key={id}
-      id={id}
+      id={item.id.toString()}
       data={item}
       positions={positions}
       lowerBound={lowerBound}

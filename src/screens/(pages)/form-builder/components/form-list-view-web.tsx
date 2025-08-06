@@ -15,12 +15,14 @@ import {
 } from "@dnd-kit/sortable";
 import { useState } from "react";
 
+import { useUpdateFieldOrder } from "@/data/forms/hooks/use-update-field-order";
 import { FormField } from "@/data/forms/types/form-field";
 import { SortableQuestionItem } from "@/screens/(pages)/form-builder/components/sortable-question-item-web";
 import { Box } from "@/screens/components/ui/box";
 
 export const FormListViewWeb = ({ fields }: { fields?: FormField[] }) => {
   const [items, setItems] = useState(fields ?? []);
+  const { mutateAsync: updateFieldOrder } = useUpdateFieldOrder();
 
   const sensors = useSensors(
     useSensor(PointerSensor),
@@ -29,16 +31,25 @@ export const FormListViewWeb = ({ fields }: { fields?: FormField[] }) => {
     }),
   );
 
-  const handleDragEnd = (event: DragEndEvent) => {
+  const handleDragEnd = async (event: DragEndEvent) => {
     const { active, over } = event;
     if (!over?.id) return;
 
     if (active.id !== over.id) {
-      setItems((items) => {
-        const oldIndex = items.findIndex((item) => item.id.toString() === active.id.toString());
-        const newIndex = items.findIndex((item) => item.id.toString() === over.id.toString());
+      const oldIndex = items.findIndex((item) => item.id.toString() === active.id.toString());
+      const newIndex = items.findIndex((item) => item.id.toString() === over.id.toString());
 
+      setItems((items) => {
         return arrayMove(items, oldIndex, newIndex);
+      });
+
+      const activeItem = items[oldIndex];
+      const overItem = items[newIndex];
+
+      await updateFieldOrder({
+        formId: activeItem.formId,
+        fieldId: activeItem.id,
+        toOrder: overItem.order,
       });
     }
   };

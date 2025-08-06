@@ -75,15 +75,17 @@ export default function EditFormPage() {
             )
           }
         </FormSectionWrapper>
-        <Box className="fixed right-0 flex w-full items-end justify-end px-2">
-          <Button
-            size="md"
-            className="w-fit"
-            onPress={() => setMobileSortableMode(!mobileSortableMode)}
-          >
-            <ButtonText>Sort mode</ButtonText>
-          </Button>
-        </Box>
+        {Platform.OS != "web" && (
+          <Box className="flex w-full items-end justify-end px-2">
+            <Button
+              size="md"
+              className="w-fit"
+              onPress={() => setMobileSortableMode(!mobileSortableMode)}
+            >
+              <ButtonText>Sort mode</ButtonText>
+            </Button>
+          </Box>
+        )}
 
         {(form?.fields?.length ?? 0 > 0) ? (
           FormList
