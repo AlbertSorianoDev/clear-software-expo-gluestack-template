@@ -18,7 +18,7 @@ export function SortableQuestionItem({ question }: { question: FormField }) {
   });
 
   const style = {
-    transform: CSS.Transform.toString(transform),
+    transform: transform ? CSS.Translate.toString(transform) : undefined,
   };
 
   return (

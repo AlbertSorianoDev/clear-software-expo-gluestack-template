@@ -25,7 +25,7 @@ export const FormListViewWeb = ({ fields }: { fields?: FormField[] }) => {
   const { mutateAsync: updateFieldOrder } = useUpdateFieldOrder();
 
   const sensors = useSensors(
-    useSensor(PointerSensor),
+    useSensor(PointerSensor, { activationConstraint: { distance: 8 } }),
     useSensor(KeyboardSensor, {
       coordinateGetter: sortableKeyboardCoordinates,
     }),
